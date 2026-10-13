@@ -1,0 +1,17 @@
+# Only publication files are tracked. Local history and work remain local.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/plugin/
+!/dist/
+/plugin/*
+!/plugin/gemini-cat-theme/
+**/node_modules/
+**/.DS_Store
+plugin/gemini-cat-theme/src/client-entry.js
+plugin/gemini-cat-theme/assets/gemini-sidebar-fywdy-idle.webp
+plugin/gemini-cat-theme/assets/chibi-pets-LICENSE.txt
+plugin/gemini-cat-theme/assets/chibi-pets-NOTICE.md
+
+/dist/*

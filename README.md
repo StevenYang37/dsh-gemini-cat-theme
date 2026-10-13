@@ -6,21 +6,23 @@
 
 ## 下载与安装
 
-本插件尚未发布到 npm，请下载本仓库的 [0.4.14 安装包](dist/dsh-gemini-cat-theme-0.4.14.tgz)。在 GitHub 文件页点击下载按钮保存原始 `.tgz`，不要解压后安装。
-
-在终端执行，路径换成实际下载位置：
+本插件尚未发布到 npm。先克隆本仓库，完整插件位于 `plugin/gemini-cat-theme/`；可直接从该本地目录安装：
 
 Windows（PowerShell）：
 
 ```powershell
-dsh plugin --profile desktop add "file:C:/Downloads/dsh-gemini-cat-theme-0.4.14.tgz"
+git clone https://github.com/StevenYang37/dsh-gemini-cat-theme.git
+dsh plugin --profile desktop add "file:C:/path/to/dsh-gemini-cat-theme/plugin/gemini-cat-theme"
 ```
 
 macOS：
 
 ```sh
-"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add "file:/absolute/path/dsh-gemini-cat-theme-0.4.14.tgz"
+git clone https://github.com/StevenYang37/dsh-gemini-cat-theme.git
+"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add "file:/path/to/dsh-gemini-cat-theme/plugin/gemini-cat-theme"
 ```
+
+把示例路径换成实际克隆目录。
 
 如果平时启动 DSH 使用自定义 `DSH_HOME`，安装命令也须使用同一个值，避免安装到另一个数据目录。不要为安装主题新建数据目录或迁移会话。
 
@@ -51,7 +53,7 @@ macOS 没有全局 `dsh` 命令时，使用上面完整 CLI 路径替换命令�
 
 ## 源码与构建
 
-`plugin/gemini-cat-theme/` 包含完整插件源码、构建脚本、素材、许可文件和已构建客户端；`dist/` 提供安装包。需要 Node.js 和 pnpm：
+`plugin/gemini-cat-theme/` 包含完整插件源码、构建脚本、素材、许可文件和已构建客户端；`dist/` 提供安装包。需要 Node.js 和 pnpm；这会在本地生成 `.tgz`，不必提交到仓库：
 
 ```sh
 cd plugin/gemini-cat-theme

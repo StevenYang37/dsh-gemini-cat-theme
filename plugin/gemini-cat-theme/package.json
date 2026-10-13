@@ -1,0 +1,57 @@
+{
+  "name": "dsh-gemini-cat-theme",
+  "version": "0.4.14",
+  "license": "SEE LICENSE IN LICENSE",
+  "description": "Gemini 紫夜主题 for DSH Desktop 0.2.0-rc.2 (Windows and macOS)",
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "desktop",
+    "theme",
+    "gemini"
+  ],
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "assets",
+    "lib",
+    "cordis.patch.yml",
+    "README.md",
+    "ASSETS.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node ./scripts/build-client.mjs",
+    "prepack": "node ./scripts/build-client.mjs"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/dsh": ">=0.2.0-rc.2 <0.3.0"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/dsh": {
+      "optional": true
+    }
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StevenYang37/dsh-gemini-cat-theme.git"
+  },
+  "homepage": "https://github.com/StevenYang37/dsh-gemini-cat-theme"
+}
