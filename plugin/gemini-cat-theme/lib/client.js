@@ -512,6 +512,57 @@ window.__ModuleLoader__.load({
       box-shadow:inset 0 1px #ffffff12 !important;
       overflow-wrap:anywhere; box-decoration-break:clone; -webkit-box-decoration-break:clone;
     }
+    /* Fenced code blocks use a dark surface and local Shiki tokens; surrounding message colors stay unchanged. */
+    html[data-dsh-gemini-theme="active"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] .md-code-block {
+      --dsw-alias-markdown-code-block:#24213f;
+      --dsw-alias-markdown-code-block-banner:#322b51;
+      --dsw-alias-bg-base:#322b51;
+      --dsw-alias-label-primary:#ffe6a4;
+      --dsw-alias-label-secondary:#f3d992;
+      --dsw-alias-label-tertiary:#cbbbea;
+      --dsl-code-block-background:#24213f;
+      --dsl-code-block-banner-background-color:#322b51;
+      --dsl-code-block-border-radius:11px;
+      --shiki-foreground:#ffe6a4;
+      --shiki-background:#24213f;
+      --shiki-token-constant:#9feaff;
+      --shiki-token-string:#bfe7b5;
+      --shiki-token-comment:#bfb3d8;
+      --shiki-token-keyword:#ffc1e4;
+      --shiki-token-parameter:#ffdaa0;
+      --shiki-token-function:#dac5ff;
+      --shiki-token-string-expression:#c5e6a4;
+      --shiki-token-punctuation:#f3d992;
+      --shiki-token-link:#9feaff;
+      background:var(--dsl-code-block-background) !important;
+      color:var(--shiki-foreground);
+      border:1px solid #bca36e; border-radius:12px;
+      box-shadow:inset 0 1px #ffffff0d;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] .md-code-block :where(*) {
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+      -webkit-text-fill-color:currentColor !important;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] .md-code-block [data-code-block-banner] {
+      background:var(--dsl-code-block-banner-background-color) !important;
+      color:#ffe6a4; border-bottom:1px solid #bca36e55;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] .md-code-block [data-code-block-banner] :where(:not(svg):not(path)) {
+      color:#ffe6a4 !important; -webkit-text-fill-color:currentColor !important;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] .md-code-block [data-code-block-banner] button,
+    html[data-dsh-gemini-theme="active"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] .md-code-block [data-code-block-banner] button :where(:not(svg):not(path)) {
+      font-size:inherit !important;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] .md-code-block [data-code-block-banner] button:hover {
+      background:#534775 !important;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] .md-code-block pre {
+      background:var(--dsl-code-block-background) !important;
+      color:var(--shiki-foreground) !important;
+    }
+    /* End fenced code blocks. */
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] button[class*="_fileMention_"] {
       color:#d9c1ff !important; -webkit-text-fill-color:#d9c1ff !important;
       text-decoration:underline; text-decoration-color:#d9c1ff99; text-underline-offset:.16em;
@@ -788,6 +839,7 @@ window.__ModuleLoader__.load({
 
         let settings = loadSettings()
         let transitionTimer
+        let syncFrame = null
         const enabled = panel.querySelector('[data-setting="enabled"]')
         const showArt = panel.querySelector('[data-setting="showArt"]')
         const intensity = panel.querySelector('[data-setting="intensity"]')
@@ -803,8 +855,9 @@ window.__ModuleLoader__.load({
           const mainRect = (document.querySelector(S.main) || main || frame).getBoundingClientRect()
           const wide = mainRect.width >= 1260
           const currentConversation = document.querySelector(S.conversation)
-          const phase = currentConversation?.getAttribute('data-phase') || currentConversation?.closest('[data-phase]')?.getAttribute('data-phase')
-          const hero = phase ? phase === 'hero' : !!document.querySelector(S.heroComposer)
+          const phaseOwner = currentConversation?.closest('[data-phase],[data-content-phase]')
+          const phase = phaseOwner?.getAttribute('data-phase') || phaseOwner?.getAttribute('data-content-phase')
+          const hero = phase ? phase === 'hero' : !!currentConversation?.querySelector(S.heroComposer)
           const artOpacity = Math.min(1, Math.max(0, settings.intensity / 100 * (hero ? 1 : .4)))
           setRoot('data-dsh-gemini-page', currentConversation ? 'conversation' : 'other')
           setRoot('data-dsh-gemini-scene', currentConversation ? (hero ? 'hero' : 'chat') : 'other')
@@ -815,6 +868,11 @@ window.__ModuleLoader__.load({
           themeFrame.hidden = !settings.enabled
           art.style.setProperty('--gem-art-opacity', String(artOpacity))
           companion.style.setProperty('--gem-art-opacity', String(artOpacity))
+        }
+        // Batch host layout/route notifications; setting changes still update immediately.
+        const scheduleSync = () => {
+          if (syncFrame !== null) return
+          syncFrame = requestAnimationFrame(() => { syncFrame = null; sync() })
         }
         const update = () => { saveSettings(settings); sync() }
         const toggle = () => { panel.hidden = !panel.hidden; trigger.setAttribute('aria-expanded', String(!panel.hidden)); if (!panel.hidden) enabled.focus() }
@@ -851,32 +909,35 @@ window.__ModuleLoader__.load({
         document.addEventListener('keydown', escape)
         document.addEventListener('pointerdown', outside)
         sidebar.addEventListener('click', switchSession, true)
-        window.addEventListener('resize', sync)
-        const observer = new ResizeObserver(sync)
+        window.addEventListener('resize', scheduleSync)
+        const observer = new ResizeObserver(scheduleSync)
         observer.observe(main || frame)
         const routeObserver = new MutationObserver(records => {
           if (records.every(record => record.target.closest?.('[data-chat-flow],[contenteditable="true"]'))) return
           const currentFooter = document.querySelector(S.footer)
           const currentConversation = document.querySelector(S.conversation)
-          if (currentFooter && (!trigger.isConnected || !mascot.isConnected)) currentFooter.prepend(mascot, trigger)
-          if (currentConversation && (!art.isConnected || !companion.isConnected || !themeFrame.isConnected)) currentConversation.append(art, companion, themeFrame)
-          sync()
+          // A previous route can remain connected while its replacement mounts.
+          if (currentFooter && (trigger.parentElement !== currentFooter || mascot.parentElement !== currentFooter)) currentFooter.prepend(mascot, trigger)
+          if (currentConversation && (art.parentElement !== currentConversation || companion.parentElement !== currentConversation || themeFrame.parentElement !== currentConversation)) currentConversation.append(art, companion, themeFrame)
+          scheduleSync()
         })
-        routeObserver.observe(frame, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-phase'] })
+        routeObserver.observe(frame, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-phase', 'data-content-phase'] })
         const timer = setInterval(() => {
           const tone = hostTone()
           if (root.getAttribute('data-dsh-gemini-tone') !== tone) root.setAttribute('data-dsh-gemini-tone', tone)
         }, 2500)
         sync()
         return () => {
-          clearInterval(timer); clearTimeout(transitionTimer); observer.disconnect(); routeObserver.disconnect()
+          clearInterval(timer); clearTimeout(transitionTimer)
+          if (syncFrame !== null) cancelAnimationFrame(syncFrame)
+          observer.disconnect(); routeObserver.disconnect()
           trigger.removeEventListener('click', toggle)
           panel.removeEventListener('change', change)
           intensity.removeEventListener('input', input)
           document.removeEventListener('keydown', escape)
           document.removeEventListener('pointerdown', outside)
           sidebar.removeEventListener('click', switchSession, true)
-          window.removeEventListener('resize', sync)
+          window.removeEventListener('resize', scheduleSync)
           art.remove(); companion.remove(); mascot.remove(); themeFrame.remove(); panel.remove(); trigger.remove(); style.remove()
           if (priorTheme === null) root.removeAttribute('data-dsh-gemini-theme')
           else root.setAttribute('data-dsh-gemini-theme', priorTheme)
