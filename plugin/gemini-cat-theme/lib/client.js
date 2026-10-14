@@ -535,11 +535,17 @@ window.__ModuleLoader__.load({
       -webkit-text-stroke:0 transparent !important; text-shadow:none !important; font-weight:500;
     }
     /* DSH session statistics and message footer controls sit outside the conversation root. */
-    html[data-dsh-gemini-theme="active"] :is(.ppByMG_actions,.ppByMG_endInfo,.ppByMG_timeStart,.icaHSq_flowItem,.sZXytW_root,.sZXytW_trigger,.sZXytW_label,.OpZ85W_root,.OpZ85W_anchor,.OpZ85W_pill,.y0jqnG_root,.y0jqnG_trigger) {
+    html[data-dsh-gemini-theme="active"] :is(.ppByMG_actions,.ppByMG_endInfo,.ppByMG_timeStart,.sZXytW_root,.sZXytW_trigger,.sZXytW_label,.OpZ85W_root,.OpZ85W_anchor,.OpZ85W_pill,.y0jqnG_root,.y0jqnG_trigger) {
       color:#352460 !important; -webkit-text-fill-color:#352460 !important;
       -webkit-text-stroke:0 transparent !important; text-shadow:none !important; font-size:15px !important; font-weight:600 !important;
     }
-    html[data-dsh-gemini-theme="active"] :is(.ppByMG_actions,.ppByMG_endInfo,.ppByMG_timeStart,.icaHSq_flowItem,.sZXytW_root,.sZXytW_trigger,.sZXytW_label,.OpZ85W_root,.OpZ85W_anchor,.OpZ85W_pill,.y0jqnG_root,.y0jqnG_trigger) :where(:not(svg):not(path)) {
+    html[data-dsh-gemini-theme="active"] :is(.ppByMG_actions,.ppByMG_endInfo,.ppByMG_timeStart,.sZXytW_root,.sZXytW_trigger,.sZXytW_label,.OpZ85W_root,.OpZ85W_anchor,.OpZ85W_pill,.y0jqnG_root,.y0jqnG_trigger) :where(:not(svg):not(path)) {
+      color:#352460 !important; -webkit-text-fill-color:#352460 !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important; font-size:15px !important; font-weight:600 !important;
+    }
+    /* The completion row wraps assistant output; style only its status button, never the row. */
+    html[data-dsh-gemini-theme="active"] .icaHSq_flowItem button,
+    html[data-dsh-gemini-theme="active"] .icaHSq_flowItem button :where(:not(svg):not(path)) {
       color:#352460 !important; -webkit-text-fill-color:#352460 !important;
       -webkit-text-stroke:0 transparent !important; text-shadow:none !important; font-size:15px !important; font-weight:600 !important;
     }
