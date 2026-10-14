@@ -362,6 +362,49 @@ window.__ModuleLoader__.load({
 
     // Shared opaque surfaces cover both in-frame views and body-level portals.
     const CSS_V3 = `
+    /* Independent controls: keep character positioning without requiring the star theme. */
+    html[data-dsh-gemini-art="on"] ${S.conversation} {
+      position:relative; isolation:isolate;
+    }
+    html[data-dsh-gemini-theme="off"][data-dsh-gemini-art="on"] ${S.conversation} :is(${S.heroTitle},${S.heroComposer},.Dc7zOa_scrollBody,.ST7X_W_scrollBody) {
+      position:relative; z-index:2;
+    }
+    html[data-dsh-gemini-theme="off"][data-dsh-gemini-art="on"] ${S.heroTitle} {
+      box-sizing:border-box; width:100%; max-width:100%; margin:0; padding-inline:0; transform:none;
+    }
+    html[data-dsh-gemini-theme="off"][data-dsh-gemini-art="on"] ${S.heroTitle} :is(.Hqq-bq_headline,.bocITq_headline) {
+      justify-content:center; align-items:center; text-align:center;
+    }
+    html[data-dsh-gemini-theme="off"][data-dsh-gemini-art="on"][data-dsh-gemini-wide="yes"] ${S.conversation} ${S.heroComposer} {
+      width:640px; max-width:calc(100% - 32px); margin-inline:auto; transform:translateX(80px);
+    }
+    html[data-dsh-gemini-theme="off"][data-dsh-gemini-art="on"][data-dsh-gemini-wide="yes"] ${S.heroComposer} ${S.composer} {
+      box-sizing:border-box; width:calc(100% - 32px); max-width:100%;
+    }
+    @media (min-width:1100px) and (max-width:1499px) {
+      html[data-dsh-gemini-theme="off"][data-dsh-gemini-art="on"] ${S.conversation} ${S.heroComposer} {
+        width:min(52%,640px); max-width:640px; margin-left:36%; margin-right:auto;
+        transform:translateY(calc(0px - clamp(48px,6.5vh,64px)));
+      }
+      html[data-dsh-gemini-theme="off"][data-dsh-gemini-art="on"] ${S.heroComposer} ${S.composer} {
+        box-sizing:border-box; width:100%; max-width:100%;
+      }
+    }
+    /* The sidebar panel has a persistent selected state, separate from hover. */
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(._2H3hWW_panelRow,._3WPZCG_panelRow):is(:hover,[aria-current="page"],._2H3hWW_panelActive,._3WPZCG_panelActive) {
+      background:linear-gradient(90deg,#514b8d,#3e3b7a) !important;
+      color:#f9e8b0 !important; -webkit-text-fill-color:#f9e8b0 !important;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(._2H3hWW_panelRow,._3WPZCG_panelRow):is(:hover,[aria-current="page"],._2H3hWW_panelActive,._3WPZCG_panelActive) :where(:not(svg):not(path)) {
+      color:#f9e8b0 !important; -webkit-text-fill-color:#f9e8b0 !important;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(._2H3hWW_panelRow,._3WPZCG_panelRow):is([aria-current="page"],._2H3hWW_panelActive,._3WPZCG_panelActive) {
+      box-shadow:inset 3px 0 #d7ba80;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(._2H3hWW_panelRow,._3WPZCG_panelRow) svg {
+      color:#f9e8b0;
+    }
+    /* End independent controls. */
     html[data-dsh-gemini-theme="active"] :where(${S.frame},[role="dialog"],[role="alertdialog"],[role="menu"],[role="listbox"],._surface_ri079_1,:is(.Z9Jnlq_menu,.tki__G_menu)) {
       --dsw-alias-bg-base:var(--gem-app); --dsw-alias-bg-layer-1:var(--gem-card);
       --dsw-alias-bg-layer-2:var(--gem-card); --dsw-alias-bg-layer-3:var(--gem-card);
@@ -776,6 +819,7 @@ window.__ModuleLoader__.load({
         if (!frame || !sidebar) return null
         const root = document.documentElement
         const priorTheme = root.getAttribute('data-dsh-gemini-theme')
+        const priorArt = root.getAttribute('data-dsh-gemini-art')
         const priorTone = root.getAttribute('data-dsh-gemini-tone')
         const priorWide = root.getAttribute('data-dsh-gemini-wide')
         const priorPage = root.getAttribute('data-dsh-gemini-page')
@@ -807,7 +851,7 @@ window.__ModuleLoader__.load({
         panel.id = ID.panel
         panel.hidden = true
         panel.setAttribute('aria-label', 'Gemini 紫夜主题设置')
-        panel.innerHTML = '<h2>Gemini 紫夜</h2><label>启用星象主题 <input data-setting="enabled" type="checkbox"></label><label>显示角色装饰 <input data-setting="showArt" type="checkbox"></label><label for="dsh-gemini-intensity">角色强度（最高 250%） <output for="dsh-gemini-intensity">82%</output></label><input id="dsh-gemini-intensity" data-setting="intensity" type="range" min="0" max="250" step="1"><button type="button" data-action="reset">恢复默认设置</button>'
+        panel.innerHTML = '<h2>Gemini 紫夜</h2><label>启用星象主题 <input data-setting="enabled" type="checkbox"></label><label>显示角色装饰 <input data-setting="showArt" type="checkbox"></label><label for="dsh-gemini-intensity">角色强度（最高 250%） <output for="dsh-gemini-intensity">82%</output></label><input id="dsh-gemini-intensity" data-setting="intensity" type="range" min="0" max="250" step="1"><button type="button" data-action="reset">恢复默认设置</button><p>主题与角色可分别开启。</p>'
         document.body.append(panel)
 
         const art = document.createElement('div')
@@ -847,6 +891,7 @@ window.__ModuleLoader__.load({
         const setRoot = (name, value) => { if (root.getAttribute(name) !== value) root.setAttribute(name, value) }
         const sync = () => {
           setRoot('data-dsh-gemini-theme', settings.enabled ? 'active' : 'off')
+          setRoot('data-dsh-gemini-art', settings.showArt ? 'on' : 'off')
           setRoot('data-dsh-gemini-tone', hostTone())
           enabled.checked = settings.enabled
           showArt.checked = settings.showArt
@@ -861,10 +906,10 @@ window.__ModuleLoader__.load({
           const artOpacity = Math.min(1, Math.max(0, settings.intensity / 100 * (hero ? 1 : .4)))
           setRoot('data-dsh-gemini-page', currentConversation ? 'conversation' : 'other')
           setRoot('data-dsh-gemini-scene', currentConversation ? (hero ? 'hero' : 'chat') : 'other')
-          setRoot('data-dsh-gemini-wide', settings.enabled && wide ? 'yes' : 'no')
-          art.hidden = !settings.enabled || !settings.showArt || !currentConversation || mainRect.width < 850
-          companion.hidden = !settings.enabled || !settings.showArt || !currentConversation || mainRect.width < 850
-          mascot.hidden = !settings.enabled || !settings.showArt
+          setRoot('data-dsh-gemini-wide', (settings.enabled || settings.showArt) && wide ? 'yes' : 'no')
+          art.hidden = !settings.showArt || !currentConversation || mainRect.width < 850
+          companion.hidden = !settings.showArt || !currentConversation || mainRect.width < 850
+          mascot.hidden = !settings.showArt
           themeFrame.hidden = !settings.enabled
           art.style.setProperty('--gem-art-opacity', String(artOpacity))
           companion.style.setProperty('--gem-art-opacity', String(artOpacity))
@@ -941,6 +986,8 @@ window.__ModuleLoader__.load({
           art.remove(); companion.remove(); mascot.remove(); themeFrame.remove(); panel.remove(); trigger.remove(); style.remove()
           if (priorTheme === null) root.removeAttribute('data-dsh-gemini-theme')
           else root.setAttribute('data-dsh-gemini-theme', priorTheme)
+          if (priorArt === null) root.removeAttribute('data-dsh-gemini-art')
+          else root.setAttribute('data-dsh-gemini-art', priorArt)
           if (priorTone === null) root.removeAttribute('data-dsh-gemini-tone')
           else root.setAttribute('data-dsh-gemini-tone', priorTone)
           if (priorWide === null) root.removeAttribute('data-dsh-gemini-wide')
