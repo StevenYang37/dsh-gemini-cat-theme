@@ -148,7 +148,7 @@ window.__ModuleLoader__.load({
       --dsw-alias-label-tertiary:#7b689f; --dsw-alias-brand-text:#392766;
       background-image:linear-gradient(90deg,#f4f0ff15 0%,#f7f3ff30 28%,#fbf9ff6b 48%,#f7f4ff49 74%,#ddd1f721 100%),url("${SCENE_DATA_URL}");
       background-size:cover; background-position:center center;
-      box-shadow:inset 0 0 0 4px #222852,inset 0 0 0 6px #d5bc81,inset 0 0 0 8px #f8ecce;
+      box-shadow:none;
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="dark"] ${S.conversation} {
       --dsw-alias-label-primary:#f3eaff; --dsw-alias-label-secondary:#d0bee9;
@@ -166,8 +166,8 @@ window.__ModuleLoader__.load({
     }
     #${ID.frame} {
       position:absolute; inset:12px; pointer-events:none; z-index:5;
-      border:1px solid #f9e8b0a8; border-radius:5px;
-      box-shadow:inset 0 0 0 1px #534a8a78,0 0 0 1px #29285780;
+      border:1px solid #f9e8b0a8; border-bottom:0; border-radius:5px 5px 0 0;
+      box-shadow:none;
     }
     #${ID.frame}[hidden] { display:none; }
     #${ID.frame} .corner { position:absolute; width:42px; height:42px; color:#b99559; }
@@ -509,15 +509,39 @@ window.__ModuleLoader__.load({
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] button[class*="_fileMention_"] svg {
       color:#d9c1ff !important; stroke:currentColor;
     }
-    html[data-dsh-gemini-theme="active"] ${S.composer} [data-composer-input="true"]::placeholder,
-    html[data-dsh-gemini-theme="active"] ${S.composer} [data-composer-input="true"] *::placeholder,
-    html[data-dsh-gemini-theme="active"] ${S.composer} :where(textarea,input)::placeholder,
-    html[data-dsh-gemini-theme="active"] ${S.composer} [data-placeholder]::before,
-    html[data-dsh-gemini-theme="active"] ${S.composer} [contenteditable="true"]::before {
-      color:#8b76ad !important; -webkit-text-fill-color:#8b76ad !important; opacity:1;
-      font-family:inherit !important; font-size:inherit !important; font-weight:inherit !important;
-      line-height:inherit !important; letter-spacing:inherit !important;
+    /* Reset placeholder layers separately; old-chat DSH adds inherited gold stroke/shadow. */
+    html[data-dsh-gemini-theme="active"] ${S.composer} :is([data-composer-input="true"],[contenteditable="true"],[data-placeholder],[class*="placeholder" i]),
+    html[data-dsh-gemini-theme="active"] ${S.composer} :is([data-composer-input="true"],[contenteditable="true"],[data-placeholder],[class*="placeholder" i])::before,
+    html[data-dsh-gemini-theme="active"] ${S.composer} :is([data-composer-input="true"],[contenteditable="true"],[data-placeholder],[class*="placeholder" i])::after,
+    html[data-dsh-gemini-theme="active"] ${S.composer} :is([data-composer-input="true"],[contenteditable="true"],[data-placeholder],[class*="placeholder" i]) :where(textarea,input)::placeholder {
+      color:#7651a8 !important; -webkit-text-fill-color:#7651a8 !important; caret-color:#7651a8; opacity:1 !important;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif !important;
+      font-size:14px !important; font-weight:500 !important; line-height:24px !important; letter-spacing:normal !important;
       -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    /* Keep conversation chrome readable over the illustrated background. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :is(h1,h2,[role="tab"],[class*="header" i],[class*="title" i],[class*="tab" i]) :where(:not(svg):not(path)),
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :is(h1,h2,[role="tab"],[class*="header" i],[class*="title" i],[class*="tab" i]):not(svg):not(path) {
+      color:#392766 !important; -webkit-text-fill-color:#392766 !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} [role="tab"][aria-selected="true"] {
+      color:#392766 !important; border-color:#8b6ab7 !important; box-shadow:inset 0 -2px #8b6ab7;
+    }
+    /* Status, timestamps and usage counters were inheriting pale gold outlines on the light artwork. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :is(time,[class*="status" i],[class*="meta" i],[class*="usage" i],[class*="token" i],[class*="context" i],[class*="stat" i],[class*="complete" i],[class*="duration" i]),
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :is(time,[class*="status" i],[class*="meta" i],[class*="usage" i],[class*="token" i],[class*="context" i],[class*="stat" i],[class*="complete" i],[class*="duration" i]) :where(:not(svg):not(path)) {
+      color:#51416f !important; -webkit-text-fill-color:#51416f !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important; font-weight:500;
+    }
+    /* DSH session statistics and message footer controls sit outside the conversation root. */
+    html[data-dsh-gemini-theme="active"] :is(.ppByMG_actions,.ppByMG_endInfo,.ppByMG_timeStart,.icaHSq_flowItem,.sZXytW_root,.sZXytW_trigger,.sZXytW_label,.OpZ85W_root,.OpZ85W_anchor,.OpZ85W_pill,.y0jqnG_root,.y0jqnG_trigger) {
+      color:#352460 !important; -webkit-text-fill-color:#352460 !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important; font-size:15px !important; font-weight:600 !important;
+    }
+    html[data-dsh-gemini-theme="active"] :is(.ppByMG_actions,.ppByMG_endInfo,.ppByMG_timeStart,.icaHSq_flowItem,.sZXytW_root,.sZXytW_trigger,.sZXytW_label,.OpZ85W_root,.OpZ85W_anchor,.OpZ85W_pill,.y0jqnG_root,.y0jqnG_trigger) :where(:not(svg):not(path)) {
+      color:#352460 !important; -webkit-text-fill-color:#352460 !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important; font-size:15px !important; font-weight:600 !important;
     }
     @media (min-width:1100px) and (max-width:1499px) {
       html[data-dsh-gemini-scene="hero"] #${ID.art}.is-original { width:35%; }
