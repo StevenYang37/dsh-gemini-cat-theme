@@ -1,26 +1,28 @@
 # Gemini 紫夜 · DSH Desktop 主题
 
-面向 **DSH Desktop 0.2.0-rc.2** 的非官方 Gemini 社区同人主题插件。当前版本 **0.4.14**，包含 Windows 与 macOS 界面标识适配。
+面向 **DSH Desktop 0.2.0-rc.2** 的非官方 Gemini 社区同人主题插件。当前版本 **0.4.25**，包含 Windows 与 macOS 界面标识适配。
 
 星象图书馆背景、紫色侧栏、金色边框、双角色装饰及高清侧栏坐姿形象；支持明暗模式、主题开关、角色显示开关和最高 250% 的角色强度。角色图片随包内置，运行时无需访问图床。
 
 ## 下载与安装
 
-本插件尚未发布到 npm，请下载本仓库的 [0.4.14 安装包](https://github.com/StevenYang37/dsh-gemini-cat-theme/releases/download/v0.4.14/dsh-gemini-cat-theme-0.4.14.tgz)。在 GitHub 文件页点击下载按钮保存原始 `.tgz`，不要解压后安装。
-
-在终端执行，路径换成实际下载位置：
+本插件未发布到 npm，也不需要 GitHub Release。克隆仓库后，可直接从 `plugin/gemini-cat-theme/` 本地目录安装。
 
 Windows（PowerShell）：
 
 ```powershell
-dsh plugin --profile desktop add "file:C:/Downloads/dsh-gemini-cat-theme-0.4.14.tgz"
+git clone https://github.com/StevenYang37/dsh-gemini-cat-theme.git
+dsh plugin --profile desktop add "file:C:/path/to/dsh-gemini-cat-theme/plugin/gemini-cat-theme"
 ```
 
 macOS：
 
 ```sh
-"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add "file:/absolute/path/dsh-gemini-cat-theme-0.4.14.tgz"
+git clone https://github.com/StevenYang37/dsh-gemini-cat-theme.git
+"/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add "file:/path/to/dsh-gemini-cat-theme/plugin/gemini-cat-theme"
 ```
+
+把示例路径换成实际克隆目录。以后更新先在仓库目录执行 `git pull`，再用同一条本地目录安装命令重新安装并重启 DSH。
 
 如果平时启动 DSH 使用自定义 `DSH_HOME`，安装命令也须使用同一个值，避免安装到另一个数据目录。不要为安装主题新建数据目录或迁移会话。
 
