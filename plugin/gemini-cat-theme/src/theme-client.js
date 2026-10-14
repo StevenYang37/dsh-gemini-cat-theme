@@ -484,8 +484,8 @@ html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversat
   --gem-chat-caption:#f4dda0;
   --gem-chat-heading:#ffc1e4;
   --gem-chat-link:#9feaff;
-  --gem-chat-link-visited:#d6c1ff;
-  --gem-chat-link-hover:#e8fbff;
+  --gem-chat-link-visited:#9feaff;
+  --gem-chat-link-hover:#9feaff;
   --dsw-alias-label-primary:var(--gem-chat-body);
   --dsw-alias-label-secondary:var(--gem-chat-secondary);
   --dsw-alias-label-tertiary:var(--gem-chat-caption);
@@ -502,8 +502,8 @@ html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"][data-dsh-gemi
   --gem-chat-caption:#f2deaa;
   --gem-chat-heading:#ffc1e4;
   --gem-chat-link:#a7f0f3;
-  --gem-chat-link-visited:#d6c1ff;
-  --gem-chat-link-hover:#edffff;
+  --gem-chat-link-visited:#a7f0f3;
+  --gem-chat-link-hover:#a7f0f3;
   --dsw-alias-label-primary:var(--gem-chat-body);
   --dsw-alias-label-secondary:var(--gem-chat-secondary);
   --dsw-alias-label-tertiary:var(--gem-chat-caption);
@@ -546,16 +546,25 @@ html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversat
 html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :where(small,time,figcaption) {
   color:var(--gem-chat-caption);
 }
+html[data-dsh-gemini-theme="active"] :is(a[href],[role="link"],[class*="link" i],[data-link],[class*="_fileMention_" i],[class*="_fileName" i],[class*="_q_name" i]) {
+  color:var(--gem-chat-link,#9feaff) !important;
+  -webkit-text-fill-color:var(--gem-chat-link,#9feaff) !important;
+}
+html[data-dsh-gemini-theme="active"] :is(a[href],[role="link"],[class*="link" i],[data-link],[class*="_fileMention_" i],[class*="_fileName" i],[class*="_q_name" i]) :where(:not(svg):not(path)) {
+  color:var(--gem-chat-link,#9feaff) !important;
+  -webkit-text-fill-color:var(--gem-chat-link,#9feaff) !important;
+}
+html[data-dsh-gemini-theme="active"] :is(a[href],[role="link"],[class*="link" i],[data-link],[class*="_fileMention_" i],[class*="_fileName" i],[class*="_q_name" i]):is(:link,:visited,:hover,:active,:focus-visible) {
+  color:var(--gem-chat-link,#9feaff) !important;
+  -webkit-text-fill-color:var(--gem-chat-link,#9feaff) !important;
+  text-decoration-color:var(--gem-chat-link,#9feaff);
+}
 html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :where(a,[role="link"]) {
-  color:var(--gem-chat-link);
   text-decoration-line:underline; text-decoration-color:color-mix(in srgb,var(--gem-chat-link) 76%,transparent);
   text-decoration-thickness:1px; text-underline-offset:.16em;
 }
-html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :where(a,[role="link"]):visited {
-  color:var(--gem-chat-link-visited);
-}
 html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :where(a,[role="link"]):hover {
-  color:var(--gem-chat-link-hover); text-decoration-thickness:2px;
+  text-decoration-thickness:2px;
 }
 /* Use one typography treatment for both the hero (new chat) and regular chat composer. */
 html[data-dsh-gemini-theme="active"] ${S.composer} [data-composer-input="true"],
@@ -626,18 +635,57 @@ html[data-dsh-gemini-theme="active"] ${S.conversation} [data-chat-anchor-key*="a
   color:var(--shiki-foreground) !important;
 }
 /* End fenced code blocks. */
-html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] button[class*="_fileMention_"] {
-  color:#d9c1ff !important; -webkit-text-fill-color:#d9c1ff !important;
-  background:linear-gradient(135deg,#342d57,#292443) !important;
-  border:1px solid #9e8aba !important; border-radius:7px;
+/* Keep all file-related surfaces coordinated: message attachments, pending composer files, and Markdown file references. */
+html[data-dsh-gemini-theme="active"] ${S.conversation} [class*="_markdown_"] button[class*="_fileMention_"] {
+  color:var(--gem-chat-link,#9feaff) !important; -webkit-text-fill-color:var(--gem-chat-link,#9feaff) !important;
+  background:linear-gradient(135deg,#393255,#292443) !important;
+  border:1px solid #b99d70 !important; border-radius:7px;
   box-shadow:inset 0 1px #ffffff12 !important;
-  text-decoration:underline; text-decoration-color:#d9c1ff99; text-underline-offset:.16em;
+  text-decoration:underline; text-decoration-color:color-mix(in srgb,var(--gem-chat-link,#9feaff) 76%,transparent); text-underline-offset:.16em;
 }
-html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] button[class*="_fileMention_"]:hover {
-  background:#41395f !important; border-color:#d7ba80 !important;
+html[data-dsh-gemini-theme="active"] ${S.conversation} [class*="_markdown_"] button[class*="_fileMention_"]:hover {
+  background:#41395f !important; border-color:#f0d694 !important;
+  color:var(--gem-chat-link,#9feaff) !important; -webkit-text-fill-color:var(--gem-chat-link,#9feaff) !important;
 }
-html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] button[class*="_fileMention_"] svg {
-  color:#d9c1ff !important; stroke:currentColor;
+html[data-dsh-gemini-theme="active"] ${S.conversation} [class*="_markdown_"] button[class*="_fileMention_"] svg {
+  color:var(--gem-chat-link,#9feaff) !important; stroke:currentColor;
+}
+/* Sent attachment cards and pending upload cards use different DSH components. */
+html[data-dsh-gemini-theme="active"] ${S.conversation} [class*="_fileCard"],
+html[data-dsh-gemini-theme="active"] ${S.composer} [class*="_q_card"] {
+  --dsw-specific-input-major:#2b2747;
+  --dsw-alias-border-l2:#b99d70;
+  background:linear-gradient(135deg,#393255,#292443) !important;
+  color:#f9e8b0 !important;
+  border:1px solid #b99d70 !important;
+  box-shadow:inset 0 1px #ffffff12 !important;
+}
+html[data-dsh-gemini-theme="active"] ${S.conversation} [class*="_fileCard"]:hover,
+html[data-dsh-gemini-theme="active"] ${S.composer} [class*="_q_card"]:hover {
+  background:linear-gradient(135deg,#41395f,#30294d) !important;
+  border-color:#f0d694 !important;
+}
+html[data-dsh-gemini-theme="active"] ${S.conversation} [class*="_fileCard"] [class*="_fileName"],
+html[data-dsh-gemini-theme="active"] ${S.composer} [class*="_q_card"] [class*="_q_name"] {
+  color:var(--gem-chat-link,#9feaff) !important; -webkit-text-fill-color:var(--gem-chat-link,#9feaff) !important;
+}
+html[data-dsh-gemini-theme="active"] ${S.conversation} [class*="_fileCard"] [class*="_fileMeta"],
+html[data-dsh-gemini-theme="active"] ${S.composer} [class*="_q_card"] [class*="_q_meta"] {
+  color:#cbbbea !important; -webkit-text-fill-color:#cbbbea !important;
+}
+html[data-dsh-gemini-theme="active"] ${S.conversation} [class*="_fileCard"] svg,
+html[data-dsh-gemini-theme="active"] ${S.composer} [class*="_q_card"] [class*="_q_icon"] {
+  color:#f3d992 !important;
+}
+html[data-dsh-gemini-theme="active"] ${S.composer} [class*="_q_card"] [class*="_q_remove"] {
+  background:#51466c !important; color:#fff1c6 !important;
+  border:1px solid #b99d70 !important;
+}
+html[data-dsh-gemini-theme="active"] ${S.composer} [class*="_q_card"] [class*="_q_remove"]:hover {
+  background:#b99d70 !important; color:#292443 !important;
+}
+html[data-dsh-gemini-theme="active"] ${S.composer} [class*="_q_card"] [class*="_q_metaFailed"] {
+  color:#ffb6c8 !important; -webkit-text-fill-color:#ffb6c8 !important;
 }
 /* Reset placeholder layers separately; old-chat DSH adds inherited gold stroke/shadow. */
 html[data-dsh-gemini-theme="active"] ${S.composer} :is([data-composer-input="true"],[contenteditable="true"],[data-placeholder],[class*="placeholder" i]),
