@@ -159,15 +159,15 @@ html[data-dsh-gemini-theme="active"] ${S.conversation}::before {
   opacity:.28; -webkit-mask-image:linear-gradient(#000,transparent); mask-image:linear-gradient(#000,transparent);
 }
 #${ID.frame} {
-  position:absolute; inset:12px; pointer-events:none; z-index:5;
-  border:1px solid #f9e8b0a8; border-bottom:0; border-radius:5px 5px 0 0;
-  box-shadow:none;
+  position:absolute; inset:12px 12px 5px; pointer-events:none; z-index:5;
+  border:2px solid #d8bd7a; border-radius:5px;
+  box-shadow:inset 0 0 0 1px #534a8a78,0 0 0 1px #29285780;
 }
 #${ID.frame}[hidden] { display:none; }
 #${ID.frame} .corner { position:absolute; width:42px; height:42px; color:#b99559; }
 #${ID.frame} .corner::before {
   content:""; position:absolute; inset:3px; border:1px solid currentColor; border-radius:0 100% 0 0;
-  box-shadow:inset 0 0 0 3px #fff5dc44;
+  box-shadow:inset 0 0 0 3px #fff5dc44; transform:rotate(90deg); transform-origin:center;
 }
 #${ID.frame} .corner::after {
   content:"✦"; position:absolute; font:21px/1 Georgia,serif; color:#f5d88f; text-shadow:0 0 5px #494087;
@@ -513,9 +513,8 @@ html[data-dsh-gemini-theme="active"] ${S.composer} :is([data-composer-input="tru
   font-size:14px !important; font-weight:500 !important; line-height:24px !important; letter-spacing:normal !important;
   -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
 }
-/* Keep conversation chrome readable over the illustrated background. */
-html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :is(h1,h2,[role="tab"],[class*="header" i],[class*="title" i],[class*="tab" i]) :where(:not(svg):not(path)),
-html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :is(h1,h2,[role="tab"],[class*="header" i],[class*="title" i],[class*="tab" i]):not(svg):not(path) {
+/* Scope chrome color to actual tabs; headings inside messages keep their rose accent. */
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :is([role="tab"],.ST7X_W_tab) {
   color:#392766 !important; -webkit-text-fill-color:#392766 !important;
   -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
 }
@@ -525,23 +524,23 @@ html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversat
 /* Status, timestamps and usage counters were inheriting pale gold outlines on the light artwork. */
 html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :is(time,[class*="status" i],[class*="meta" i],[class*="usage" i],[class*="token" i],[class*="context" i],[class*="stat" i],[class*="complete" i],[class*="duration" i]),
 html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :is(time,[class*="status" i],[class*="meta" i],[class*="usage" i],[class*="token" i],[class*="context" i],[class*="stat" i],[class*="complete" i],[class*="duration" i]) :where(:not(svg):not(path)) {
-  color:#51416f !important; -webkit-text-fill-color:#51416f !important;
-  -webkit-text-stroke:0 transparent !important; text-shadow:none !important; font-weight:500;
+  color:#ffe7a5 !important; -webkit-text-fill-color:#ffe7a5 !important;
+  -webkit-text-stroke:.25px #47385f !important; text-shadow:0 1px 2px #30234f !important; font-weight:600;
 }
 /* DSH session statistics and message footer controls sit outside the conversation root. */
 html[data-dsh-gemini-theme="active"] :is(.ppByMG_actions,.ppByMG_endInfo,.ppByMG_timeStart,.sZXytW_root,.sZXytW_trigger,.sZXytW_label,.OpZ85W_root,.OpZ85W_anchor,.OpZ85W_pill,.y0jqnG_root,.y0jqnG_trigger) {
-  color:#352460 !important; -webkit-text-fill-color:#352460 !important;
-  -webkit-text-stroke:0 transparent !important; text-shadow:none !important; font-size:15px !important; font-weight:600 !important;
+  color:#ffe7a5 !important; -webkit-text-fill-color:#ffe7a5 !important;
+  -webkit-text-stroke:.25px #47385f !important; text-shadow:0 1px 2px #30234f !important; font-size:15px !important; font-weight:600 !important;
 }
 html[data-dsh-gemini-theme="active"] :is(.ppByMG_actions,.ppByMG_endInfo,.ppByMG_timeStart,.sZXytW_root,.sZXytW_trigger,.sZXytW_label,.OpZ85W_root,.OpZ85W_anchor,.OpZ85W_pill,.y0jqnG_root,.y0jqnG_trigger) :where(:not(svg):not(path)) {
-  color:#352460 !important; -webkit-text-fill-color:#352460 !important;
-  -webkit-text-stroke:0 transparent !important; text-shadow:none !important; font-size:15px !important; font-weight:600 !important;
+  color:#ffe7a5 !important; -webkit-text-fill-color:#ffe7a5 !important;
+  -webkit-text-stroke:.25px #47385f !important; text-shadow:0 1px 2px #30234f !important; font-size:15px !important; font-weight:600 !important;
 }
 /* The completion row wraps assistant output; style only its status button, never the row. */
 html[data-dsh-gemini-theme="active"] .icaHSq_flowItem button,
 html[data-dsh-gemini-theme="active"] .icaHSq_flowItem button :where(:not(svg):not(path)) {
-  color:#352460 !important; -webkit-text-fill-color:#352460 !important;
-  -webkit-text-stroke:0 transparent !important; text-shadow:none !important; font-size:15px !important; font-weight:600 !important;
+  color:#ffe7a5 !important; -webkit-text-fill-color:#ffe7a5 !important;
+  -webkit-text-stroke:.25px #47385f !important; text-shadow:0 1px 2px #30234f !important; font-size:15px !important; font-weight:600 !important;
 }
 @media (min-width:1100px) and (max-width:1499px) {
   html[data-dsh-gemini-scene="hero"] #${ID.art}.is-original { width:35%; }
