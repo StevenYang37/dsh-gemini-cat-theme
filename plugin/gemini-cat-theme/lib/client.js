@@ -346,6 +346,22 @@ window.__ModuleLoader__.load({
     html[data-dsh-gemini-theme="active"] ${S.sidebar} *::-webkit-scrollbar { width:7px; height:7px; background:#303866; }
     html[data-dsh-gemini-theme="active"] ${S.sidebar} *::-webkit-scrollbar-track { background:#303866; }
     html[data-dsh-gemini-theme="active"] ${S.sidebar} *::-webkit-scrollbar-thumb { background:#9c8fc6; border-radius:8px; }
+    /* Keep the Windows conversation scroller from exposing its bright native scrollbar. */
+    html[data-dsh-gemini-theme="active"] ${S.conversation} :is(.Dc7zOa_scrollBody,.ST7X_W_scrollBody) {
+      scrollbar-color:#89789f #2a2745 !important; scrollbar-width:thin !important;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.conversation} :is(.Dc7zOa_scrollBody,.ST7X_W_scrollBody)::-webkit-scrollbar {
+      width:8px; height:8px; background:#2a2745;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.conversation} :is(.Dc7zOa_scrollBody,.ST7X_W_scrollBody)::-webkit-scrollbar-track {
+      background:#2a2745;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.conversation} :is(.Dc7zOa_scrollBody,.ST7X_W_scrollBody)::-webkit-scrollbar-thumb {
+      background:#89789f; border:2px solid #2a2745; border-radius:8px;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.conversation} :is(.Dc7zOa_scrollBody,.ST7X_W_scrollBody)::-webkit-scrollbar-thumb:hover {
+      background:#d7ba80;
+    }
     html[data-dsh-gemini-theme="active"] ${S.sidebar} ${S.sidebarFade} {
       background-image:linear-gradient(transparent,#293162) !important;
     }
@@ -437,6 +453,16 @@ window.__ModuleLoader__.load({
     }
     html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(._2H3hWW_brand,._3WPZCG_brand) svg[viewBox="26 0 156 24"] {
       --dsw-alias-label-primary-inverted:#fff8e5;
+      color:#f9e8b0 !important;
+    }
+    /* The official mark uses currentColor for the whale and wordmark; set it explicitly on both platforms. */
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(._2H3hWW_brand,._3WPZCG_brand) :is(._2H3hWW_brandMark,._3WPZCG_brandMark),
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(._2H3hWW_brand,._3WPZCG_brand) :is(._2H3hWW_brandMark,._3WPZCG_brandMark) svg,
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(._2H3hWW_brand,._3WPZCG_brand) svg[viewBox="26 0 156 24"] {
+      color:#f9e8b0 !important;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(._2H3hWW_brand,._3WPZCG_brand) :is(._2H3hWW_brandMark,._3WPZCG_brandMark) svg path {
+      fill:currentColor !important;
     }
     /* Keep history text gold over a dark hover surface on Windows and macOS. */
     html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(.hIlkoa_sessionRow,.jJkEga_sessionRow):hover {
@@ -608,7 +634,13 @@ window.__ModuleLoader__.load({
     /* End fenced code blocks. */
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] button[class*="_fileMention_"] {
       color:#d9c1ff !important; -webkit-text-fill-color:#d9c1ff !important;
+      background:linear-gradient(135deg,#342d57,#292443) !important;
+      border:1px solid #9e8aba !important; border-radius:7px;
+      box-shadow:inset 0 1px #ffffff12 !important;
       text-decoration:underline; text-decoration-color:#d9c1ff99; text-underline-offset:.16em;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] button[class*="_fileMention_"]:hover {
+      background:#41395f !important; border-color:#d7ba80 !important;
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] button[class*="_fileMention_"] svg {
       color:#d9c1ff !important; stroke:currentColor;
