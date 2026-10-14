@@ -150,6 +150,16 @@ window.__ModuleLoader__.load({
       background-size:cover; background-position:center center;
       box-shadow:none;
     }
+    /* DSH paints a base-color gradient on the active transcript's sticky composer seat. Clear that layer directly; the theme scene marker can lag behind chat navigation. */
+    html[data-dsh-gemini-theme="active"] :is(
+      .ST7X_W_root[data-phase="active"] .ST7X_W_composerSeat,
+      .ST7X_W_embeddedBody[data-content-phase="active"] .ST7X_W_composerSeat,
+      .Dc7zOa_root[data-phase="active"] .Dc7zOa_composerSeat,
+      .Dc7zOa_embeddedBody[data-content-phase="active"] .Dc7zOa_composerSeat
+    ) {
+      background:transparent !important;
+      backdrop-filter:none !important; -webkit-backdrop-filter:none !important;
+    }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="dark"] ${S.conversation} {
       --dsw-alias-label-primary:#f3eaff; --dsw-alias-label-secondary:#d0bee9;
       --dsw-alias-label-tertiary:#b6a0d4; --dsw-alias-brand-text:#f3eaff;
@@ -213,7 +223,7 @@ window.__ModuleLoader__.load({
       background:color-mix(in srgb,var(--gem-card) 94%,transparent);
       border:1px solid #c9aa74; border-radius:18px;
       box-shadow:0 18px 46px #25205440,0 0 0 3px #f4e8c9b5,inset 0 0 0 1px #fffefa;
-      backdrop-filter:blur(12px);
+      backdrop-filter:none;
     }
     html[data-dsh-gemini-theme="active"] ${S.composer}::before {
       content:"✦ ─────────── ✧ ─────────── ✦"; position:absolute; left:50%; top:-14px;
@@ -519,13 +529,53 @@ window.__ModuleLoader__.load({
       font-size:14px !important; font-weight:500 !important; line-height:24px !important; letter-spacing:normal !important;
       -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
     }
-    /* Scope chrome color to actual tabs; headings inside messages keep their rose accent. */
-    html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :is([role="tab"],.ST7X_W_tab) {
-      color:#392766 !important; -webkit-text-fill-color:#392766 !important;
-      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    /* Keep the conversation title clear of the gold corner fan. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} .ST7X_W_header .ST7X_W_titleRow {
+      padding-inline-start:112px !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} .ST7X_W_header .ST7X_W_crumbCurrent {
+      color:#ffe7a5 !important; -webkit-text-fill-color:#ffe7a5 !important;
+      -webkit-text-stroke:.25px #47385f !important; text-shadow:0 1px 2px #30234f !important; font-weight:600 !important;
+    }
+    /* Use the same bright gold for the preset label; do not touch message content. */
+    html[data-dsh-gemini-theme="active"] ${S.conversation} .ST7X_W_header :is(button[aria-label="标准模式"],[title*="Agent 预设" i],[aria-label*="Agent 预设" i]),
+    html[data-dsh-gemini-theme="active"] ${S.composer} :is(button[aria-label="标准模式"],[title*="Agent 预设" i],[aria-label*="Agent 预设" i]) {
+      color:#ffe7a5 !important; -webkit-text-fill-color:#ffe7a5 !important;
+      -webkit-text-stroke:.25px #47385f !important; text-shadow:0 1px 2px #30234f !important; font-weight:600 !important;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.conversation} .ST7X_W_header :is(button[aria-label="标准模式"],[title*="Agent 预设" i],[aria-label*="Agent 预设" i]) :where(:not(svg):not(path)),
+    html[data-dsh-gemini-theme="active"] ${S.composer} :is(button[aria-label="标准模式"],[title*="Agent 预设" i],[aria-label*="Agent 预设" i]) :where(:not(svg):not(path)) {
+      color:#ffe7a5 !important; -webkit-text-fill-color:#ffe7a5 !important;
+    }
+    /* Purple tab labels were too dim against the illustration; keep them bright and distinct. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} .ST7X_W_tabs .ST7X_W_tab {
+      color:#ffe7a5 !important; -webkit-text-fill-color:#ffe7a5 !important;
+      -webkit-text-stroke:.25px #47385f !important; text-shadow:0 1px 2px #30234f !important;
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} [role="tab"][aria-selected="true"] {
-      color:#392766 !important; border-color:#8b6ab7 !important; box-shadow:inset 0 -2px #8b6ab7;
+      color:#ffe7a5 !important; -webkit-text-fill-color:#ffe7a5 !important;
+      border-color:#d8bd7a !important; box-shadow:inset 0 -2px #d8bd7a;
+    }
+    /* DSH renders the session preset as a labeled span, and tabs carry an active class. */
+    html[data-dsh-gemini-theme="active"] .ST7X_W_root ._3li69W_label {
+      color:#ffdf73 !important; -webkit-text-fill-color:#ffdf73 !important;
+      -webkit-text-stroke:.3px #40304f !important; text-shadow:0 1px 2px #30234f,0 0 4px #3c2d57 !important; font-weight:650 !important;
+      opacity:1 !important;
+    }
+    html[data-dsh-gemini-theme="active"] .ST7X_W_root ._3li69W_label svg {
+      color:#ffdf73 !important; opacity:1 !important;
+    }
+    html[data-dsh-gemini-theme="active"] .ST7X_W_root .ST7X_W_tabs .ST7X_W_tab,
+    html[data-dsh-gemini-theme="active"] .ST7X_W_root .ST7X_W_tabs [role="tab"] {
+      color:#ffe7a5 !important; -webkit-text-fill-color:#ffe7a5 !important;
+      -webkit-text-stroke:.25px #47385f !important; text-shadow:0 1px 2px #30234f !important;
+    }
+    html[data-dsh-gemini-theme="active"] .ST7X_W_root .ST7X_W_tabs .ST7X_W_tabActive,
+    html[data-dsh-gemini-theme="active"] .ST7X_W_root .ST7X_W_tabs [role="tab"][aria-selected="true"] {
+      color:#fff1c6 !important; -webkit-text-fill-color:#fff1c6 !important;
+    }
+    html[data-dsh-gemini-theme="active"] .ST7X_W_root .ST7X_W_tabs :is(.ST7X_W_tabActive,[role="tab"][aria-selected="true"])::after {
+      background:#d8bd7a !important;
     }
     /* Status, timestamps and usage counters were inheriting pale gold outlines on the light artwork. */
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :is(time,[class*="status" i],[class*="meta" i],[class*="usage" i],[class*="token" i],[class*="context" i],[class*="stat" i],[class*="complete" i],[class*="duration" i]),
@@ -582,6 +632,10 @@ window.__ModuleLoader__.load({
     html[data-dsh-gemini-theme="active"] :is(.Hqq-bq_stack,.bocITq_stack) { max-width:none; }
     html[data-dsh-gemini-theme="active"] :is(.Hqq-bq_headline,.bocITq_headline) { justify-content:center; gap:10px; color:var(--gem-text); }
     html[data-dsh-gemini-theme="active"] :is(.Hqq-bq_titleGroup,.bocITq_titleGroup) { align-items:center; gap:9px; }
+    html[data-dsh-gemini-theme="active"] :is(.Hqq-bq_titleGroup,.bocITq_titleGroup) :is(button[aria-label="标准模式"],[title*="Agent 预设" i],[aria-label*="Agent 预设" i]) {
+      color:#ffe7a5 !important; -webkit-text-fill-color:#ffe7a5 !important;
+      -webkit-text-stroke:.25px #47385f !important; text-shadow:0 1px 2px #30234f !important; font-weight:600 !important;
+    }
     html[data-dsh-gemini-theme="active"] :is(.Hqq-bq_previewBadge,.bocITq_previewBadge) {
       align-self:center; margin:0; padding:2px 8px; line-height:18px;
       background:var(--gem-card); color:var(--gem-muted); border:1px solid var(--gem-line);
