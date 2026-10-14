@@ -378,6 +378,29 @@ window.__ModuleLoader__.load({
     html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(.hIlkoa_sessionRow,.jJkEga_sessionRow):is(.hIlkoa_selected,.jJkEga_selected) {
       background:#4a478e; box-shadow:inset 3px 0 #d7ba80;
     }
+    /* Correct only the HARNESS badge; keep the whale and DeepSeek wordmark untouched. */
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(._2H3hWW_brand,._3WPZCG_brand) svg[viewBox="26 0 156 24"] rect {
+      fill:#d7ba80 !important;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(._2H3hWW_brand,._3WPZCG_brand) svg[viewBox="26 0 156 24"] {
+      --dsw-alias-label-primary-inverted:#fff8e5;
+    }
+    /* Keep history text gold over a dark hover surface on Windows and macOS. */
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(.hIlkoa_sessionRow,.jJkEga_sessionRow):hover {
+      background:linear-gradient(90deg,#514b8d,#3e3b7a) !important;
+      color:#f9e8b0 !important; -webkit-text-fill-color:#f9e8b0 !important;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(.hIlkoa_sessionRow,.jJkEga_sessionRow):hover :where(:not(svg):not(path)) {
+      color:#f9e8b0 !important; -webkit-text-fill-color:#f9e8b0 !important;
+    }
+    /* Workspace folder rows use their own projectRow class, separate from history rows. */
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(.hIlkoa_projectRow,.jJkEga_projectRow,[role="treeitem"]):hover {
+      background:linear-gradient(90deg,#514b8d,#3e3b7a) !important;
+      color:#f9e8b0 !important; -webkit-text-fill-color:#f9e8b0 !important;
+    }
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} :is(.hIlkoa_projectRow,.jJkEga_projectRow,[role="treeitem"]):hover :where(:not(svg):not(path)) {
+      color:#f9e8b0 !important; -webkit-text-fill-color:#f9e8b0 !important;
+    }
     /* Preserve 0.4.7 chat surfaces; strengthen text without altering background layers. */
     html[data-dsh-gemini-theme="active"] :is(.Dc7zOa_scrollBody,.ST7X_W_scrollBody) {
       position:relative; z-index:2;
@@ -461,10 +484,13 @@ window.__ModuleLoader__.load({
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} :where(a,[role="link"]):hover {
       color:var(--gem-chat-link-hover); text-decoration-thickness:2px;
     }
-    html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.composer} [data-composer-input="true"] {
-      color:#7651a8 !important;
-      -webkit-text-fill-color:#7651a8 !important;
-      caret-color:#7651a8;
+    /* Use one typography treatment for both the hero (new chat) and regular chat composer. */
+    html[data-dsh-gemini-theme="active"] ${S.composer} [data-composer-input="true"],
+    html[data-dsh-gemini-theme="active"] ${S.composer} [data-composer-input="true"] * {
+      color:#7651a8 !important; -webkit-text-fill-color:#7651a8 !important; caret-color:#7651a8;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",Helvetica,Arial,sans-serif !important;
+      font-size:14px !important; font-weight:500 !important; line-height:24px !important; letter-spacing:normal !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] code:not(pre code) {
       display:inline; padding:.08em .36em;
@@ -483,10 +509,15 @@ window.__ModuleLoader__.load({
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} [data-chat-anchor-key*="assistant"] [class*="_markdown_"] button[class*="_fileMention_"] svg {
       color:#d9c1ff !important; stroke:currentColor;
     }
-    html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.composer} :where(textarea,input)::placeholder,
-    html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.composer} [data-placeholder]::before,
-    html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.composer} [contenteditable="true"]::before {
-      color:var(--gem-chat-caption); opacity:1;
+    html[data-dsh-gemini-theme="active"] ${S.composer} [data-composer-input="true"]::placeholder,
+    html[data-dsh-gemini-theme="active"] ${S.composer} [data-composer-input="true"] *::placeholder,
+    html[data-dsh-gemini-theme="active"] ${S.composer} :where(textarea,input)::placeholder,
+    html[data-dsh-gemini-theme="active"] ${S.composer} [data-placeholder]::before,
+    html[data-dsh-gemini-theme="active"] ${S.composer} [contenteditable="true"]::before {
+      color:#8b76ad !important; -webkit-text-fill-color:#8b76ad !important; opacity:1;
+      font-family:inherit !important; font-size:inherit !important; font-weight:inherit !important;
+      line-height:inherit !important; letter-spacing:inherit !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
     }
     @media (min-width:1100px) and (max-width:1499px) {
       html[data-dsh-gemini-scene="hero"] #${ID.art}.is-original { width:35%; }
@@ -557,6 +588,14 @@ window.__ModuleLoader__.load({
     html[data-dsh-gemini-theme="active"] :where(:is(.Z9Jnlq_item,.tki__G_item),[role="menuitem"],[role="menuitemradio"],[role="menuitemcheckbox"]) { color:var(--gem-text); }
     html[data-dsh-gemini-theme="active"] :where(:is(.Z9Jnlq_item,.tki__G_item),[role="menuitem"]):hover,
     html[data-dsh-gemini-theme="active"] :where(:is(.Z9Jnlq_active,.tki__G_active),._selected_4ub78_216) { background:var(--dsw-alias-interactive-bg-hover); }
+    /* Match sidebar history rows in workspace-folder menus: dark violet with gold text. */
+    html[data-dsh-gemini-theme="active"] :is([role="menu"],[role="listbox"]) :is([role="menuitem"],[role="option"],._item_4ub78_90):is(:hover,._selected_4ub78_216,[aria-selected="true"],[aria-checked="true"]) {
+      background:linear-gradient(90deg,#514b8d,#3e3b7a) !important;
+      color:#f9e8b0 !important; -webkit-text-fill-color:#f9e8b0 !important;
+    }
+    html[data-dsh-gemini-theme="active"] :is([role="menu"],[role="listbox"]) :is([role="menuitem"],[role="option"],._item_4ub78_90):is(:hover,._selected_4ub78_216,[aria-selected="true"],[aria-checked="true"]) :where(:not(svg):not(path)) {
+      color:#f9e8b0 !important; -webkit-text-fill-color:#f9e8b0 !important;
+    }
     html[data-dsh-gemini-theme="active"] :where([role="dialog"],[role="alertdialog"],:is(.fO69Vq_page,.ZVcBiW_page)) :where(input:not([type="checkbox"]):not([type="range"]),textarea,select) {
       background:var(--gem-app); color:var(--gem-text); border-color:var(--gem-line);
     }
