@@ -1469,6 +1469,67 @@ window.__ModuleLoader__.load({
     `
 
 
+    // Surface-bound palettes for native questions and side-file readers, independent of chat colors.
+    const READER = ':is(.AhTMVW_preview,[class$="_preview"]:has(> [class$="_header"] [data-textpreview-path]))'
+    const QUESTION = ':is([data-question-key],[data-plan-review-key]) > [class$="_card"]'
+    const READABLE_SURFACES = `:is(${READER},${QUESTION})`
+    const CSS_READABILITY = `
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] ${READABLE_SURFACES} {
+      --gem-reader-bg:#29243f; --gem-reader-ink:#f8edce; --gem-reader-muted:#d1c4df;
+      --gem-reader-hover:#49405f; --gem-reader-line:#aa9061;
+      --shiki-token-constant:#9feaff; --shiki-token-string:#bfe7b5; --shiki-token-comment:#c9bdd8;
+      --shiki-token-keyword:#ffc1e4; --shiki-token-function:#dac5ff; --shiki-token-parameter:#ffdaa0;
+      --shiki-token-string-expression:#bfe7b5; --shiki-token-punctuation:#f8edce; --shiki-token-link:#9feaff;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="dark"] ${READABLE_SURFACES} {
+      --gem-reader-bg:#f3e9fb; --gem-reader-ink:#34284a; --gem-reader-muted:#655774;
+      --gem-reader-hover:#e4d8ee; --gem-reader-line:#b9a3cb;
+      --shiki-token-constant:#006b78; --shiki-token-string:#386a3e; --shiki-token-comment:#655774;
+      --shiki-token-keyword:#7b3d69; --shiki-token-function:#514078; --shiki-token-parameter:#79591b;
+      --shiki-token-string-expression:#386a3e; --shiki-token-punctuation:#514461; --shiki-token-link:#006b78;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${READABLE_SURFACES} {
+      background:var(--gem-reader-bg) !important; color:var(--gem-reader-ink) !important;
+      --dsw-specific-input-major:var(--gem-reader-bg);
+      --dsw-alias-label-primary:var(--gem-reader-ink);
+      --dsw-alias-label-secondary:var(--gem-reader-muted);
+      --dsw-alias-label-tertiary:var(--gem-reader-muted);
+      --dsw-alias-label-caption:var(--gem-reader-muted);
+      --dsw-alias-interactive-bg-hover:var(--gem-reader-hover);
+      --dsw-alias-bg-layer-2:var(--gem-reader-hover);
+      --dsw-alias-border-l2:var(--gem-reader-line);
+      --dsw-alias-border-l3:var(--gem-reader-line);
+      --dsw-alias-button-primary-fill:#6b5488;
+      --dsw-alias-label-primary-foreground:#fff8ec;
+      --dsl-code-block-background:var(--gem-reader-bg);
+      --shiki-background:var(--gem-reader-bg); --shiki-foreground:var(--gem-reader-ink);
+      border:1px solid var(--gem-reader-line);
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${READABLE_SURFACES} :where(*) {
+      -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${QUESTION} :is([class$="_customRow"],[class$="_customBlock"]) {
+      background:#fff8ec !important; color:#49355f !important; border:1px solid #ac92bb !important;
+      --dsw-alias-label-primary:#49355f; --dsw-alias-label-caption:#706077;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${QUESTION} textarea {
+      background:transparent !important; color:#49355f !important; caret-color:#49355f;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${QUESTION} textarea::placeholder {
+      color:#706077 !important; opacity:1; -webkit-text-fill-color:#706077 !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${QUESTION} button {
+      -webkit-text-fill-color:currentColor !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${READER} [data-textpreview-body] {
+      background:var(--gem-reader-bg) !important; color:var(--gem-reader-ink) !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${READER} [data-code-preview] pre {
+      background:var(--gem-reader-bg) !important; color:var(--gem-reader-ink) !important;
+    }
+    `
+
     // Shared control-integrity fixes read each skin's own tokens; no palette is copied across modes.
     const PALE_UI_REGIONS = ':is(.Dws9Sa_panel,[role="dialog"],[role="alertdialog"],[role="menu"],[role="listbox"],._surface_ri079_1,.Z9Jnlq_menu,.tki__G_menu,:where(#dsh-gemini-theme-panel))'
     const UI_SCOPE = 'html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is(.Dws9Sa_panel,[role="dialog"],[role="alertdialog"],.fO69Vq_page,.ZVcBiW_page,[role="menu"],[role="listbox"],._surface_ri079_1,.Z9Jnlq_menu,.tki__G_menu,:where(#dsh-gemini-theme-panel))'
@@ -1618,7 +1679,7 @@ window.__ModuleLoader__.load({
         for (const id of Object.values(ID)) document.getElementById(id)?.remove()
         const style = document.createElement('style')
         style.id = ID.style
-        style.textContent = CSS + CSS_V2 + CSS_V3 + CSS_LIGHT_SETTING + CSS_CONTROL_INTEGRITY
+        style.textContent = CSS + CSS_V2 + CSS_V3 + CSS_LIGHT_SETTING + CSS_CONTROL_INTEGRITY + CSS_READABILITY
         document.head.append(style)
 
         const trigger = document.createElement('button')
