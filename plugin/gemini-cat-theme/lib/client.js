@@ -1183,10 +1183,10 @@ window.__ModuleLoader__.load({
     }
 
     ${LIGHT_SETTING} ${S.sidebar} {
-      background:radial-gradient(circle at 44% 4%,#343052 0,#25213f 31%,#18162f 69%,#10102c 100%);
+      background:linear-gradient(160deg,#574270,#493560 65%,#403058) !important;
     }
     ${LIGHT_SETTING} ${S.sidebar} ${S.sidebarFade} {
-      background-image:linear-gradient(transparent,#10102c) !important;
+      background-image:linear-gradient(transparent,#403058) !important;
     }
     /* Retain the dark scene art; tone-scoped rules below recolor its working surfaces. */
     ${LIGHT_SETTING} ${S.composer} {
@@ -1472,11 +1472,12 @@ window.__ModuleLoader__.load({
     // Surface-bound palettes for native questions and side-file readers, independent of chat colors.
     const READER = ':is(.AhTMVW_preview,[class$="_preview"]:has(> [class$="_header"] [data-textpreview-path]))'
     const QUESTION = ':is([data-question-key],[data-plan-review-key]) > [class$="_card"]'
-    const READABLE_SURFACES = `:is(${READER},${QUESTION})`
+    const READABLE_SURFACES = `:is(${READER},${QUESTION},[data-dockkit-pane],[data-dockkit-float],[data-changes-review],[data-changed-files],[data-presented-file])`
     const CSS_READABILITY = `
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] ${READABLE_SURFACES} {
       --gem-reader-bg:#29243f; --gem-reader-ink:#f8edce; --gem-reader-muted:#d1c4df;
       --gem-reader-hover:#49405f; --gem-reader-line:#aa9061;
+      --gem-diff-add:#233f39; --gem-diff-del:#4b2e41; --gem-diff-plus:#bce8bd; --gem-diff-minus:#ffc7d3;
       --shiki-token-constant:#9feaff; --shiki-token-string:#bfe7b5; --shiki-token-comment:#c9bdd8;
       --shiki-token-keyword:#ffc1e4; --shiki-token-function:#dac5ff; --shiki-token-parameter:#ffdaa0;
       --shiki-token-string-expression:#bfe7b5; --shiki-token-punctuation:#f8edce; --shiki-token-link:#9feaff;
@@ -1484,6 +1485,7 @@ window.__ModuleLoader__.load({
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="dark"] ${READABLE_SURFACES} {
       --gem-reader-bg:#f3e9fb; --gem-reader-ink:#34284a; --gem-reader-muted:#655774;
       --gem-reader-hover:#e4d8ee; --gem-reader-line:#b9a3cb;
+      --gem-diff-add:#e0eee4; --gem-diff-del:#f5dfe6; --gem-diff-plus:#275b38; --gem-diff-minus:#85344d;
       --shiki-token-constant:#006b78; --shiki-token-string:#386a3e; --shiki-token-comment:#655774;
       --shiki-token-keyword:#7b3d69; --shiki-token-function:#514078; --shiki-token-parameter:#79591b;
       --shiki-token-string-expression:#386a3e; --shiki-token-punctuation:#514461; --shiki-token-link:#006b78;
@@ -1497,6 +1499,13 @@ window.__ModuleLoader__.load({
       --dsw-alias-label-caption:var(--gem-reader-muted);
       --dsw-alias-interactive-bg-hover:var(--gem-reader-hover);
       --dsw-alias-bg-layer-2:var(--gem-reader-hover);
+      --dsw-alias-bg-base:var(--gem-reader-bg); --dsw-alias-bg-layer-1:var(--gem-reader-bg);
+      --dsw-alias-file-diff-added-bg:var(--gem-diff-add); --dsw-alias-file-diff-added-gutter:var(--gem-diff-add);
+      --dsw-alias-file-diff-deleted-bg:var(--gem-diff-del); --dsw-alias-file-diff-deleted-gutter:var(--gem-diff-del);
+      --dsw-alias-file-diff-added-marker:var(--gem-diff-plus); --dsw-alias-file-diff-deleted-marker:var(--gem-diff-minus);
+      --dsw-alias-state-success-primary:var(--gem-diff-plus); --dsw-alias-state-error-primary:var(--gem-diff-minus);
+      --deliverable-fill:var(--gem-reader-bg); --deliverable-hover:var(--gem-reader-hover);
+      --changes-fill:var(--gem-reader-bg); --changes-hover:var(--gem-reader-hover);
       --dsw-alias-border-l2:var(--gem-reader-line);
       --dsw-alias-border-l3:var(--gem-reader-line);
       --dsw-alias-button-primary-fill:#6b5488;
@@ -1527,6 +1536,49 @@ window.__ModuleLoader__.load({
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${READER} [data-code-preview] pre {
       background:var(--gem-reader-bg) !important; color:var(--gem-reader-ink) !important;
+    }
+    `
+
+    const CSS_FILE_FINISH = `
+    /* Native caption bridge reads a direct-body probe. Its colors must match the painted title strip. */
+    html[data-dsh-gemini-theme="active"][data-windows-titlebar] body {
+      --dsw-specific-sidebar-fill:#493560 !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-windows-titlebar][data-dsh-gemini-tone="light"] body {
+      --dsw-specific-sidebar-fill:#393561 !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-windows-titlebar] ${S.frame}::before {
+      background:var(--dsw-specific-sidebar-fill) !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-windows-titlebar] body > span[style*="--dsw-specific-sidebar-fill"] {
+      background-color:var(--dsw-specific-sidebar-fill) !important; color:#fff0d1 !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-windows-titlebar] [data-windows-menu] {
+      --dsw-alias-label-primary:#fff0d1; --dsw-alias-label-secondary:#fff0d1;
+      --dsw-alias-interactive-bg-hover:#675181;
+    }
+    /* Keep the complete file workspace on one palette, including tab strips and review headers. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is([data-dockkit-pane],[data-dockkit-float]) :is([data-dockkit-strip],[data-dockkit-float-grip],[data-dockkit-tab]) {
+      background:var(--gem-reader-bg) !important; color:var(--gem-reader-ink) !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] [data-dockkit-tab][aria-selected="true"] {
+      background:var(--gem-reader-hover) !important; color:var(--gem-reader-ink) !important;
+      box-shadow:inset 0 -2px var(--gem-reader-line);
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is([data-changed-files],[data-presented-file]) {
+      background:var(--gem-reader-bg) !important; color:var(--gem-reader-ink) !important;
+      --deliverable-fill:var(--gem-reader-bg) !important; --deliverable-hover:var(--gem-reader-hover) !important;
+      --changes-fill:var(--gem-reader-bg) !important; --changes-hover:var(--gem-reader-hover) !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene] ${S.conversation} :is([data-changed-files],[data-presented-file]) :is([class$="_title"],[class$="_fileName"],[class$="_description"],[data-presented-description]) {
+      color:var(--gem-reader-ink) !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene] ${S.conversation} [data-presented-file] [class$="_fileName"] {
+      font-weight:600; color:var(--gem-reader-ink) !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is([data-changes-review],[data-changed-files]) :is([data-diff-note],[data-diff-hunk-header],[data-changes-preview-path]) {
+      color:var(--gem-reader-muted) !important; -webkit-text-fill-color:currentColor !important;
     }
     `
 
@@ -1679,7 +1731,7 @@ window.__ModuleLoader__.load({
         for (const id of Object.values(ID)) document.getElementById(id)?.remove()
         const style = document.createElement('style')
         style.id = ID.style
-        style.textContent = CSS + CSS_V2 + CSS_V3 + CSS_LIGHT_SETTING + CSS_CONTROL_INTEGRITY + CSS_READABILITY
+        style.textContent = CSS + CSS_V2 + CSS_V3 + CSS_LIGHT_SETTING + CSS_CONTROL_INTEGRITY + CSS_READABILITY + CSS_FILE_FINISH
         document.head.append(style)
 
         const trigger = document.createElement('button')
@@ -1747,7 +1799,16 @@ window.__ModuleLoader__.load({
             return ['system', 'light', 'dark'].includes(preference) ? preference : 'system'
           } catch { return 'system' }
         }
-        const setRoot = (name, value) => { if (root.getAttribute(name) !== value) root.setAttribute(name, value) }
+        // DSH's Windows caption bridge observes head mutations, not plugin tone attributes.
+        const captionSignal = document.createTextNode('/* Gemini caption */')
+        style.append(captionSignal)
+        const setRoot = (name, value) => {
+          if (root.getAttribute(name) === value) return
+          root.setAttribute(name, value)
+          if (root.hasAttribute('data-windows-titlebar') && ['data-dsh-gemini-theme', 'data-dsh-gemini-tone'].includes(name)) {
+            captionSignal.data = `/* Gemini caption ${settings.enabled ? 'on' : 'off'} ${root.getAttribute('data-dsh-gemini-tone')} */`
+          }
+        }
         const sync = () => {
           setRoot('data-dsh-gemini-theme', settings.enabled ? 'active' : 'off')
           setRoot('data-dsh-gemini-art', settings.showArt ? 'on' : 'off')
