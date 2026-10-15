@@ -335,19 +335,17 @@ window.__ModuleLoader__.load({
       color:#f9e8b0 !important; -webkit-text-fill-color:#f9e8b0 !important;
     }
     /* Keep the pale new-session action legible against its light surface. */
-    html[data-dsh-gemini-theme="active"] ${S.sidebar} button[aria-label="新建会话"]:not(svg):not(path),
-    html[data-dsh-gemini-theme="active"] ${S.sidebar} button[aria-label="新建会话"] :not(svg):not(path) {
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} button[aria-label="新建会话"]:not(._2H3hWW_brand,._3WPZCG_brand):not(svg):not(path),
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} button[aria-label="新建会话"]:not(._2H3hWW_brand,._3WPZCG_brand) :not(svg):not(path) {
       color:#211b48 !important; -webkit-text-fill-color:#211b48 !important;
     }
+    /* Windows renders the brand as a new-session button; macOS renders a span.
+       Keep this button on the sidebar surface, without styling it as a composer action. */
     html[data-dsh-gemini-theme="active"] ${S.sidebar} button:is(._2H3hWW_brand,._3WPZCG_brand) {
-      min-height:29px; padding:3px 5px; border:1px solid #dbcaed !important; border-radius:7px;
-      background:linear-gradient(90deg,#fcfaff,#e9e2fa) !important;
-      box-shadow:0 0 0 2px #2a3266,inset 0 0 0 1px #fff,0 3px 8px #1c225255;
+      color:inherit !important; -webkit-text-fill-color:currentColor !important;
+      background:transparent !important; border:0 !important; box-shadow:none !important;
     }
-    html[data-dsh-gemini-theme="active"] ${S.sidebar} button:is(._2H3hWW_brand,._3WPZCG_brand) :where(svg,img) {
-      max-height:22px; filter:drop-shadow(0 1px 1px #9387c466);
-    }
-    html[data-dsh-gemini-theme="active"] ${S.sidebar} button[aria-label="新建会话"] {
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} button[aria-label="新建会话"]:not(._2H3hWW_brand,._3WPZCG_brand) {
       color:#211b48 !important; background:linear-gradient(#fffefa,#efe8ff) !important;
       border:1px solid #d5b87d !important; box-shadow:0 0 0 2px #393561,inset 0 0 0 1px #fff;
     }
@@ -360,7 +358,7 @@ window.__ModuleLoader__.load({
       box-sizing:border-box; width:25px; height:25px; padding:4px;
       border:1px solid #bea6dc; border-radius:50%; background:#e9ddff;
     }
-    html[data-dsh-gemini-theme="active"] ${S.sidebar} button[aria-label="新建会话"] * { color:#211b48 !important; }
+    html[data-dsh-gemini-theme="active"] ${S.sidebar} button[aria-label="新建会话"]:not(._2H3hWW_brand,._3WPZCG_brand) * { color:#211b48 !important; }
     html[data-dsh-gemini-theme="active"] ${S.footer} { background:transparent !important; }
     html[data-dsh-gemini-theme="active"] ${S.sidebar} *::-webkit-scrollbar { width:7px; height:7px; background:#303866; }
     html[data-dsh-gemini-theme="active"] ${S.sidebar} *::-webkit-scrollbar-track { background:#303866; }
