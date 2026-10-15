@@ -12,6 +12,7 @@ const assets = [
   ['__GEMINI_CUTOUT_DATA_URL__', 'image/png', 'gemini-cutout-v1.png'],
   ['__GEMINI_CHIBI_DATA_URL__', 'image/png', 'gemini-chibi-v1.png'],
   ['__GEMINI_SCENE_DATA_URL__', 'image/png', 'gemini-observatory-v1.png'],
+  ['__GEMINI_LIGHT_SCENE_DATA_URL__', 'image/png', 'gemini-observatory-light-v1.png'],
 ]
 let source = await readFile(resolve(packageRoot, 'src/theme-client.js'), 'utf8')
 for (const [placeholder, mime, filename, knownBytes] of assets) {
