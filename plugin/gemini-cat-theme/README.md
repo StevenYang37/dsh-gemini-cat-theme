@@ -1,24 +1,24 @@
 # Gemini 紫夜 · DSH Desktop 主题
 
-**版本 0.4.67** · 面向 **DeepSeek Harness (DSH) Desktop 0.2.0-rc.2** 的非官方社区主题插件，适配 Windows 与 macOS。
+**版本 0.5.0** · 面向 **DeepSeek Harness (DSH) Desktop 0.2.0-rc.2** 的非官方社区主题插件，适配 Windows 与 macOS。
 
 星象主题和角色装饰可独立开关，支持浅色、深色、跟随系统三种外观。插件包内置背景与角色素材，无需外部图床。样式只处理 DSH 自有界面，侧栏网页、文件预览及文档中的作者内容保持原样。
 
 ## 安装
 
-npm 首次发布完成后，在 DSH 插件页面搜索 `dsh-gemini-cat-theme`，或运行：
+在 DSH 插件页面搜索 `dsh-gemini-cat-theme`，或运行：
 
 ```sh
 dsh plugin --profile desktop add dsh-gemini-cat-theme
 ```
 
-包名为 `dsh-gemini-cat-theme`；首次 npm 发布尚待完成。安装后重启 DSH Desktop。macOS 找不到 `dsh` 命令时，可使用：
+包名为 `dsh-gemini-cat-theme`，当前版本为 **0.5.0**。安装后重启 DSH Desktop。macOS 找不到 `dsh` 命令时，可使用：
 
 ```sh
 "/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add dsh-gemini-cat-theme
 ```
 
-npm 发布前，可克隆 GitHub 仓库并从源码目录安装。Windows PowerShell：
+也可克隆 GitHub 仓库并从源码目录安装。Windows PowerShell：
 
 ```powershell
 git clone https://github.com/StevenYang37/dsh-gemini-cat-theme.git
@@ -59,13 +59,13 @@ dsh plugin --profile desktop add "file:$PWD/plugin/gemini-cat-theme"
 
 An unofficial community theme for **DeepSeek Harness Desktop 0.2.0-rc.2** (Windows and macOS). The starry theme and character decoration can be toggled independently. Light, dark, and system appearance are supported. DSH-owned chrome is themed; authored webpage, document, and file-preview content remains unchanged.
 
-After the first npm publication, install by searching for `dsh-gemini-cat-theme` in DSH Plugins or run:
+Install by searching for `dsh-gemini-cat-theme` in DSH Plugins or run:
 
 ```sh
 dsh plugin --profile desktop add dsh-gemini-cat-theme
 ```
 
-The npm package name is `dsh-gemini-cat-theme`; its initial publication is pending. Restart DSH Desktop after installation. Update with `dsh plugin --profile desktop update dsh-gemini-cat-theme`; remove with `dsh plugin --profile desktop remove dsh-gemini-cat-theme`.
+The npm package is `dsh-gemini-cat-theme` (version `0.5.0`). Restart DSH Desktop after installation. Update with `dsh plugin --profile desktop update dsh-gemini-cat-theme`; remove with `dsh plugin --profile desktop remove dsh-gemini-cat-theme`.
 
 Questions and ideas: [Discussions](https://github.com/StevenYang37/dsh-gemini-cat-theme/discussions). Bug reports: [Issues](https://github.com/StevenYang37/dsh-gemini-cat-theme/issues). Contributions are welcome via pull requests from forks; only maintainers can push to the upstream repository.
 
