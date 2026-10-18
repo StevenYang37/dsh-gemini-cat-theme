@@ -1478,6 +1478,8 @@ window.__ModuleLoader__.load({
     // Native task/trajectory surfaces use stable data hooks plus the installed build's module roots.
     const WORK_SURFACES = ':is([data-goal-bar],[data-approval-key] > [class*="_card"],[data-workflow-run],[data-sidebar-chat],.CxUija_page,.rcAy0q_bubble,.Ay96pa_card,.rkta1W_split,._0rqS-a_root,._33HxeW_root,.leLPTq_root,.yj_sLW_root,.Q2dzhW_ioCard,.-gRAhq_ioCard,.eOKmrq_instructionsCard,.HZhGha_card)'
     const FLOAT_SURFACES = ':is([role="tooltip"],[class*="_bubble_"][data-side],[class*="_toast_"],._card_38jqx_9,[class*="_card_"]:has(:is(.jJkEga_hoverContent,.hIlkoa_hoverContent)),.Fw9vfq_menu,.cJtk3a_menu,.Z0Zh9q_menu,.xRgRca_card,.qISTrW_card,.kbRY4W_dialog)'
+    const DSH_TOOLTIP_CANDIDATES = ':is([role="tooltip"],[class*="_bubble_"][data-side],[class*="_toast_"],.jJkEga_hoverContent,.hIlkoa_hoverContent)'
+    const UPDATE_TOOLTIP = '[data-dsh-gemini-update-tooltip="true"]'
     const READABLE_SURFACES = `:is(${QUESTION},${WORK_SURFACES},[data-changes-review],[data-changed-files],[data-presented-file],.T1tA0G_panel)`
     const CSS_READABILITY = `
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] ${READABLE_SURFACES} {
@@ -1789,11 +1791,38 @@ window.__ModuleLoader__.load({
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${FLOAT_SURFACES} :where(*) {
       -webkit-text-fill-color:currentColor !important; -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
     }
-    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is([role="tooltip"],.jJkEga_hoverContent,.hIlkoa_hoverContent) {
-      color:#3e2c55; --dsw-alias-label-primary:#3e2c55; --dsw-alias-label-secondary:#675673;
+    /* Theme only the DSH version-update hint; all other tips and author preview contents keep their own design. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] ${FLOAT_SURFACES}${UPDATE_TOOLTIP} {
+      --gem-reader-bg:#514b8d; --gem-reader-ink:#fff6dc; --gem-reader-muted:#e5dcf5;
+      --gem-reader-hover:#65569d; --gem-reader-line:#d7ba80; --gem-reader-link:#fff0b8;
+      --dsw-alias-bg-base:#514b8d; --dsw-alias-bg-layer-1:#514b8d; --dsw-alias-bg-layer-2:#65569d;
+      --dsw-alias-label-primary:#fff6dc; --dsw-alias-label-secondary:#e5dcf5;
+      --dsw-alias-label-tertiary:#e5dcf5; --dsw-alias-label-caption:#e5dcf5;
+      --dsw-alias-tooltip-bg:#514b8d; --dsw-alias-toast-bg:#514b8d; --dsw-alias-toast-label:#fff6dc;
+      background:#514b8d !important; color:#fff6dc !important; border:1px solid #d7ba80 !important;
     }
-    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is(.jJkEga_hoverContent,.hIlkoa_hoverContent) :where(*) {
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="dark"] ${FLOAT_SURFACES}${UPDATE_TOOLTIP} {
+      --gem-reader-bg:#f3e9fb; --gem-reader-ink:#34284a; --gem-reader-muted:#655774;
+      --gem-reader-hover:#e8dcf3; --gem-reader-line:#c8b6d9; --gem-reader-link:#006b78;
+      --dsw-alias-bg-base:#f3e9fb; --dsw-alias-bg-layer-1:#f3e9fb; --dsw-alias-bg-layer-2:#e8dcf3;
+      --dsw-alias-label-primary:#34284a; --dsw-alias-label-secondary:#514461;
+      --dsw-alias-label-tertiary:#655774; --dsw-alias-label-caption:#655774;
+      --dsw-alias-tooltip-bg:#f3e9fb; --dsw-alias-toast-bg:#f3e9fb; --dsw-alias-toast-label:#34284a;
+      background:#f3e9fb !important; color:#34284a !important; border:1px solid #c8b6d9 !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${FLOAT_SURFACES}${UPDATE_TOOLTIP} {
+      -webkit-text-fill-color:currentColor !important; -webkit-text-stroke:0 transparent !important;
+      text-shadow:none !important; box-shadow:0 4px 14px #17102d38 !important;
+      /* Keep the version hint above the adjacent right content pane. */
+      z-index:2147483000 !important;
+    }
+    /* The tooltip is rendered inside the sidebar; raise that stacking context only while this hint exists. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${S.sidebar}:has(${FLOAT_SURFACES}${UPDATE_TOOLTIP}) {
+      z-index:2147482999 !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${FLOAT_SURFACES}${UPDATE_TOOLTIP} :where(*) {
       color:inherit !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is(.GY4FdW_taskName,.GY4FdW_taskIcon,.GY4FdW_taskTiming,.GY4FdW_taskRelative,.GY4FdW_omitted) {
       color:var(--dsw-alias-label-primary) !important; -webkit-text-fill-color:currentColor !important;
@@ -1967,6 +1996,24 @@ window.__ModuleLoader__.load({
         style.id = ID.style
         style.textContent = CSS + CSS_V2 + CSS_V3 + CSS_LIGHT_SETTING + CSS_CONTROL_INTEGRITY + CSS_READABILITY + CSS_FILE_FINISH + CSS_SIDEBARS + CSS_COMPLETION
         document.head.append(style)
+
+        let updateTooltipScan = null
+        const scanUpdateTooltips = () => {
+          if (updateTooltipScan !== null) return
+          updateTooltipScan = requestAnimationFrame(() => {
+            updateTooltipScan = null
+            for (const tooltip of document.querySelectorAll(DSH_TOOLTIP_CANDIDATES)) {
+              const text = (tooltip.textContent || '').replace(/\s+/gu, ' ').trim()
+              const isUpdateNotice = /(?:新版本|new\s+version)\s*[:：]\s*v?\d/iu.test(text)
+              const isAuthorPreview = !!tooltip.closest('[data-dockkit-pane],[data-dockkit-float]')
+              if (isUpdateNotice && !isAuthorPreview) tooltip.setAttribute('data-dsh-gemini-update-tooltip', 'true')
+              else tooltip.removeAttribute('data-dsh-gemini-update-tooltip')
+            }
+          })
+        }
+        const updateTooltipObserver = new MutationObserver(scanUpdateTooltips)
+        updateTooltipObserver.observe(document.body, { childList: true, subtree: true, characterData: true })
+        scanUpdateTooltips()
 
         const trigger = document.createElement('button')
         trigger.id = ID.trigger
@@ -2146,6 +2193,9 @@ window.__ModuleLoader__.load({
         return () => {
           clearTimeout(transitionTimer); clearInterval(toneTimer)
           if (syncFrame !== null) cancelAnimationFrame(syncFrame)
+          if (updateTooltipScan !== null) cancelAnimationFrame(updateTooltipScan)
+          updateTooltipObserver.disconnect()
+          document.querySelectorAll('[data-dsh-gemini-update-tooltip="true"]').forEach(tooltip => tooltip.removeAttribute('data-dsh-gemini-update-tooltip'))
           observer.disconnect(); routeObserver.disconnect()
           trigger.removeEventListener('click', toggle)
           panel.removeEventListener('change', change)
