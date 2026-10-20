@@ -1937,6 +1937,184 @@ ${UI_SCOPE} :is([role="menuitem"],[role="menuitemradio"],[role="menuitemcheckbox
 
 `
 
+// Native secondary type sits on restrained reading surfaces; metadata remains visible at rest.
+// Tone names follow pluginTone(): host Dark = light, host Light = dark.
+// Use real DSH component roots rather than matching every span/status-like class.
+const BACKPLATE_SCOPE = `html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${S.frame}`
+const BACKPLATE_PARTS = ':is(.HiSsxa_root,[data-variant="think"],.YS3v9W_root,.Bpi2Dq_root,[data-step-process] > div:first-child > button,button[data-turn-process],.icaHSq_runningContent,.icaHSq_hint,.gKv1-q_stopped,.ppByMG_actions,.sZXytW_trigger:not(.ppByMG_actions *),.OpZ85W_pill:not(.ppByMG_actions *),.y0jqnG_trigger,.Hqq-bq_headline,.bocITq_headline)'
+const BACKPLATE_NATIVE = ':not(:where([data-dockkit-pane] *,[data-dockkit-float] *))'
+const CSS_BACKPLATES = `
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] {
+  --gem-backplate-bg:#4b476f; --gem-backplate-ink:#fff3d8; --gem-backplate-muted:#ddd4e9;
+  --gem-backplate-hover:#58527e; --gem-backplate-line:#8d80a5;
+  --gem-backplate-shadow:#211a361f;
+  --gem-backplate-link:#a9f0f5; --gem-backplate-heading:#fff1c9;
+  --gem-backplate-error:#ffd0da;
+}
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="dark"] {
+  --gem-backplate-bg:#f3edf8; --gem-backplate-ink:#40314f; --gem-backplate-muted:#6c5b7b;
+  --gem-backplate-hover:#e9e0f1; --gem-backplate-line:#d0c2de;
+  --gem-backplate-shadow:#30204412;
+  --gem-backplate-link:#006b78; --gem-backplate-heading:#765522;
+  --gem-backplate-error:#85344d;
+}
+${BACKPLATE_SCOPE} ${BACKPLATE_PARTS}${BACKPLATE_NATIVE} {
+  --dsw-alias-label-primary:var(--gem-backplate-ink);
+  --dsw-alias-label-secondary:var(--gem-backplate-muted);
+  --dsw-alias-label-tertiary:var(--gem-backplate-muted);
+  --dsw-alias-label-caption:var(--gem-backplate-muted);
+  --dsw-alias-label-deep-diving:var(--gem-backplate-ink);
+  --dsw-alias-label-deep-diving-shimmer:var(--gem-backplate-muted);
+  --dsw-alias-state-error-primary:var(--gem-backplate-error);
+  --dsw-alias-bg-base:var(--gem-backplate-bg);
+  --dsw-alias-markdown-code-block:var(--gem-backplate-hover);
+  --dsw-alias-interactive-bg-hover:var(--gem-backplate-hover);
+  --gem-chat-body:var(--gem-backplate-ink); --gem-chat-secondary:var(--gem-backplate-muted);
+  --gem-chat-caption:var(--gem-backplate-muted); --gem-chat-heading:var(--gem-backplate-heading);
+  color:var(--gem-backplate-ink) !important;
+  box-shadow:none;
+  border-radius:8px;
+  transition-property:box-shadow,outline-color !important;
+}
+${BACKPLATE_SCOPE} ${BACKPLATE_PARTS}${BACKPLATE_NATIVE}:not(.ppByMG_actions) {
+  background:var(--gem-backplate-bg) !important;
+}
+/* Preserve small native typography; group related process rows on one reading surface. */
+${BACKPLATE_SCOPE} ${BACKPLATE_PARTS}${BACKPLATE_NATIVE},
+${BACKPLATE_SCOPE} ${BACKPLATE_PARTS}${BACKPLATE_NATIVE} :where(:not(svg):not(path)) {
+  font-size:var(--dsh-content-font-size-secondary,13px) !important;
+  font-weight:400 !important;
+}
+/* DSH keeps process containers mounted after hiding both children. Never pad/paint
+   that outer animation box: padding would leave a blank bar even at height:0. */
+${BACKPLATE_SCOPE} [data-step-process]${BACKPLATE_NATIVE} {
+  background:transparent !important; padding:0; border:0; box-shadow:none;
+}
+${BACKPLATE_SCOPE} [data-step-process-content]${BACKPLATE_NATIVE}:has(> :not([hidden]):not(:empty)) {
+  background:var(--gem-backplate-bg) !important;
+  border-radius:10px; padding:8px 10px; box-sizing:border-box;
+}
+${BACKPLATE_SCOPE} [data-step-process] > div:first-child > button${BACKPLATE_NATIVE} {
+  width:fit-content; max-width:100%; border-radius:8px; padding:2px 8px;
+}
+${BACKPLATE_SCOPE} [data-step-process-content] ${BACKPLATE_PARTS}${BACKPLATE_NATIVE} {
+  background:transparent !important; box-shadow:none; border-radius:0;
+}
+/* Preserve native hidden/collapsing states instead of styling placeholder geometry. */
+${BACKPLATE_SCOPE} :is([data-step-process],[data-step-process-body],[data-step-process-content],.HiSsxa_root,.YS3v9W_root,.Bpi2Dq_root,.ppByMG_actions)[hidden]${BACKPLATE_NATIVE} {
+  display:none !important;
+}
+${BACKPLATE_SCOPE} ${BACKPLATE_PARTS}${BACKPLATE_NATIVE}:empty {
+  background:transparent !important; padding:0; min-height:0; border:0; box-shadow:none;
+}
+${BACKPLATE_SCOPE} :is(.HiSsxa_root,[data-variant="think"],.YS3v9W_root,.Bpi2Dq_root)${BACKPLATE_NATIVE} {
+  border-radius:10px;
+}
+${BACKPLATE_SCOPE} :is(.HiSsxa_root,[data-variant="think"])${BACKPLATE_NATIVE} [class$="_thinkBody"] {
+  padding:4px 12px 8px calc(22px + var(--dsh-content-font-delta,0px));
+}
+${BACKPLATE_SCOPE} :is(.YS3v9W_root,.Bpi2Dq_root)${BACKPLATE_NATIVE} [data-disclosure-header] {
+  padding-inline:6px;
+}
+${BACKPLATE_SCOPE} :is(button[data-turn-process],.icaHSq_runningContent,.icaHSq_hint,.gKv1-q_stopped,.ppByMG_actions,.sZXytW_trigger,.OpZ85W_pill,.y0jqnG_trigger)${BACKPLATE_NATIVE} {
+  width:fit-content; max-width:100%; box-sizing:border-box; border-radius:8px;
+  padding-inline:8px; border:0; box-shadow:none;
+}
+${BACKPLATE_SCOPE} button[data-turn-process]${BACKPLATE_NATIVE} {
+  height:auto; min-height:28px; padding-block:3px;
+}
+${BACKPLATE_SCOPE} :is(.icaHSq_runningContent,.icaHSq_hint)${BACKPLATE_NATIVE} { padding-block:2px; }
+/* Native DSH hides older action/time rows on pointer exit. Keep these labels readable at rest.
+   Do not reveal hidden disclosures, tooltips, or unavailable/disabled controls. */
+${BACKPLATE_SCOPE} .ppByMG_actions${BACKPLATE_NATIVE} {
+  opacity:1 !important; transition:none !important;
+}
+/* Clear inherited gold strokes without flattening syntax colors or status semantics. */
+${BACKPLATE_SCOPE} ${BACKPLATE_PARTS}${BACKPLATE_NATIVE},
+${BACKPLATE_SCOPE} ${BACKPLATE_PARTS}${BACKPLATE_NATIVE} :where(*) {
+  -webkit-text-fill-color:currentColor !important;
+  -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+}
+${BACKPLATE_SCOPE} ${BACKPLATE_PARTS}${BACKPLATE_NATIVE} :is([data-disclosure-header],.HiSsxa_title,.HiSsxa_summaryText,.YS3v9W_title,.YS3v9W_summary:not([data-error]),.Bpi2Dq_source,.Bpi2Dq_summary,.TXqvFW_label,._PaunW_label,._PaunW_durationNumber,.icaHSq_runningText,.ppByMG_action,.ppByMG_timeStart,.ppByMG_timeEnd,.ppByMG_endInfo,.sZXytW_label,.OpZ85W_label),
+${BACKPLATE_SCOPE} ${BACKPLATE_PARTS}${BACKPLATE_NATIVE} :is([data-disclosure-header],.ppByMG_endInfo) :where(span,button) {
+  color:var(--gem-backplate-ink) !important;
+}
+${BACKPLATE_SCOPE} ${BACKPLATE_PARTS}${BACKPLATE_NATIVE} :is(._PaunW_label,.TXqvFW_label,.icaHSq_runningText) :where(span),
+${BACKPLATE_SCOPE} .ppByMG_actions${BACKPLATE_NATIVE} :is(button,svg),
+${BACKPLATE_SCOPE} :is(.sZXytW_trigger,.OpZ85W_pill,.y0jqnG_trigger)${BACKPLATE_NATIVE} :where(span,svg) {
+  color:var(--gem-backplate-ink) !important; -webkit-text-fill-color:currentColor !important;
+}
+${BACKPLATE_SCOPE} :is(.HiSsxa_root,[data-variant="think"])${BACKPLATE_NATIVE} :is([class$="_thinkBody"],[data-disclosure-header]) {
+  background:transparent !important; color:var(--gem-backplate-ink) !important;
+}
+${BACKPLATE_SCOPE} :is(.HiSsxa_root,[data-variant="think"])${BACKPLATE_NATIVE} > [class$="_row"] { border-radius:inherit; }
+${BACKPLATE_SCOPE} ${BACKPLATE_PARTS}${BACKPLATE_NATIVE} :is(.YS3v9W_summary,.YS3v9W_body)[data-error] {
+  color:var(--gem-backplate-error) !important;
+}
+${BACKPLATE_SCOPE} :is(.HiSsxa_root,[data-variant="think"]) [class$="_thinkBody"]${BACKPLATE_NATIVE} :where(p,li,blockquote,dd,dt,td,th,small) {
+  color:var(--gem-backplate-ink) !important;
+}
+${BACKPLATE_SCOPE} :is(.HiSsxa_root,[data-variant="think"]) [class$="_thinkBody"]${BACKPLATE_NATIVE} :where(h1,h2,h3,h4,strong,b) {
+  color:var(--gem-backplate-heading) !important;
+}
+${BACKPLATE_SCOPE} :is(.HiSsxa_root,[data-variant="think"]) [class$="_thinkBody"]${BACKPLATE_NATIVE} :is(a[href],[role="link"]),
+${BACKPLATE_SCOPE} :is(.HiSsxa_root,[data-variant="think"]) [class$="_thinkBody"]${BACKPLATE_NATIVE} :is(a[href],[role="link"]) :where(*) {
+  color:var(--gem-backplate-link) !important;
+}
+${BACKPLATE_SCOPE} :is([data-step-process] > div:first-child > button,button[data-turn-process],.sZXytW_trigger,.OpZ85W_pill,.y0jqnG_trigger)${BACKPLATE_NATIVE}:hover:not(:disabled) {
+  background:var(--gem-backplate-hover) !important;
+}
+${BACKPLATE_SCOPE} :is([data-step-process] > div:first-child > button,button[data-turn-process],.sZXytW_trigger,.OpZ85W_pill,.y0jqnG_trigger)${BACKPLATE_NATIVE}:focus-visible {
+  outline:2px solid var(--gem-backplate-line); outline-offset:2px;
+}
+
+/* The existing answer-bubble rule also matches Markdown inside reasoning. Keep one
+   reading surface there instead of a second bordered/shadowed bubble inside it. */
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene] ${S.frame} ${S.conversation} :is(.HiSsxa_root,[data-variant="think"]) [class$="_thinkBody"] [class*="_markdown_"]${BACKPLATE_NATIVE} {
+  background:transparent !important; border:0 !important; box-shadow:none !important;
+  margin:0 !important; padding:0 !important; border-radius:0 !important;
+  max-width:100%;
+}
+
+/* Separate small controls and timestamps; never paint a footer-wide ribbon. */
+${BACKPLATE_SCOPE} .ppByMG_actions${BACKPLATE_NATIVE} {
+  background:transparent !important; padding:0; gap:6px;
+}
+${BACKPLATE_SCOPE} .ppByMG_actions${BACKPLATE_NATIVE} :is(button,.ppByMG_timeStart,.ppByMG_endInfo,.sZXytW_trigger,.OpZ85W_pill) {
+  background:var(--gem-backplate-bg) !important; border-radius:7px;
+  color:var(--gem-backplate-ink) !important;
+}
+${BACKPLATE_SCOPE} .ppByMG_actions${BACKPLATE_NATIVE} :is(.ppByMG_timeStart,.ppByMG_endInfo) {
+  padding-inline:6px; margin-left:0;
+}
+${BACKPLATE_SCOPE} .ppByMG_actions${BACKPLATE_NATIVE} button:hover:not(:disabled):not([data-unavailable]) {
+  background:var(--gem-backplate-hover) !important;
+}
+
+/* Native outlines contain rects/circles as well as paths. Some older scene rules
+   color those descendants gold; restore a single readable ink only in host Light. */
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="dark"] ${S.frame} .ppByMG_actions${BACKPLATE_NATIVE} button svg,
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="dark"] ${S.frame} .ppByMG_actions${BACKPLATE_NATIVE} button svg :where(*) {
+  color:var(--gem-backplate-ink) !important;
+}
+/* DSH tooltips are portalled outside the conversation; style label and keycaps
+   together so neither palette inherits the scene's gold text on a pale surface. */
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone]:root :is([role="tooltip"],._bubble_12mhf_1)${BACKPLATE_NATIVE} {
+  --dsw-alias-label-primary:var(--gem-backplate-ink);
+  --dsw-alias-label-secondary:var(--gem-backplate-ink);
+  --dsw-alias-label-tertiary:var(--gem-backplate-muted);
+  --dsw-alias-tooltip-bg:var(--gem-backplate-bg);
+  background:var(--gem-backplate-bg) !important; color:var(--gem-backplate-ink) !important;
+  border:1px solid var(--gem-backplate-line) !important;
+}
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone]:root :is([role="tooltip"],._bubble_12mhf_1)${BACKPLATE_NATIVE},
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone]:root :is([role="tooltip"],._bubble_12mhf_1)${BACKPLATE_NATIVE} :where(*) {
+  color:var(--gem-backplate-ink) !important; -webkit-text-fill-color:currentColor !important;
+  -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+}
+
+`
+
 function loadSettings() {
   try {
     const saved = JSON.parse(localStorage.getItem(KEY) || '{}')
@@ -1988,7 +2166,7 @@ exports.apply = function apply(ctx) {
     for (const id of Object.values(ID)) document.getElementById(id)?.remove()
     const style = document.createElement('style')
     style.id = ID.style
-    style.textContent = CSS + CSS_V2 + CSS_V3 + CSS_LIGHT_SETTING + CSS_CONTROL_INTEGRITY + CSS_READABILITY + CSS_FILE_FINISH + CSS_SIDEBARS + CSS_COMPLETION
+    style.textContent = CSS + CSS_V2 + CSS_V3 + CSS_LIGHT_SETTING + CSS_CONTROL_INTEGRITY + CSS_READABILITY + CSS_FILE_FINISH + CSS_SIDEBARS + CSS_COMPLETION + CSS_BACKPLATES
     document.head.append(style)
 
     let updateTooltipScan = null
