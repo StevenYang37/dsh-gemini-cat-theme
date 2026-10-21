@@ -2209,6 +2209,68 @@ window.__ModuleLoader__.load({
       box-shadow:inset 0 0 0 1px var(--gem-header-line),inset 0 -2px 0 var(--gem-header-accent),0 2px 5px var(--gem-header-shadow) !important;
     }
 
+    /* Light mode: plugin detail fields must share their page's pale reading surface. */
+    ${LIGHT_SETTING} ${S.frame} :is(.fO69Vq_page,.ZVcBiW_page) {
+      --dsw-alias-bg-base:#f3e9fb !important; --dsw-alias-bg-layer-1:#f3e9fb !important;
+      --dsw-alias-bg-layer-2:#e9def3 !important; --dsw-alias-bg-layer-3:#e4d8ee !important;
+      --dsw-alias-label-primary:#34284a !important; --dsw-alias-label-secondary:#514461 !important;
+      --dsw-alias-label-tertiary:#655774 !important; --dsw-alias-brand-text:#514078 !important;
+      background:linear-gradient(135deg,#f5eefb,#ece5f5) !important; color:#34284a !important;
+    }
+    ${LIGHT_SETTING} ${S.frame} :is(.fO69Vq_detail,.ZVcBiW_detail) {
+      color:#34284a !important; -webkit-text-fill-color:currentColor !important;
+    }
+    ${LIGHT_SETTING} ${S.frame} :is(.fO69Vq_detail,.ZVcBiW_detail) :where(p,label,legend,small,summary,dt,dd,[class$="_label"],[class$="_description"],[class$="_hint"],[class$="_help"],[class$="_desc"],[class$="_detailDesc"],[class$="_sectionTitle"]) {
+      color:#514461 !important; -webkit-text-fill-color:currentColor !important; text-shadow:none !important;
+    }
+    ${LIGHT_SETTING} ${S.frame} :is(.fO69Vq_detail,.ZVcBiW_detail) :is(h1,h2,h3,[class$="_detailName"],[class$="_detailTitle"]) {
+      color:#514078 !important; -webkit-text-fill-color:currentColor !important; text-shadow:none !important;
+    }
+    ${LIGHT_SETTING} ${S.frame} :is(.fO69Vq_detail,.ZVcBiW_detail) button:not([role="switch"]):not([role="checkbox"]):not([role="radio"]):not(.fO69Vq_crumb):not(.ZVcBiW_crumb) {
+      color:#40314f !important; -webkit-text-fill-color:currentColor !important;
+      background:#e8dcf3 !important; border-color:#bba6ce !important;
+    }
+    ${LIGHT_SETTING} ${S.frame} :is(.fO69Vq_detail,.ZVcBiW_detail) :is(input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),textarea,select) {
+      color:#34284a !important; -webkit-text-fill-color:currentColor !important;
+      background:#faf6ff !important; border-color:#bba6ce !important;
+    }
+    /* The hero headline acquired a pale backplate, so pair it with dark ink. */
+    ${LIGHT_SETTING}[data-dsh-gemini-scene="hero"] ${S.frame} ${S.heroTitle} :is(.Hqq-bq_headline,.bocITq_headline),
+    ${LIGHT_SETTING}[data-dsh-gemini-scene="hero"] ${S.frame} ${S.heroTitle} :is(.Hqq-bq_headline,.bocITq_headline) :where(*) {
+      color:#514078 !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    ${LIGHT_SETTING}[data-dsh-gemini-scene="hero"] ${S.frame} ${S.heroTitle} :is(.Hqq-bq_previewBadge,.bocITq_previewBadge) {
+      background:#e5d8f0 !important; color:#514078 !important; border-color:#bba6ce !important;
+    }
+    ${LIGHT_SETTING} ${S.frame} ${S.composer} button[aria-haspopup] svg,
+    ${LIGHT_SETTING} ${S.frame} ${S.composer} button[aria-haspopup] svg :where(*) {
+      color:#514078 !important;
+    }
+
+    /* The light catalog and its detail page share one pale surface, including back navigation. */
+    ${LIGHT_SETTING} ${S.frame} :is(.fO69Vq_page,.ZVcBiW_page) :is(.fO69Vq_pageIntro,.ZVcBiW_pageIntro,.fO69Vq_pageTitle,.ZVcBiW_pageTitle,.fO69Vq_groupHead,.ZVcBiW_groupHead,.fO69Vq_sectionTitle,.ZVcBiW_sectionTitle) {
+      color:#514078 !important; -webkit-text-fill-color:currentColor !important; text-shadow:none !important;
+      border-color:#c8b6d9 !important;
+    }
+    ${LIGHT_SETTING} ${S.frame} :is(.fO69Vq_pageIntro,.ZVcBiW_pageIntro) :where(*) {
+      color:inherit !important; -webkit-text-fill-color:currentColor !important;
+    }
+    ${LIGHT_SETTING} ${S.frame} :is(.fO69Vq_page,.ZVcBiW_page) :is(button.fO69Vq_crumb,button.ZVcBiW_crumb) {
+      background:transparent !important; border-color:transparent !important;
+      box-shadow:none !important; color:#514078 !important; -webkit-text-fill-color:currentColor !important;
+      align-self:flex-start;
+    }
+    ${LIGHT_SETTING} ${S.frame} :is(.fO69Vq_page,.ZVcBiW_page) :is(button.fO69Vq_crumb,button.ZVcBiW_crumb):hover {
+      color:#34284a !important; text-decoration:underline; text-underline-offset:3px;
+    }
+
+    /* Match the welcome backplate to its contents in both appearances. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="hero"] ${S.frame} ${S.heroTitle} :is(.Hqq-bq_headline,.bocITq_headline)${BACKPLATE_NATIVE} {
+      box-sizing:border-box; width:fit-content !important; max-width:100%;
+      margin-inline:auto !important; padding:6px 18px !important;
+    }
+
     `
 
     function loadSettings() {
