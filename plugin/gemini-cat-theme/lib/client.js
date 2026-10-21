@@ -2119,6 +2119,96 @@ window.__ModuleLoader__.load({
       -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
     }
 
+
+    /* Compact header accents stay on text and tabs, never on the full header row. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] {
+      --gem-header-title-a:#405e78; --gem-header-title-b:#53527d; --gem-header-ink:#fff5e2;
+      --gem-header-preset-a:#685469; --gem-header-preset-b:#535a7c; --gem-header-preset-ink:#e7ffff;
+      --gem-header-tab-a:#465d72; --gem-header-tab-b:#505b78; --gem-header-line:#c7b5df66;
+      --gem-header-glint:#f4eaff24; --gem-header-shadow:#211a3626;
+      --gem-header-active-a:#416775; --gem-header-active-b:#555d7c; --gem-header-accent:#f2d99e;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="dark"] {
+      --gem-header-title-a:#e3f1f7; --gem-header-title-b:#e6eafa; --gem-header-ink:#40314f;
+      --gem-header-preset-a:#f5e8ec; --gem-header-preset-b:#e9edf9; --gem-header-preset-ink:#294b52;
+      --gem-header-tab-a:#e4eef5; --gem-header-tab-b:#e7eafa; --gem-header-line:#b4a0c477;
+      --gem-header-glint:#ffffffcc; --gem-header-shadow:#38245118;
+      --gem-header-active-a:#dcefeb; --gem-header-active-b:#e1eaf7; --gem-header-accent:#815c25;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} :is(.ST7X_W_header .ST7X_W_crumbCurrent,.ST7X_W_header ._3li69W_label,.ST7X_W_tabs .ST7X_W_tab)${BACKPLATE_NATIVE} {
+      background-color:var(--gem-header-title-a) !important;
+      background-image:linear-gradient(115deg,var(--gem-header-title-a),var(--gem-header-title-b)) !important;
+      color:var(--gem-header-ink) !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+      box-shadow:inset 0 0 0 1px var(--gem-header-line),inset 0 2px 0 var(--gem-header-glint),0 2px 5px var(--gem-header-shadow) !important;
+      border-radius:15px 5px 15px 5px; opacity:1 !important;
+      background-origin:border-box;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_header :is(.ST7X_W_crumbCurrent,._3li69W_label)${BACKPLATE_NATIVE} {
+      padding:2px 8px; border-inline-start:2px solid var(--gem-header-accent); align-self:center; box-decoration-break:clone; -webkit-box-decoration-break:clone;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_header ._3li69W_label${BACKPLATE_NATIVE} {
+      background-color:var(--gem-header-preset-a) !important;
+      background-image:linear-gradient(115deg,var(--gem-header-preset-a),var(--gem-header-preset-b)) !important;
+      color:var(--gem-header-preset-ink) !important; border-radius:999px;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_tabs .ST7X_W_tab${BACKPLATE_NATIVE} {
+      padding:4px 10px 9px; border-radius:12px 12px 4px 4px;
+      background-color:var(--gem-header-tab-a) !important;
+      background-image:linear-gradient(115deg,var(--gem-header-tab-a),var(--gem-header-tab-b)) !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_tabs .ST7X_W_tabActive${BACKPLATE_NATIVE} {
+      background-color:var(--gem-header-active-a) !important;
+      background-image:linear-gradient(115deg,var(--gem-header-active-a),var(--gem-header-active-b)) !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_tabs .ST7X_W_tabActive${BACKPLATE_NATIVE}::after {
+      background:var(--gem-header-accent) !important; left:calc(50% - 2px); right:auto; width:4px; height:4px; bottom:2px; border-radius:0; transform:rotate(45deg);
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_header :is(.ST7X_W_crumbCurrent,._3li69W_label)${BACKPLATE_NATIVE} :where(*) {
+      color:inherit !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_tabs .ST7X_W_tab${BACKPLATE_NATIVE}:hover {
+      box-shadow:inset 0 0 0 1px var(--gem-header-line),inset 0 2px 0 var(--gem-header-glint),0 3px 8px var(--gem-header-shadow) !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_tabs .ST7X_W_tab${BACKPLATE_NATIVE}:focus-visible {
+      outline:2px solid var(--gem-header-accent); outline-offset:2px;
+    }
+
+    /* In trajectory view reserve a gutter inside the ornamental frame, not over ledger rows. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${S.frame} ${S.conversation} ._0rqS-a_root${BACKPLATE_NATIVE} {
+      box-sizing:border-box; width:calc(100% - 44px); min-width:0;
+      margin:6px 22px 20px; flex:1; min-height:0;
+      border:1px solid var(--gem-reader-line); border-radius:8px;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${S.conversation}:has(._0rqS-a_root) #${ID.frame} :is(.bottom-left,.bottom-right) {
+      width:16px; height:16px;
+    }
+
+    /* The native header starts only 10px from the edge, inside the 12px ornament.
+       Reserve vertical breathing room instead of relying on the roomier concept fixture. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_header:not(.ST7X_W_headerBlank)${BACKPLATE_NATIVE} {
+      padding-top:28px !important; padding-bottom:6px !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_header .ST7X_W_crumbs${BACKPLATE_NATIVE} {
+      padding:3px 2px; margin:-3px -2px;
+    }
+
+    /* A curved title plaque, pill-shaped preset seal and bookmark tabs form a small
+       constellation. Keep native type metrics; decorate only their reading surfaces. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_header .ST7X_W_crumbCurrent${BACKPLATE_NATIVE} {
+      position:relative; padding-inline-end:22px;
+      box-shadow:inset 0 0 0 1px var(--gem-header-line),inset 0 -2px 0 var(--gem-header-glint),0 2px 6px var(--gem-header-shadow) !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_header .ST7X_W_crumbCurrent${BACKPLATE_NATIVE}::after {
+      content:""; position:absolute; pointer-events:none; right:9px; top:calc(50% - 3px);
+      width:4px; height:4px; border:1px solid var(--gem-header-accent); transform:rotate(45deg);
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_tabs .ST7X_W_tabActive${BACKPLATE_NATIVE} {
+      box-shadow:inset 0 0 0 1px var(--gem-header-line),inset 0 -2px 0 var(--gem-header-accent),0 2px 5px var(--gem-header-shadow) !important;
+    }
+
     `
 
     function loadSettings() {
