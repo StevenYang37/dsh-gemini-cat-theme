@@ -1,0 +1,50 @@
+name: Publish npm package
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version in plugin/gemini-cat-theme/package.json, e.g. 0.5.4'
+        required: true
+        type: string
+permissions:
+  contents: read
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.repository == 'StevenYang37/dsh-gemini-cat-theme' && (github.ref_type == 'tag' || github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    defaults:
+      run:
+        working-directory: plugin/gemini-cat-theme
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '24'
+      - name: Validate package and requested version
+        env:
+          EXPECTED_VERSION: ${{ github.event_name == 'push' && github.ref_name || inputs.version }}
+        run: |
+          node --input-type=module <<'JS'
+          import fs from 'node:fs';
+          const p = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+          const expected = process.env.EXPECTED_VERSION.replace(/^v/, '');
+          if (p.name !== 'dsh-gemini-cat-theme' || !/^\d+\.\d+\.\d+$/.test(expected) || p.version !== expected) {
+            throw new Error('The requested version must match this package.json');
+          }
+          JS
+      - name: Build and check
+        run: |
+          node scripts/build-client.mjs
+          node --check src/theme-client.js
+          node --check lib/client.js
+      - name: Publish using npm trusted publishing
+        run: npm publish --access public --registry=https://registry.npmjs.org
