@@ -1,10 +1,10 @@
 # Gemini 紫夜 · DSH Desktop 主题
 
-**版本 0.5.2（本地预览，尚未发布）** · 面向 **DeepSeek Harness (DSH) Desktop 0.2.0-rc.2** 的非官方社区主题插件，适配 Windows 与 macOS。
+**版本 0.5.2** · 面向 **DeepSeek Harness (DSH) Desktop 0.2.0-rc.2** 的非官方社区主题插件，适配 Windows 与 macOS。
 
 星象主题和角色装饰可独立开关，支持浅色、深色、跟随系统三种外观。插件包内置背景与角色素材，无需外部图床。样式只处理 DSH 自有界面，侧栏网页、文件预览及文档中的作者内容保持原样。
 
-## 0.5.2 本地调整
+## 0.5.2 更新
 
 - 顶部采用星象书签设计：圆弧星标标题、圆润模式印章与书签标签；保留原有字号，分别适配深浅色。
 - 标题、预设与选中标签采用不同的协调配色，保留原有顶部栏结构。
@@ -26,7 +26,7 @@
 dsh plugin --profile desktop add dsh-gemini-cat-theme
 ```
 
-包名为 `dsh-gemini-cat-theme`，当前版本为 **0.5.1**。安装后重启 DSH Desktop。macOS 找不到 `dsh` 命令时，可使用：
+包名为 `dsh-gemini-cat-theme`，当前版本为 **0.5.2**。安装后重启 DSH Desktop。macOS 找不到 `dsh` 命令时，可使用：
 
 ```sh
 "/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add dsh-gemini-cat-theme
@@ -80,7 +80,7 @@ Install by searching for `dsh-gemini-cat-theme` in DSH Plugins or run:
 dsh plugin --profile desktop add dsh-gemini-cat-theme
 ```
 
-The npm package is `dsh-gemini-cat-theme` (version `0.5.1`). Restart DSH Desktop after installation. Update with `dsh plugin --profile desktop update dsh-gemini-cat-theme`; remove with `dsh plugin --profile desktop remove dsh-gemini-cat-theme`.
+The npm package is `dsh-gemini-cat-theme` (version `0.5.2`). Restart DSH Desktop after installation. Update with `dsh plugin --profile desktop update dsh-gemini-cat-theme`; remove with `dsh plugin --profile desktop remove dsh-gemini-cat-theme`.
 
 Questions and ideas: [Discussions](https://github.com/StevenYang37/dsh-gemini-cat-theme/discussions). Bug reports: [Issues](https://github.com/StevenYang37/dsh-gemini-cat-theme/issues). Contributions are welcome via pull requests from forks; only maintainers can push to the upstream repository.
 
