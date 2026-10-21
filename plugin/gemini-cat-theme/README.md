@@ -1,10 +1,25 @@
 # Gemini 紫夜 · DSH Desktop 主题
 
-**版本 0.5.3（本地修复，尚未发布）** · 面向 **DeepSeek Harness (DSH) Desktop 0.2.0-rc.2** 的非官方社区主题插件，适配 Windows 与 macOS。
+**版本 0.5.4** · 面向 **DeepSeek Harness (DSH) Desktop 0.2.0-rc.2** 的非官方社区主题插件，适配 Windows 与 macOS。
 
 星象主题和角色装饰可独立开关，支持浅色、深色、跟随系统三种外观。插件包内置背景与角色素材，无需外部图床。样式只处理 DSH 自有界面，侧栏网页、文件预览及文档中的作者内容保持原样。
 
-## 0.5.3 本地修复
+## 0.5.4 更新
+
+- 参照原生两行布局收紧顶部，标题与模式左对齐；缩小星角与输入框饰条，减少底栏留白，保留原字号并增加对话可视高度。
+
+- 会话悬停卡片分别采用深浅色配套背景和文字，覆盖原生固定白字与灰字，改善标题、路径、时间和状态的清晰度。
+
+- 为独立底栏布局补齐正文图层层级，角色保持在消息卡片下方，防止文字与角色叠印。
+
+- 消息滚动视口在输入区上方结束，输入框与底栏独立定位；保留背景图和原生滚动节点，不增加实色遮挡，不依赖滚动事件或动画更新裁剪。
+
+## 0.5.3 更新
+
+- 为模型重试提示增加配对衬底，修复改动文件卡片的文件名和增删统计颜色。
+- 修复浅色源码预览与侧栏顶栏配色，保留网页、文档和图片内容的原始呈现。
+- 为底部运行状态和统计留出边框内安全间距，窄窗口下允许换行。
+- 调柔 Windows 浅色顶栏紫色，深色顶栏保持原样。
 
 - 新建对话页欢迎标题的背景随内容收紧并居中，深浅色采用相同尺寸规则。
 
@@ -34,7 +49,7 @@
 dsh plugin --profile desktop add dsh-gemini-cat-theme
 ```
 
-包名为 `dsh-gemini-cat-theme`，当前版本为 **0.5.2**。安装后重启 DSH Desktop。macOS 找不到 `dsh` 命令时，可使用：
+包名为 `dsh-gemini-cat-theme`，当前版本为 **0.5.4**。安装后重启 DSH Desktop。macOS 找不到 `dsh` 命令时，可使用：
 
 ```sh
 "/Applications/DeepSeek Harness.app/Contents/Resources/runtime/cli/bin/dsh" plugin --profile desktop add dsh-gemini-cat-theme
@@ -88,7 +103,7 @@ Install by searching for `dsh-gemini-cat-theme` in DSH Plugins or run:
 dsh plugin --profile desktop add dsh-gemini-cat-theme
 ```
 
-The npm package is `dsh-gemini-cat-theme` (version `0.5.2`). Restart DSH Desktop after installation. Update with `dsh plugin --profile desktop update dsh-gemini-cat-theme`; remove with `dsh plugin --profile desktop remove dsh-gemini-cat-theme`.
+The npm package is `dsh-gemini-cat-theme` (version `0.5.4`). Restart DSH Desktop after installation. Update with `dsh plugin --profile desktop update dsh-gemini-cat-theme`; remove with `dsh plugin --profile desktop remove dsh-gemini-cat-theme`.
 
 Questions and ideas: [Discussions](https://github.com/StevenYang37/dsh-gemini-cat-theme/discussions). Bug reports: [Issues](https://github.com/StevenYang37/dsh-gemini-cat-theme/issues). Contributions are welcome via pull requests from forks; only maintainers can push to the upstream repository.
 

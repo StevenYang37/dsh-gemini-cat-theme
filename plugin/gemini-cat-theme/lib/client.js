@@ -943,7 +943,7 @@ window.__ModuleLoader__.load({
     }
     /* Keep the conversation title clear of the gold corner fan. */
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} .ST7X_W_header .ST7X_W_titleRow {
-      padding-inline-start:112px !important;
+      padding-inline-start:max(0px,calc(var(--dsh-frame-leading-clearance,0px) - 40px)) !important;
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="chat"] ${S.conversation} .ST7X_W_header .ST7X_W_crumbCurrent {
       color:#ffe7a5 !important; -webkit-text-fill-color:#ffe7a5 !important;
@@ -1554,13 +1554,13 @@ window.__ModuleLoader__.load({
     const CSS_SIDEBARS = `
     /* DSH-owned chrome uses its own palette. Tokens are attached to chrome nodes only,
        so author-controlled web pages, documents, images and terminal output inherit nothing. */
-    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] ${SIDEBAR_CHROME},
-    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] ${SIDEBAR_SCOPE} [data-files-root] {
+    ${SIDEBAR_CHROME.replace('[data-dsh-gemini-tone]', '[data-dsh-gemini-tone="light"]')},
+    ${SIDEBAR_SCOPE.replace('[data-dsh-gemini-tone]', '[data-dsh-gemini-tone="light"]')} [data-files-root] {
       --gem-chrome-bg:#514b8d; --gem-chrome-ink:#fff3cd; --gem-chrome-muted:#e5dcf5;
       --gem-chrome-hover:#65569d; --gem-chrome-line:#d7ba80; --gem-chrome-link:#f1d997;
     }
-    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="dark"] ${SIDEBAR_CHROME},
-    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="dark"] ${SIDEBAR_SCOPE} [data-files-root] {
+    ${SIDEBAR_CHROME.replace('[data-dsh-gemini-tone]', '[data-dsh-gemini-tone="dark"]')},
+    ${SIDEBAR_SCOPE.replace('[data-dsh-gemini-tone]', '[data-dsh-gemini-tone="dark"]')} [data-files-root] {
       --gem-chrome-bg:#eee9f8; --gem-chrome-ink:#392766; --gem-chrome-muted:#715b99;
       --gem-chrome-hover:#ded5ed; --gem-chrome-line:#b8a6dc; --gem-chrome-link:#79591b;
     }
@@ -1947,7 +1947,7 @@ window.__ModuleLoader__.load({
     // Tone names follow pluginTone(): host Dark = light, host Light = dark.
     // Use real DSH component roots rather than matching every span/status-like class.
     const BACKPLATE_SCOPE = `html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${S.frame}`
-    const BACKPLATE_PARTS = ':is(.HiSsxa_root,[data-variant="think"],.YS3v9W_root,.Bpi2Dq_root,[data-step-process] > div:first-child > button,button[data-turn-process],.icaHSq_runningContent,.icaHSq_hint,.gKv1-q_stopped,.ppByMG_actions,.sZXytW_trigger:not(.ppByMG_actions *),.OpZ85W_pill:not(.ppByMG_actions *),.y0jqnG_trigger,.Hqq-bq_headline,.bocITq_headline)'
+    const BACKPLATE_PARTS = ':is(.HiSsxa_root,[data-variant="think"],.YS3v9W_root,.Bpi2Dq_root,[data-step-process] > div:first-child > button,button[data-turn-process],.icaHSq_runningContent,.icaHSq_hint,.gKv1-q_stopped,.ppByMG_actions,.sZXytW_trigger:not(.ppByMG_actions *),.OpZ85W_pill:not(.ppByMG_actions *),.y0jqnG_trigger,.Hqq-bq_headline,.bocITq_headline,.IzP3Va_retrySummary,.IzP3Va_retryDetails)'
     const BACKPLATE_NATIVE = ':not(:where([data-dockkit-pane] *,[data-dockkit-float] *))'
     const CSS_BACKPLATES = `
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] {
@@ -2140,12 +2140,12 @@ window.__ModuleLoader__.load({
       background-image:linear-gradient(115deg,var(--gem-header-title-a),var(--gem-header-title-b)) !important;
       color:var(--gem-header-ink) !important; -webkit-text-fill-color:currentColor !important;
       -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
-      box-shadow:inset 0 0 0 1px var(--gem-header-line),inset 0 2px 0 var(--gem-header-glint),0 2px 5px var(--gem-header-shadow) !important;
-      border-radius:15px 5px 15px 5px; opacity:1 !important;
+      box-shadow:inset 0 0 0 1px var(--gem-header-line),0 1px 3px var(--gem-header-shadow) !important;
+      border-radius:10px; opacity:1 !important;
       background-origin:border-box;
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_header :is(.ST7X_W_crumbCurrent,._3li69W_label)${BACKPLATE_NATIVE} {
-      padding:2px 8px; border-inline-start:2px solid var(--gem-header-accent); align-self:center; box-decoration-break:clone; -webkit-box-decoration-break:clone;
+      padding:2px 9px; border-inline-start:0 solid var(--gem-header-accent); align-self:center; box-decoration-break:clone; -webkit-box-decoration-break:clone;
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_header ._3li69W_label${BACKPLATE_NATIVE} {
       background-color:var(--gem-header-preset-a) !important;
@@ -2153,7 +2153,7 @@ window.__ModuleLoader__.load({
       color:var(--gem-header-preset-ink) !important; border-radius:999px;
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_tabs .ST7X_W_tab${BACKPLATE_NATIVE} {
-      padding:4px 10px 9px; border-radius:12px 12px 4px 4px;
+      padding:3px 10px 7px; border-radius:8px 8px 3px 3px;
       background-color:var(--gem-header-tab-a) !important;
       background-image:linear-gradient(115deg,var(--gem-header-tab-a),var(--gem-header-tab-b)) !important;
     }
@@ -2162,7 +2162,7 @@ window.__ModuleLoader__.load({
       background-image:linear-gradient(115deg,var(--gem-header-active-a),var(--gem-header-active-b)) !important;
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_tabs .ST7X_W_tabActive${BACKPLATE_NATIVE}::after {
-      background:var(--gem-header-accent) !important; left:calc(50% - 2px); right:auto; width:4px; height:4px; bottom:2px; border-radius:0; transform:rotate(45deg);
+      background:var(--gem-header-accent) !important; left:10px; right:10px; width:auto; height:2px; bottom:0; border-radius:2px; transform:none;
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_header :is(.ST7X_W_crumbCurrent,._3li69W_label)${BACKPLATE_NATIVE} :where(*) {
       color:inherit !important; -webkit-text-fill-color:currentColor !important;
@@ -2186,27 +2186,25 @@ window.__ModuleLoader__.load({
       width:16px; height:16px;
     }
 
-    /* The native header starts only 10px from the edge, inside the 12px ornament.
-       Reserve vertical breathing room instead of relying on the roomier concept fixture. */
+    /* Match the native two-row header while clearing the reduced star corners. */
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_header:not(.ST7X_W_headerBlank)${BACKPLATE_NATIVE} {
-      padding-top:28px !important; padding-bottom:6px !important;
+      min-height:76px; padding:18px 28px 0 40px !important;
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_header .ST7X_W_crumbs${BACKPLATE_NATIVE} {
       padding:3px 2px; margin:-3px -2px;
     }
 
-    /* A curved title plaque, pill-shaped preset seal and bookmark tabs form a small
-       constellation. Keep native type metrics; decorate only their reading surfaces. */
+    /* Shallow title and mode labels keep native type metrics and a shared left axis. */
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_header .ST7X_W_crumbCurrent${BACKPLATE_NATIVE} {
-      position:relative; padding-inline-end:22px;
-      box-shadow:inset 0 0 0 1px var(--gem-header-line),inset 0 -2px 0 var(--gem-header-glint),0 2px 6px var(--gem-header-shadow) !important;
+      position:relative; padding-inline-end:10px;
+      box-shadow:inset 0 0 0 1px var(--gem-header-line),0 1px 3px var(--gem-header-shadow) !important;
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_header .ST7X_W_crumbCurrent${BACKPLATE_NATIVE}::after {
-      content:""; position:absolute; pointer-events:none; right:9px; top:calc(50% - 3px);
+      content:none; position:absolute; pointer-events:none; right:9px; top:calc(50% - 3px);
       width:4px; height:4px; border:1px solid var(--gem-header-accent); transform:rotate(45deg);
     }
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_tabs .ST7X_W_tabActive${BACKPLATE_NATIVE} {
-      box-shadow:inset 0 0 0 1px var(--gem-header-line),inset 0 -2px 0 var(--gem-header-accent),0 2px 5px var(--gem-header-shadow) !important;
+      box-shadow:inset 0 0 0 1px var(--gem-header-line) !important;
     }
 
     /* Light mode: plugin detail fields must share their page's pale reading surface. */
@@ -2269,6 +2267,152 @@ window.__ModuleLoader__.load({
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="hero"] ${S.frame} ${S.heroTitle} :is(.Hqq-bq_headline,.bocITq_headline)${BACKPLATE_NATIVE} {
       box-sizing:border-box; width:fit-content !important; max-width:100%;
       margin-inline:auto !important; padding:6px 18px !important;
+    }
+
+    /* Retry disclosures retain their small native type and only paint visible content. */
+    ${BACKPLATE_SCOPE} .IzP3Va_retrySummary${BACKPLATE_NATIVE} {
+      padding:2px 8px; width:fit-content; max-width:100%;
+      color:var(--gem-backplate-ink) !important;
+    }
+    ${BACKPLATE_SCOPE} .IzP3Va_retrySummary${BACKPLATE_NATIVE} :where(*),
+    ${BACKPLATE_SCOPE} .IzP3Va_retryDetails${BACKPLATE_NATIVE} :where(*) {
+      color:var(--gem-backplate-ink) !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    ${BACKPLATE_SCOPE} .IzP3Va_retrySummary${BACKPLATE_NATIVE}:hover {
+      background:var(--gem-backplate-hover) !important;
+    }
+    /* Changed-file paths are interface links, with semantic green/red counts. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene] ${S.frame} ${S.conversation} [data-changed-files] :is(.ztjrea_path,.ztjrea_previewHint,.ztjrea_previewPath,.PSXfDq_itemPath) {
+      color:var(--gem-reader-ink) !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene] ${S.frame} ${S.conversation} [data-changed-files] :is(.ztjrea_counts,.ztjrea_statCounts,.PSXfDq_counts,.PSXfDq_itemCounts) {
+      color:var(--gem-reader-ink) !important; -webkit-text-fill-color:currentColor !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene] ${S.frame} ${S.conversation} [data-changed-files] :is(.ztjrea_added,.PSXfDq_added) {
+      color:var(--gem-diff-plus) !important; -webkit-text-fill-color:currentColor !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene] ${S.frame} ${S.conversation} [data-changed-files] :is(.ztjrea_deleted,.PSXfDq_deleted) {
+      color:var(--gem-diff-minus) !important; -webkit-text-fill-color:currentColor !important;
+    }
+    /* Source/plain-text viewers are DSH-owned. Leave iframe documents and web pages alone. */
+    ${LIGHT_SETTING} :is([data-dockkit-pane],[data-dockkit-float]) :is(.UgCwSW_renderer,.AhTMVW_wrap:has(.AhTMVW_textDocument)) {
+      --dsw-alias-bg-base:#fffcff !important; --dsw-alias-bg-layer-1:#fffcff !important;
+      --dsw-alias-bg-layer-2:#eae1f3 !important;
+      --dsw-alias-label-primary:#34284a !important; --dsw-alias-label-secondary:#514461 !important;
+      --dsw-alias-label-tertiary:#655774 !important; --dsw-alias-label-caption:#655774 !important;
+      background:#fffcff !important; color:#34284a !important;
+    }
+    ${LIGHT_SETTING} :is([data-dockkit-pane],[data-dockkit-float]) :is(.UgCwSW_code,.AhTMVW_textDocument) {
+      --dsl-code-block-background:#fffcff; --dsl-code-block-foreground:#34284a;
+      background:#fffcff !important; color:#34284a !important; -webkit-text-fill-color:currentColor !important;
+    }
+    ${LIGHT_SETTING} :is([data-dockkit-pane],[data-dockkit-float]) :is(.UgCwSW_code,.AhTMVW_textDocument) :where(pre,code,.AhTMVW_line) {
+      background:transparent !important; color:inherit; -webkit-text-fill-color:currentColor !important;
+    }
+    /* Reserve space below the native composer, including running and wrapped status rows. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} [data-composer-seat] {
+      box-sizing:border-box; padding-bottom:14px;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} :is(.yhfFVG_dock,.RlGAzG_dock) {
+      flex-wrap:wrap; row-gap:4px;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.conversation}:has([data-composer-seat]) #${ID.frame} :is(.bottom-left,.bottom-right) {
+      width:18px; height:18px;
+    }
+    /* Keep the accepted dark Windows caption; soften only the light appearance. */
+    html[data-dsh-gemini-theme="active"][data-windows-titlebar][data-dsh-gemini-tone="dark"] body {
+      --dsw-specific-sidebar-fill:#e5dced !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-windows-titlebar][data-dsh-gemini-tone="dark"] [data-windows-menu] {
+      --dsw-alias-label-primary:#40314f; --dsw-alias-label-secondary:#514078;
+      --dsw-alias-interactive-bg-hover:#d9cce8;
+    }
+
+
+    /* Keep the last transcript line clear of the boundary without changing the scroll owner. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .icaHSq_scroll {
+      padding-bottom:34px;
+    }
+    /* The native scrollport ends above the composer. Its fixed descendant uses the
+       conversation body as containing block, so neither is moved or reparented. */
+    html[data-dsh-gemini-theme="active"] :is(
+      .ST7X_W_root[data-phase="active"] .ST7X_W_body,
+      .ST7X_W_embeddedBody[data-content-phase="active"],
+      .Dc7zOa_root[data-phase="active"] .Dc7zOa_body,
+      .Dc7zOa_embeddedBody[data-content-phase="active"]
+    ):not(:has([data-conversation-composer-overlay])) {
+      transform:translateZ(0);
+      position:relative; z-index:2;
+      --gem-separated-composer:1;
+    }
+    html[data-dsh-gemini-theme="active"] :is(
+      .ST7X_W_root[data-phase="active"] .ST7X_W_body,
+      .ST7X_W_embeddedBody[data-content-phase="active"],
+      .Dc7zOa_root[data-phase="active"] .Dc7zOa_body,
+      .Dc7zOa_embeddedBody[data-content-phase="active"]
+    ):not(:has([data-conversation-composer-overlay])) > [data-conversation-scroll] {
+      margin-bottom:calc(var(--dsh-composer-height,152px) + 8px) !important;
+    }
+    html[data-dsh-gemini-theme="active"] :is(
+      .ST7X_W_root[data-phase="active"] .ST7X_W_body,
+      .ST7X_W_embeddedBody[data-content-phase="active"],
+      .Dc7zOa_root[data-phase="active"] .Dc7zOa_body,
+      .Dc7zOa_embeddedBody[data-content-phase="active"]
+    ):not(:has([data-conversation-composer-overlay])) > [data-conversation-scroll] > [data-composer-seat] {
+      position:fixed !important; inset:auto 2px 0 0 !important;
+    }
+    html[data-dsh-gemini-theme="active"] [data-conversation-scroll]:has(> [data-composer-seat]):not(:has([data-conversation-composer-overlay])) .JXrxFq_frame {
+      --dsh-composer-height:0px;
+    }
+    html[data-dsh-gemini-theme="active"] [data-conversation-scroll]:has(> [data-composer-seat]):not(:has([data-conversation-composer-overlay])) .icaHSq_toBottomSlot {
+      bottom:16px;
+    }
+
+    /* Workspace hover cards have hard-coded white/gray labels in DSH. Pair their
+       own surface and labels instead of inheriting sidebar or scene colors. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is([class*="_card_"],[role="tooltip"]):has(:is(.jJkEga_hoverContent,.hIlkoa_hoverContent)),
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is(.jJkEga_hoverContent,.hIlkoa_hoverContent) {
+      --dsw-hovercard-bg:var(--gem-backplate-bg);
+      --dsw-alias-label-primary:var(--gem-backplate-ink);
+      --dsw-alias-label-secondary:var(--gem-backplate-muted);
+      --dsw-alias-label-tertiary:var(--gem-backplate-muted);
+      background:var(--gem-backplate-bg) !important;
+      color:var(--gem-backplate-ink) !important;
+      border-color:var(--gem-backplate-line) !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is(.jJkEga_hoverContent,.hIlkoa_hoverContent) :where(*) {
+      color:var(--gem-backplate-ink) !important;
+      -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is(
+      .jJkEga_hoverPath,.jJkEga_hoverTime,.jJkEga_hoverStatus,
+      .hIlkoa_hoverPath,.hIlkoa_hoverTime,.hIlkoa_hoverStatus
+    ) {
+      color:var(--gem-backplate-muted) !important;
+      -webkit-text-fill-color:currentColor !important;
+    }
+
+    /* Compact native-like header: one left-aligned reading axis and shallow tabs. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.conversation} .ST7X_W_tabs {
+      gap:20px; margin-top:6px; padding-left:0;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.conversation} #${ID.frame} :is(.top-left,.top-right) {
+      width:22px; height:22px;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.conversation} #${ID.frame} :is(.top-left,.top-right)::after {
+      font-size:15px;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.composer} {
+      border-radius:20px;
+      box-shadow:0 3px 12px #25205426,inset 0 0 0 1px #fffefa40;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene="chat"] ${S.frame} ${S.composer}::before {
+      content:"✦ ────── ✧ ────── ✦"; top:-9px;
+      padding:0 12px; font:11px/14px Georgia,serif;
+      box-shadow:0 1px 3px #24235020;
     }
 
     `
