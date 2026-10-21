@@ -1,14 +1,15 @@
 # Gemini 紫夜 · DSH Desktop 主题
 
-面向 **DeepSeek Harness（DSH）Desktop 0.2.0-rc.2** 的非官方社区主题插件，适配 Windows 与 macOS。当前版本：**0.5.1**。本项目由社区制作，与 Google 或 DeepSeek 官方无关。
+面向 **DeepSeek Harness（DSH）Desktop 0.2.0-rc.2** 的非官方社区主题插件，适配 Windows 与 macOS。当前版本：**0.5.2**。本项目由社区制作，与 Google 或 DeepSeek 官方无关。
 
 提供星象图书馆背景、紫金界面、浅色/深色皮肤切换，以及可独立开关的角色装饰。主题图像和角色素材随插件内置；作者创作的网页、文件和预览正文保持原样。设置保存在当前 DSH 用户数据中。
 
-## 0.5.1 更新
+## 0.5.2 更新
 
-- 思考过程、工具调用、用时与用量信息采用协调的阅读衬底，保留辅助小字。
-- 修复折叠内容产生空白长条、部分操作信息仅悬停时可见的问题。
-- 改善浅色复制、分支图标，以及深浅色悬停提示的文字对比度。
+- 顶部采用星象书签设计，保留原有字号，深浅色分别配色。
+- 为标题与模式标签保留顶部留白，完整显示圆弧和星标。
+- 轨迹视图增加边框内侧间距，避免装饰线覆盖列表。
+- 包含 0.5.1 的辅助文字衬底、复制/分支图标和悬停提示对比度修正。
 - 角色素材与侧栏中的作者内容保持原样。
 
 ## 安装
@@ -19,7 +20,7 @@
 dsh plugin --profile desktop add dsh-gemini-cat-theme
 ```
 
-包名：`dsh-gemini-cat-theme`。当前版本为 **0.5.1**。安装完成后重启 DSH Desktop。
+包名：`dsh-gemini-cat-theme`。当前版本为 **0.5.2**。安装完成后重启 DSH Desktop。
 
 
 也可从 GitHub 下载源码并从本地安装。Windows PowerShell：
@@ -92,7 +93,7 @@ dsh plugin --profile desktop remove dsh-gemini-cat-theme
 
 An unofficial community-made theme plugin for **DeepSeek Harness (DSH) Desktop 0.2.0-rc.2**, for Windows and macOS. It includes independent starry-theme and character toggles, light/dark/system appearance, and bundled artwork. Authored webpage, document, and file-preview content is left unchanged.
 
-**npm package:** `dsh-gemini-cat-theme` (version `0.5.1`). Install it in DSH by searching for the package name or running:
+**npm package:** `dsh-gemini-cat-theme` (version `0.5.2`). Install it in DSH by searching for the package name or running:
 
 ```sh
 dsh plugin --profile desktop add dsh-gemini-cat-theme
