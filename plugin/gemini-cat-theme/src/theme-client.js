@@ -2470,6 +2470,37 @@ ${LIGHT_SETTING}[data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(
   outline:2px solid #815c25; outline-offset:2px;
 }
 
+
+/* MessageIconActions exposes data-clock on both platforms. Use that native
+   contract as a fallback when a DSH build has different CSS-module hashes. */
+${BACKPLATE_SCOPE} ${S.conversation} div:is([data-clock="start"],[data-clock="end"])${BACKPLATE_NATIVE} {
+  opacity:1 !important; transition:none !important; background:transparent !important;
+  --dsw-alias-label-primary:var(--gem-backplate-ink);
+  --dsw-alias-label-secondary:var(--gem-backplate-muted);
+  --dsw-alias-label-tertiary:var(--gem-backplate-muted);
+  --dsw-alias-interactive-bg-hover:var(--gem-backplate-hover);
+  color:var(--gem-backplate-ink) !important;
+}
+${BACKPLATE_SCOPE} ${S.conversation} div:is([data-clock="start"],[data-clock="end"])${BACKPLATE_NATIVE} :is(button,[class$="_timeStart"],[class$="_endInfo"]) {
+  background:var(--gem-backplate-bg) !important; color:var(--gem-backplate-ink) !important;
+  border-radius:7px;
+}
+${BACKPLATE_SCOPE} ${S.conversation} div:is([data-clock="start"],[data-clock="end"])${BACKPLATE_NATIVE} :is([class$="_timeStart"],[class$="_endInfo"]) {
+  padding-inline:6px; margin-left:0;
+}
+${BACKPLATE_SCOPE} ${S.conversation} div:is([data-clock="start"],[data-clock="end"])${BACKPLATE_NATIVE},
+${BACKPLATE_SCOPE} ${S.conversation} div:is([data-clock="start"],[data-clock="end"])${BACKPLATE_NATIVE} :where(*) {
+  -webkit-text-fill-color:currentColor !important;
+  -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+}
+${BACKPLATE_SCOPE} ${S.conversation} div:is([data-clock="start"],[data-clock="end"])${BACKPLATE_NATIVE} :is(span,button,svg),
+${BACKPLATE_SCOPE} ${S.conversation} div:is([data-clock="start"],[data-clock="end"])${BACKPLATE_NATIVE} svg :where(*) {
+  color:var(--gem-backplate-ink) !important;
+}
+${BACKPLATE_SCOPE} ${S.conversation} div:is([data-clock="start"],[data-clock="end"])${BACKPLATE_NATIVE} button:is(:hover,:focus-visible):not(:disabled):not([data-unavailable]) {
+  background:var(--gem-backplate-hover) !important;
+}
+
 `
 
 function loadSettings() {
