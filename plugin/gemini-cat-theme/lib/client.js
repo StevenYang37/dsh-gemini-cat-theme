@@ -9,7 +9,7 @@ window.__ModuleLoader__.load({
     exports.inject = ['theme']
 
     // DSH Desktop 0.2.0-rc.2 selector aliases for Windows and macOS builds.
-    const S = Object.freeze({
+    const BASE_SELECTORS = Object.freeze({
       frame: ':is(.BynINW_frame,._6Qf49G_frame)', sidebar: ':is(._2H3hWW_root,._3WPZCG_root)', footer: ':is(._2H3hWW_footArea,._3WPZCG_footArea)',
       main: ':is(.BynINW_centerCol,._6Qf49G_centerCol)', conversation: ':is(.Dc7zOa_root,.ST7X_W_root)', composer: ':is(.RlGAzG_card,.yhfFVG_card)',
       heroTitle: ':is(.Hqq-bq_root,.bocITq_root)', heroComposer: ':is(.Dc7zOa_composerHero,.ST7X_W_composerHero)', sidebarFade: ':is(._9lTDKa_fade,._7514NG_fade)',
@@ -198,6 +198,11 @@ window.__ModuleLoader__.load({
       }
       return css
     }
+
+    // DOM queries must recognize every verified build too, not only the CSS.
+    const S = Object.freeze(Object.fromEntries(
+      Object.entries(BASE_SELECTORS).map(([name, selector]) => [name, withBuildAliases(selector)]),
+    ))
 
     const CSS = withBuildAliases(`
     html[data-dsh-gemini-theme="active"] {
@@ -2683,7 +2688,61 @@ window.__ModuleLoader__.load({
       background:var(--gem-backplate-hover) !important;
     }
 
+
+    /* Structure-identified preset labels are independent of CSS-module hashes. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene] ${S.frame} ${S.conversation} [data-dsh-gemini-preset-label="true"] {
+      display:inline-flex; align-items:center; gap:4px; box-sizing:border-box;
+      max-width:240px; min-width:0; padding:2px 9px; border:0;
+      border-radius:999px; background:linear-gradient(115deg,var(--gem-header-preset-a),var(--gem-header-preset-b)) !important;
+      color:var(--gem-header-preset-ink) !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+      box-shadow:inset 0 0 0 1px var(--gem-header-line),0 1px 3px var(--gem-header-shadow) !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene] ${S.frame} ${S.conversation} [data-dsh-gemini-preset-label="true"] :where(*) {
+      color:inherit !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+
     `)
+
+    const PLUGIN_VERSION = '0.5.9'
+    function markHeaderPresetLabels(conversation) {
+      if (!conversation) return []
+      const labels = new Set()
+      const modeName = /^(?:标准模式|代码模式|极简模式|最简模式|创作模式|创造模式|Standard mode|Code mode|Minimal mode|Creator mode)$/iu
+      const headers = conversation.querySelectorAll(':scope > header,:scope > [class$="_header"],[data-conversation-header]')
+      for (const header of headers) {
+        if (header.closest('[data-dockkit-pane],[data-dockkit-float]')) continue
+        for (const element of header.querySelectorAll('span,button,div,[role="button"]')) {
+          if (element.closest('[class$="_crumbs"],[class$="_crumbCurrent"],[data-conversation-header-corner]')) continue
+          if (element.matches('div:not([role="button"])') && !element.querySelector(':scope > svg')) continue
+          const text = (element.textContent || '').replace(/\s+/gu, ' ').trim()
+          const presetSlot = element.closest('[class$="_headerActions"]')
+          const describedLabel = presetSlot && element.matches('span[title]') && element.querySelector(':scope > svg')
+          if (!modeName.test(text) && !describedLabel) continue
+          let label = element
+          // Some builds put the icon and text in separate children of a button.
+          for (let depth = 0; depth < 2 && label.parentElement !== header; depth++) {
+            const parent = label.parentElement
+            if (!parent || (parent.textContent || '').replace(/\s+/gu, ' ').trim() !== text) break
+            if (parent.matches('button,[role="button"]') || (!label.querySelector('svg') && parent.querySelector(':scope > svg'))) label = parent
+            else break
+          }
+          if (label.closest('[data-dockkit-pane],[data-dockkit-float]')) continue
+          labels.add(label)
+        }
+      }
+      // Paint the control once, never both the text child and its button.
+      const outer = [...labels].filter(label => ![...labels].some(other => other !== label && other.contains(label)))
+      const wanted = new Set(outer)
+      for (const previous of conversation.querySelectorAll('[data-dsh-gemini-preset-label]')) {
+        if (!wanted.has(previous)) previous.removeAttribute('data-dsh-gemini-preset-label')
+      }
+      for (const label of outer) {
+        if (label.getAttribute('data-dsh-gemini-preset-label') !== 'true') label.setAttribute('data-dsh-gemini-preset-label', 'true')
+      }
+      return outer
+    }
 
     function loadSettings() {
       try {
@@ -2778,7 +2837,7 @@ window.__ModuleLoader__.load({
         panel.id = ID.panel
         panel.hidden = true
         panel.setAttribute('aria-label', 'Gemini 紫夜主题设置')
-        panel.innerHTML = '<h2>Gemini 紫夜</h2><div class="gem-tone-setting"><span class="gem-tone-label">系统外观</span><div class="gem-tone-control" role="group" aria-label="系统外观"><button type="button" data-theme-preference="system" aria-pressed="false">跟随系统</button><button type="button" data-theme-preference="light" aria-pressed="false">浅色</button><button type="button" data-theme-preference="dark" aria-pressed="false">深色</button></div></div><label>启用星象主题 <input data-setting="enabled" type="checkbox"></label><label>显示角色装饰 <input data-setting="showArt" type="checkbox"></label><label for="dsh-gemini-intensity">角色强度（最高 250%） <output for="dsh-gemini-intensity">82%</output></label><input id="dsh-gemini-intensity" data-setting="intensity" type="range" min="0" max="250" step="1"><button type="button" data-action="reset">恢复默认设置</button><p>主题与角色可分别开启。</p>'
+        panel.innerHTML = '<h2>Gemini 紫夜</h2><div class="gem-tone-setting"><span class="gem-tone-label">系统外观</span><div class="gem-tone-control" role="group" aria-label="系统外观"><button type="button" data-theme-preference="system" aria-pressed="false">跟随系统</button><button type="button" data-theme-preference="light" aria-pressed="false">浅色</button><button type="button" data-theme-preference="dark" aria-pressed="false">深色</button></div></div><label>启用星象主题 <input data-setting="enabled" type="checkbox"></label><label>显示角色装饰 <input data-setting="showArt" type="checkbox"></label><label for="dsh-gemini-intensity">角色强度（最高 250%） <output for="dsh-gemini-intensity">82%</output></label><input id="dsh-gemini-intensity" data-setting="intensity" type="range" min="0" max="250" step="1"><button type="button" data-action="reset">恢复默认设置</button><p>主题与角色可分别开启。</p><details><summary>版本与兼容诊断</summary><p data-theme-diagnostic></p></details>'
         document.body.append(panel)
 
         const art = document.createElement('div')
@@ -2845,6 +2904,13 @@ window.__ModuleLoader__.load({
           const mainRect = (document.querySelector(S.main) || main || frame).getBoundingClientRect()
           const wide = mainRect.width >= 1260
           const currentConversation = document.querySelector(S.conversation)
+          const presetLabels = markHeaderPresetLabels(currentConversation)
+          const diagnostic = panel.querySelector('[data-theme-diagnostic]')
+          if (diagnostic) {
+            const status = presetLabels.length ? `顶部模式标签：已适配 ${presetLabels.length} 个` : '顶部模式标签：当前页面未检测到'
+            const message = `${PLUGIN_VERSION} · ${status}`
+            if (diagnostic.textContent !== message) diagnostic.textContent = message
+          }
           const phaseOwner = currentConversation?.closest('[data-phase],[data-content-phase]')
           const phase = phaseOwner?.getAttribute('data-phase') || phaseOwner?.getAttribute('data-content-phase')
           const hero = phase ? phase === 'hero' : !!currentConversation?.querySelector(S.heroComposer)
@@ -2930,7 +2996,7 @@ window.__ModuleLoader__.load({
           if (currentConversation && (art.parentElement !== currentConversation || companion.parentElement !== currentConversation || themeFrame.parentElement !== currentConversation)) currentConversation.append(art, companion, themeFrame)
           scheduleSync()
         })
-        routeObserver.observe(frame, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-phase', 'data-content-phase'] })
+        routeObserver.observe(frame, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['data-phase', 'data-content-phase'] })
         sync()
         return () => {
           clearTimeout(transitionTimer); clearInterval(toneTimer)
@@ -2939,6 +3005,7 @@ window.__ModuleLoader__.load({
           updateTooltipObserver.disconnect()
           document.querySelectorAll('[data-dsh-gemini-update-tooltip="true"]').forEach(tooltip => tooltip.removeAttribute('data-dsh-gemini-update-tooltip'))
           observer.disconnect(); routeObserver.disconnect()
+          frame.querySelectorAll('[data-dsh-gemini-preset-label]').forEach(label => label.removeAttribute('data-dsh-gemini-preset-label'))
           trigger.removeEventListener('click', toggle)
           panel.removeEventListener('change', change)
           panel.removeEventListener('click', chooseThemePreference)

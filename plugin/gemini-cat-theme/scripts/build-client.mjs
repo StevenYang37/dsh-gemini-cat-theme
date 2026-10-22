@@ -22,9 +22,14 @@ let source = await readFile(resolve(packageRoot, 'src/theme-client.js'), 'utf8')
 const styleNames = [...source.matchAll(/const (CSS\w*) = /g)].map(match => match[1])
 const styles = runInNewContext(
   source.slice(0, source.indexOf('function loadSettings()')) +
-    `;({ css: [${styleNames.join(',')}].join('\\n'), pairs: BUILD_CLASS_GROUPS, expand: withBuildAliases })`,
+    `;({ css: [${styleNames.join(',')}].join('\\n'), pairs: BUILD_CLASS_GROUPS, expand: withBuildAliases, version: PLUGIN_VERSION, domSelectors: S })`,
   { exports: {} }, { timeout: 1000 },
 )
+const manifest = JSON.parse(await readFile(resolve(packageRoot, 'package.json'), 'utf8'))
+assert.equal(styles.version, manifest.version, 'Displayed diagnostic version must match package version')
+for (const token of ['.ST7X_W_root', '.Dc7zOa_root', '.wSkVaW_root']) {
+  assert.ok(styles.domSelectors.conversation.includes(token), `Missing DOM query alias: ${token}`)
+}
 const selectors = styles.css.replace(/\/\*[\s\S]*?\*\//g, '')
 for (const [first, ...others] of styles.pairs) {
   const roles = prefix => {
