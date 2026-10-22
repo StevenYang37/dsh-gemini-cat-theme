@@ -2415,6 +2415,28 @@ window.__ModuleLoader__.load({
       box-shadow:0 1px 3px #24235020;
     }
 
+    /* Header background-job trigger sits directly on the scene, outside message
+       backplates. Keep its native small type and pair it with the mode label. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${S.frame} ${S.conversation} :is(.ST7X_W_header,.Dc7zOa_header) .Fw9vfq_trigger {
+      box-sizing:border-box; padding:3px 8px; border:1px solid var(--gem-header-line);
+      border-radius:999px; background:linear-gradient(115deg,var(--gem-header-preset-a),var(--gem-header-preset-b)) !important;
+      color:var(--gem-header-preset-ink) !important;
+      -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+      box-shadow:0 1px 3px var(--gem-header-shadow);
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${S.frame} ${S.conversation} :is(.ST7X_W_header,.Dc7zOa_header) .Fw9vfq_trigger :is(.Fw9vfq_count,svg) {
+      color:inherit !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${S.frame} ${S.conversation} :is(.ST7X_W_header,.Dc7zOa_header) .Fw9vfq_trigger:is(:hover,:focus-visible,[aria-expanded="true"]) {
+      background:linear-gradient(115deg,var(--gem-header-active-a),var(--gem-header-active-b)) !important;
+      color:var(--gem-header-preset-ink) !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${S.frame} ${S.conversation} :is(.ST7X_W_header,.Dc7zOa_header) .Fw9vfq_trigger:focus-visible {
+      outline:2px solid var(--gem-header-accent); outline-offset:2px;
+    }
+
     `
 
     function loadSettings() {
