@@ -17,23 +17,178 @@ const CHIBI_DATA_URL = '__GEMINI_CHIBI_DATA_URL__'
 const SCENE_DATA_URL = '__GEMINI_SCENE_DATA_URL__'
 const LIGHT_SCENE_DATA_URL = '__GEMINI_LIGHT_SCENE_DATA_URL__'
 
-// These component pairs are already used by S and the native surface selectors.
-// Apply the same aliases to every stylesheet, including later visual refinements.
+// Component families verified against native CSS-module exports in the local
+// DSH bundle and official published packages. Apply aliases to every stylesheet.
 // Never infer arbitrary hashes or match generic author-content class suffixes.
-const BUILD_CLASS_PAIRS = Object.freeze([
-  ['BynINW', '_6Qf49G'], ['ST7X_W', 'Dc7zOa'],
-  ['_3WPZCG', '_2H3hWW'], ['yhfFVG', 'RlGAzG'],
-  ['bocITq', 'Hqq-bq'], ['_7514NG', '_9lTDKa'],
-  ['jJkEga', 'hIlkoa'], ['ZVcBiW', 'fO69Vq'],
-  ['wCInkW', 'Dws9Sa'], ['Z9Jnlq', 'tki__G'],
+const BUILD_CLASS_GROUPS = Object.freeze([
+  [
+    "BynINW",
+    "_6Qf49G"
+  ],
+  [
+    "ST7X_W",
+    "Dc7zOa",
+    "wSkVaW"
+  ],
+  [
+    "_3WPZCG",
+    "_2H3hWW",
+    "hHd-Xa"
+  ],
+  [
+    "yhfFVG",
+    "RlGAzG",
+    "uV2eYG"
+  ],
+  [
+    "bocITq",
+    "Hqq-bq",
+    "pXSMma"
+  ],
+  [
+    "_7514NG",
+    "_9lTDKa",
+    "qDHVXG"
+  ],
+  [
+    "jJkEga",
+    "hIlkoa",
+    "YDXeBa"
+  ],
+  [
+    "ZVcBiW",
+    "fO69Vq",
+    "X_2TxG"
+  ],
+  [
+    "wCInkW",
+    "Dws9Sa"
+  ],
+  [
+    "Z9Jnlq",
+    "tki__G"
+  ],
+  [
+    "icaHSq",
+    "EvIC1a"
+  ],
+  [
+    "IzP3Va",
+    "Sixlwa"
+  ],
+  [
+    "HiSsxa",
+    "lcKema"
+  ],
+  [
+    "_PaunW",
+    "l_V-RG"
+  ],
+  [
+    "sZXytW",
+    "Q51KRG"
+  ],
+  [
+    "ppByMG",
+    "xzv4MW"
+  ],
+  [
+    "YS3v9W",
+    "_5OnbHa"
+  ],
+  [
+    "gKv1-q",
+    "hWmORq"
+  ],
+  [
+    "OpZ85W",
+    "bOPqQW"
+  ],
+  [
+    "JXrxFq",
+    "eGxaPq"
+  ],
+  [
+    "Bpi2Dq",
+    "XrJvXW"
+  ],
+  [
+    "TXqvFW",
+    "O_Ebla"
+  ],
+  [
+    "y0jqnG",
+    "JObwrW"
+  ],
+  [
+    "Q2dzhW",
+    "o3BgMG"
+  ],
+  [
+    "-gRAhq",
+    "CY-8Ka"
+  ],
+  [
+    "yj_sLW",
+    "xDAfVq"
+  ],
+  [
+    "_33HxeW",
+    "_1p9O6q"
+  ],
+  [
+    "rkta1W",
+    "Y0dWHa"
+  ],
+  [
+    "_0rqS-a",
+    "qBU-ya"
+  ],
+  [
+    "leLPTq",
+    "fV0t5q"
+  ],
+  [
+    "_3li69W",
+    "SVAs4q"
+  ],
+  [
+    "FfBBxq",
+    "rtSEdW"
+  ],
+  [
+    "m0vb0q",
+    "cubgiG"
+  ],
+  [
+    "Fw9vfq",
+    "QsffPG"
+  ],
+  [
+    "iGvAsW",
+    "SB_kFW"
+  ],
+  [
+    "AhTMVW",
+    "dhJKeW"
+  ],
+  [
+    "UgCwSW",
+    "Java6a"
+  ]
 ])
+
 function withBuildAliases(css) {
-  for (const [first, second] of BUILD_CLASS_PAIRS) {
-    // Canonicalize existing pairs before expanding, keeping this idempotent.
-    const pair = new RegExp(`:is\\(\\.(?:${first}_([\\w-]+),\\.${second}_\\1|${second}_([\\w-]+),\\.${first}_\\2)\\)`, 'g')
-    css = css.replace(pair, (_, a, b) => `.${first}_${a || b}`)
-    const token = new RegExp(`\\.(?:${first}|${second})_([\\w-]+)`, 'g')
-    css = css.replace(token, (_, name) => `:is(.${first}_${name},.${second}_${name})`)
+  for (const group of BUILD_CLASS_GROUPS) {
+    // Collapse only exact same-role aliases, then expand each token once.
+    css = css.replace(/:is\((\.[\w-]+(?:,\.[\w-]+)+)\)/g, (all, list) => {
+      const names = list.split(',').map(token => token.slice(1))
+      const role = names[0].split('_').at(-1)
+      return names.every(name => group.some(prefix => name === `${prefix}_${role}`))
+        ? `.${group[0]}_${role}` : all
+    })
+    const token = new RegExp(`\\.(?:${group.join('|')})_([\\w-]+)`, 'g')
+    css = css.replace(token, (_, name) => `:is(${group.map(prefix => `.${prefix}_${name}`).join(',')})`)
   }
   return css
 }

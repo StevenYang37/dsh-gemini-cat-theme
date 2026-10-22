@@ -1,0 +1,810 @@
+{
+  "source": "Official @deepseek-ai/dsh-client-ui-* npm packages; CSS module export names matched to local DSH modules.",
+  "fixtures": [
+    {
+      "package": "chat",
+      "module": "ChatView_module_css_default",
+      "role": "scroll",
+      "local": "icaHSq_scroll",
+      "published": "EvIC1a_scroll"
+    },
+    {
+      "package": "chat",
+      "module": "ChatView_module_css_default",
+      "role": "toBottomSlot",
+      "local": "icaHSq_toBottomSlot",
+      "published": "EvIC1a_toBottomSlot"
+    },
+    {
+      "package": "chat",
+      "module": "ChatView_module_css_default",
+      "role": "hint",
+      "local": "icaHSq_hint",
+      "published": "EvIC1a_hint"
+    },
+    {
+      "package": "chat",
+      "module": "ChatView_module_css_default",
+      "role": "runningContent",
+      "local": "icaHSq_runningContent",
+      "published": "EvIC1a_runningContent"
+    },
+    {
+      "package": "chat",
+      "module": "ChatView_module_css_default",
+      "role": "runningText",
+      "local": "icaHSq_runningText",
+      "published": "EvIC1a_runningText"
+    },
+    {
+      "package": "chat",
+      "module": "ChatView_module_css_default",
+      "role": "flowItem",
+      "local": "icaHSq_flowItem",
+      "published": "EvIC1a_flowItem"
+    },
+    {
+      "package": "chat",
+      "module": "MessageItem_module_css_default",
+      "role": "retryDetails",
+      "local": "IzP3Va_retryDetails",
+      "published": "Sixlwa_retryDetails"
+    },
+    {
+      "package": "chat",
+      "module": "MessageItem_module_css_default",
+      "role": "retrySummary",
+      "local": "IzP3Va_retrySummary",
+      "published": "Sixlwa_retrySummary"
+    },
+    {
+      "package": "chat",
+      "module": "ReasoningRow_module_css_default",
+      "role": "summaryText",
+      "local": "HiSsxa_summaryText",
+      "published": "lcKema_summaryText"
+    },
+    {
+      "package": "chat",
+      "module": "ReasoningRow_module_css_default",
+      "role": "title",
+      "local": "HiSsxa_title",
+      "published": "lcKema_title"
+    },
+    {
+      "package": "chat",
+      "module": "ReasoningRow_module_css_default",
+      "role": "root",
+      "local": "HiSsxa_root",
+      "published": "lcKema_root"
+    },
+    {
+      "package": "chat",
+      "module": "TurnProcessNodeView_module_css_default",
+      "role": "durationNumber",
+      "local": "_PaunW_durationNumber",
+      "published": "l_V-RG_durationNumber"
+    },
+    {
+      "package": "chat",
+      "module": "TurnProcessNodeView_module_css_default",
+      "role": "label",
+      "local": "_PaunW_label",
+      "published": "l_V-RG_label"
+    },
+    {
+      "package": "chat",
+      "module": "TurnUsagePanel_module_css_default",
+      "role": "root",
+      "local": "sZXytW_root",
+      "published": "Q51KRG_root"
+    },
+    {
+      "package": "chat",
+      "module": "TurnUsagePanel_module_css_default",
+      "role": "trigger",
+      "local": "sZXytW_trigger",
+      "published": "Q51KRG_trigger"
+    },
+    {
+      "package": "chat",
+      "module": "TurnUsagePanel_module_css_default",
+      "role": "label",
+      "local": "sZXytW_label",
+      "published": "Q51KRG_label"
+    },
+    {
+      "package": "chat",
+      "module": "MessageIconActions_module_css_default",
+      "role": "timeEnd",
+      "local": "ppByMG_timeEnd",
+      "published": "xzv4MW_timeEnd"
+    },
+    {
+      "package": "chat",
+      "module": "MessageIconActions_module_css_default",
+      "role": "actions",
+      "local": "ppByMG_actions",
+      "published": "xzv4MW_actions"
+    },
+    {
+      "package": "chat",
+      "module": "MessageIconActions_module_css_default",
+      "role": "timeStart",
+      "local": "ppByMG_timeStart",
+      "published": "xzv4MW_timeStart"
+    },
+    {
+      "package": "chat",
+      "module": "MessageIconActions_module_css_default",
+      "role": "action",
+      "local": "ppByMG_action",
+      "published": "xzv4MW_action"
+    },
+    {
+      "package": "chat",
+      "module": "MessageIconActions_module_css_default",
+      "role": "endInfo",
+      "local": "ppByMG_endInfo",
+      "published": "xzv4MW_endInfo"
+    },
+    {
+      "package": "chat",
+      "module": "GenericCommandCard_module_css_default",
+      "role": "body",
+      "local": "YS3v9W_body",
+      "published": "_5OnbHa_body"
+    },
+    {
+      "package": "chat",
+      "module": "GenericCommandCard_module_css_default",
+      "role": "summary",
+      "local": "YS3v9W_summary",
+      "published": "_5OnbHa_summary"
+    },
+    {
+      "package": "chat",
+      "module": "GenericCommandCard_module_css_default",
+      "role": "title",
+      "local": "YS3v9W_title",
+      "published": "_5OnbHa_title"
+    },
+    {
+      "package": "chat",
+      "module": "GenericCommandCard_module_css_default",
+      "role": "root",
+      "local": "YS3v9W_root",
+      "published": "_5OnbHa_root"
+    },
+    {
+      "package": "chat",
+      "module": "AssistantMarkdown_module_css_default",
+      "role": "stopped",
+      "local": "gKv1-q_stopped",
+      "published": "hWmORq_stopped"
+    },
+    {
+      "package": "chat",
+      "module": "StatsPills_module_css_default",
+      "role": "anchor",
+      "local": "OpZ85W_anchor",
+      "published": "bOPqQW_anchor"
+    },
+    {
+      "package": "chat",
+      "module": "StatsPills_module_css_default",
+      "role": "label",
+      "local": "OpZ85W_label",
+      "published": "bOPqQW_label"
+    },
+    {
+      "package": "chat",
+      "module": "StatsPills_module_css_default",
+      "role": "pill",
+      "local": "OpZ85W_pill",
+      "published": "bOPqQW_pill"
+    },
+    {
+      "package": "chat",
+      "module": "TurnNavigator_module_css_default",
+      "role": "frame",
+      "local": "JXrxFq_frame",
+      "published": "eGxaPq_frame"
+    },
+    {
+      "package": "chat",
+      "module": "ContextInjectionRow_module_css_default",
+      "role": "summary",
+      "local": "Bpi2Dq_summary",
+      "published": "XrJvXW_summary"
+    },
+    {
+      "package": "chat",
+      "module": "ContextInjectionRow_module_css_default",
+      "role": "source",
+      "local": "Bpi2Dq_source",
+      "published": "XrJvXW_source"
+    },
+    {
+      "package": "chat",
+      "module": "ContextInjectionRow_module_css_default",
+      "role": "root",
+      "local": "Bpi2Dq_root",
+      "published": "XrJvXW_root"
+    },
+    {
+      "package": "chat",
+      "module": "ChatGroupSeat_module_css_default",
+      "role": "label",
+      "local": "TXqvFW_label",
+      "published": "O_Ebla_label"
+    },
+    {
+      "package": "conversation",
+      "module": "ContextMeter_module_css_default",
+      "role": "trigger",
+      "local": "y0jqnG_trigger",
+      "published": "JObwrW_trigger"
+    },
+    {
+      "package": "conversation",
+      "module": "ContextMeter_module_css_default",
+      "role": "root",
+      "local": "y0jqnG_root",
+      "published": "JObwrW_root"
+    },
+    {
+      "package": "conversation",
+      "module": "HeroShell_module_css_default",
+      "role": "workspace",
+      "local": "bocITq_workspace",
+      "published": "pXSMma_workspace"
+    },
+    {
+      "package": "conversation",
+      "module": "HeroShell_module_css_default",
+      "role": "stack",
+      "local": "bocITq_stack",
+      "published": "pXSMma_stack"
+    },
+    {
+      "package": "conversation",
+      "module": "HeroShell_module_css_default",
+      "role": "root",
+      "local": "bocITq_root",
+      "published": "pXSMma_root"
+    },
+    {
+      "package": "conversation",
+      "module": "HeroShell_module_css_default",
+      "role": "previewBadge",
+      "local": "bocITq_previewBadge",
+      "published": "pXSMma_previewBadge"
+    },
+    {
+      "package": "conversation",
+      "module": "HeroShell_module_css_default",
+      "role": "headline",
+      "local": "bocITq_headline",
+      "published": "pXSMma_headline"
+    },
+    {
+      "package": "conversation",
+      "module": "InputBar_module_css_default",
+      "role": "card",
+      "local": "yhfFVG_card",
+      "published": "uV2eYG_card"
+    },
+    {
+      "package": "conversation",
+      "module": "ConversationRoot_module_css_default",
+      "role": "crumbs",
+      "local": "ST7X_W_crumbs",
+      "published": "wSkVaW_crumbs"
+    },
+    {
+      "package": "conversation",
+      "module": "ConversationRoot_module_css_default",
+      "role": "heroWorkspaceRow",
+      "local": "ST7X_W_heroWorkspaceRow",
+      "published": "wSkVaW_heroWorkspaceRow"
+    },
+    {
+      "package": "conversation",
+      "module": "ConversationRoot_module_css_default",
+      "role": "titleRow",
+      "local": "ST7X_W_titleRow",
+      "published": "wSkVaW_titleRow"
+    },
+    {
+      "package": "conversation",
+      "module": "ConversationRoot_module_css_default",
+      "role": "composerSeat",
+      "local": "ST7X_W_composerSeat",
+      "published": "wSkVaW_composerSeat"
+    },
+    {
+      "package": "conversation",
+      "module": "ConversationRoot_module_css_default",
+      "role": "tab",
+      "local": "ST7X_W_tab",
+      "published": "wSkVaW_tab"
+    },
+    {
+      "package": "conversation",
+      "module": "ConversationRoot_module_css_default",
+      "role": "tabs",
+      "local": "ST7X_W_tabs",
+      "published": "wSkVaW_tabs"
+    },
+    {
+      "package": "conversation",
+      "module": "ConversationRoot_module_css_default",
+      "role": "tabActive",
+      "local": "ST7X_W_tabActive",
+      "published": "wSkVaW_tabActive"
+    },
+    {
+      "package": "conversation",
+      "module": "ConversationRoot_module_css_default",
+      "role": "scrollBody",
+      "local": "ST7X_W_scrollBody",
+      "published": "wSkVaW_scrollBody"
+    },
+    {
+      "package": "conversation",
+      "module": "ConversationRoot_module_css_default",
+      "role": "crumbCurrent",
+      "local": "ST7X_W_crumbCurrent",
+      "published": "wSkVaW_crumbCurrent"
+    },
+    {
+      "package": "conversation",
+      "module": "ConversationRoot_module_css_default",
+      "role": "header",
+      "local": "ST7X_W_header",
+      "published": "wSkVaW_header"
+    },
+    {
+      "package": "conversation",
+      "module": "ConversationRoot_module_css_default",
+      "role": "root",
+      "local": "ST7X_W_root",
+      "published": "wSkVaW_root"
+    },
+    {
+      "package": "conversation",
+      "module": "ConversationRoot_module_css_default",
+      "role": "composerHero",
+      "local": "ST7X_W_composerHero",
+      "published": "wSkVaW_composerHero"
+    },
+    {
+      "package": "tool",
+      "module": "ToolRow_module_css_default",
+      "role": "ioCard",
+      "local": "Q2dzhW_ioCard",
+      "published": "o3BgMG_ioCard"
+    },
+    {
+      "package": "tool",
+      "module": "bash_sample_module_css_default",
+      "role": "ioCard",
+      "local": "-gRAhq_ioCard",
+      "published": "CY-8Ka_ioCard"
+    },
+    {
+      "package": "sidebar",
+      "module": "SidebarRoot_module_css_default",
+      "role": "footArea",
+      "local": "_3WPZCG_footArea",
+      "published": "hHd-Xa_footArea"
+    },
+    {
+      "package": "sidebar",
+      "module": "SidebarRoot_module_css_default",
+      "role": "collapsed",
+      "local": "_3WPZCG_collapsed",
+      "published": "hHd-Xa_collapsed"
+    },
+    {
+      "package": "sidebar",
+      "module": "SidebarRoot_module_css_default",
+      "role": "newSession",
+      "local": "_3WPZCG_newSession",
+      "published": "hHd-Xa_newSession"
+    },
+    {
+      "package": "sidebar",
+      "module": "SidebarRoot_module_css_default",
+      "role": "toggle",
+      "local": "_3WPZCG_toggle",
+      "published": "hHd-Xa_toggle"
+    },
+    {
+      "package": "sidebar",
+      "module": "SidebarRoot_module_css_default",
+      "role": "brand",
+      "local": "_3WPZCG_brand",
+      "published": "hHd-Xa_brand"
+    },
+    {
+      "package": "sidebar",
+      "module": "SidebarRoot_module_css_default",
+      "role": "root",
+      "local": "_3WPZCG_root",
+      "published": "hHd-Xa_root"
+    },
+    {
+      "package": "workspace",
+      "module": "Rows_module_css_default",
+      "role": "sessionRow",
+      "local": "jJkEga_sessionRow",
+      "published": "YDXeBa_sessionRow"
+    },
+    {
+      "package": "workspace",
+      "module": "Rows_module_css_default",
+      "role": "hoverContent",
+      "local": "jJkEga_hoverContent",
+      "published": "YDXeBa_hoverContent"
+    },
+    {
+      "package": "workspace",
+      "module": "Rows_module_css_default",
+      "role": "hoverTime",
+      "local": "jJkEga_hoverTime",
+      "published": "YDXeBa_hoverTime"
+    },
+    {
+      "package": "workspace",
+      "module": "Rows_module_css_default",
+      "role": "projectRow",
+      "local": "jJkEga_projectRow",
+      "published": "YDXeBa_projectRow"
+    },
+    {
+      "package": "workspace",
+      "module": "Rows_module_css_default",
+      "role": "selected",
+      "local": "jJkEga_selected",
+      "published": "YDXeBa_selected"
+    },
+    {
+      "package": "workspace",
+      "module": "Rows_module_css_default",
+      "role": "hoverPath",
+      "local": "jJkEga_hoverPath",
+      "published": "YDXeBa_hoverPath"
+    },
+    {
+      "package": "workspace",
+      "module": "Rows_module_css_default",
+      "role": "hoverStatus",
+      "local": "jJkEga_hoverStatus",
+      "published": "YDXeBa_hoverStatus"
+    },
+    {
+      "package": "workspace",
+      "module": "WorkspaceBrowser_module_css_default",
+      "role": "fade",
+      "local": "_7514NG_fade",
+      "published": "qDHVXG_fade"
+    },
+    {
+      "package": "trajectory",
+      "module": "TrajectoryTimeline_module_css_default",
+      "role": "root",
+      "local": "_33HxeW_root",
+      "published": "_1p9O6q_root"
+    },
+    {
+      "package": "trajectory",
+      "module": "TrajectoryTable_module_css_default",
+      "role": "split",
+      "local": "rkta1W_split",
+      "published": "Y0dWHa_split"
+    },
+    {
+      "package": "trajectory",
+      "module": "views_module_css_default",
+      "role": "root",
+      "local": "_0rqS-a_root",
+      "published": "qBU-ya_root"
+    },
+    {
+      "package": "trajectory",
+      "module": "TrajectoryToolbar_module_css_default",
+      "role": "root",
+      "local": "leLPTq_root",
+      "published": "fV0t5q_root"
+    },
+    {
+      "package": "agent-preset",
+      "module": "AgentPresetLabel_module_css_default",
+      "role": "label",
+      "local": "_3li69W_label",
+      "published": "SVAs4q_label"
+    },
+    {
+      "package": "agent-preset",
+      "module": "AgentPresetSection_module_css_default",
+      "role": "iconButton",
+      "local": "FfBBxq_iconButton",
+      "published": "rtSEdW_iconButton"
+    },
+    {
+      "package": "agent-preset",
+      "module": "AgentPresetSection_module_css_default",
+      "role": "cardActive",
+      "local": "FfBBxq_cardActive",
+      "published": "rtSEdW_cardActive"
+    },
+    {
+      "package": "agent-preset",
+      "module": "AgentPresetSection_module_css_default",
+      "role": "cardFoot",
+      "local": "FfBBxq_cardFoot",
+      "published": "rtSEdW_cardFoot"
+    },
+    {
+      "package": "agent-preset",
+      "module": "AgentPresetSection_module_css_default",
+      "role": "card",
+      "local": "FfBBxq_card",
+      "published": "rtSEdW_card"
+    },
+    {
+      "package": "agent-preset",
+      "module": "AgentPresetSection_module_css_default",
+      "role": "cardMain",
+      "local": "FfBBxq_cardMain",
+      "published": "rtSEdW_cardMain"
+    },
+    {
+      "package": "agent-preset",
+      "module": "AgentPresetSeat_module_css_default",
+      "role": "seat",
+      "local": "m0vb0q_seat",
+      "published": "cubgiG_seat"
+    },
+    {
+      "package": "plugin-manager",
+      "module": "PluginManagerPage_module_css_default",
+      "role": "status",
+      "local": "ZVcBiW_status",
+      "published": "X_2TxG_status"
+    },
+    {
+      "package": "plugin-manager",
+      "module": "PluginManagerPage_module_css_default",
+      "role": "crumb",
+      "local": "ZVcBiW_crumb",
+      "published": "X_2TxG_crumb"
+    },
+    {
+      "package": "plugin-manager",
+      "module": "PluginManagerPage_module_css_default",
+      "role": "pageIntro",
+      "local": "ZVcBiW_pageIntro",
+      "published": "X_2TxG_pageIntro"
+    },
+    {
+      "package": "plugin-manager",
+      "module": "PluginManagerPage_module_css_default",
+      "role": "toolbar",
+      "local": "ZVcBiW_toolbar",
+      "published": "X_2TxG_toolbar"
+    },
+    {
+      "package": "plugin-manager",
+      "module": "PluginManagerPage_module_css_default",
+      "role": "empty",
+      "local": "ZVcBiW_empty",
+      "published": "X_2TxG_empty"
+    },
+    {
+      "package": "plugin-manager",
+      "module": "PluginManagerPage_module_css_default",
+      "role": "pageTitle",
+      "local": "ZVcBiW_pageTitle",
+      "published": "X_2TxG_pageTitle"
+    },
+    {
+      "package": "plugin-manager",
+      "module": "PluginManagerPage_module_css_default",
+      "role": "groupHead",
+      "local": "ZVcBiW_groupHead",
+      "published": "X_2TxG_groupHead"
+    },
+    {
+      "package": "plugin-manager",
+      "module": "PluginManagerPage_module_css_default",
+      "role": "card",
+      "local": "ZVcBiW_card",
+      "published": "X_2TxG_card"
+    },
+    {
+      "package": "plugin-manager",
+      "module": "PluginManagerPage_module_css_default",
+      "role": "groupInfo",
+      "local": "ZVcBiW_groupInfo",
+      "published": "X_2TxG_groupInfo"
+    },
+    {
+      "package": "plugin-manager",
+      "module": "PluginManagerPage_module_css_default",
+      "role": "sectionTitle",
+      "local": "ZVcBiW_sectionTitle",
+      "published": "X_2TxG_sectionTitle"
+    },
+    {
+      "package": "plugin-manager",
+      "module": "PluginManagerPage_module_css_default",
+      "role": "page",
+      "local": "ZVcBiW_page",
+      "published": "X_2TxG_page"
+    },
+    {
+      "package": "plugin-manager",
+      "module": "PluginManagerPage_module_css_default",
+      "role": "detail",
+      "local": "ZVcBiW_detail",
+      "published": "X_2TxG_detail"
+    },
+    {
+      "package": "jobs",
+      "module": "JobListAction_module_css_default",
+      "role": "count",
+      "local": "Fw9vfq_count",
+      "published": "QsffPG_count"
+    },
+    {
+      "package": "jobs",
+      "module": "JobListAction_module_css_default",
+      "role": "trigger",
+      "local": "Fw9vfq_trigger",
+      "published": "QsffPG_trigger"
+    },
+    {
+      "package": "jobs",
+      "module": "JobListAction_module_css_default",
+      "role": "menu",
+      "local": "Fw9vfq_menu",
+      "published": "QsffPG_menu"
+    },
+    {
+      "package": "sidebar-browser",
+      "module": "Browser_module_css_default",
+      "role": "limit",
+      "local": "iGvAsW_limit",
+      "published": "SB_kFW_limit"
+    },
+    {
+      "package": "sidebar-browser",
+      "module": "Browser_module_css_default",
+      "role": "sandboxWarning",
+      "local": "iGvAsW_sandboxWarning",
+      "published": "SB_kFW_sandboxWarning"
+    },
+    {
+      "package": "sidebar-browser",
+      "module": "Browser_module_css_default",
+      "role": "address",
+      "local": "iGvAsW_address",
+      "published": "SB_kFW_address"
+    },
+    {
+      "package": "sidebar-browser",
+      "module": "Browser_module_css_default",
+      "role": "start",
+      "local": "iGvAsW_start",
+      "published": "SB_kFW_start"
+    },
+    {
+      "package": "sidebar-browser",
+      "module": "Browser_module_css_default",
+      "role": "failure",
+      "local": "iGvAsW_failure",
+      "published": "SB_kFW_failure"
+    },
+    {
+      "package": "sidebar-browser",
+      "module": "Browser_module_css_default",
+      "role": "toolbar",
+      "local": "iGvAsW_toolbar",
+      "published": "SB_kFW_toolbar"
+    },
+    {
+      "package": "sidebar-documentpreview",
+      "module": "TextPreview_module_css_default",
+      "role": "tool",
+      "local": "AhTMVW_tool",
+      "published": "dhJKeW_tool"
+    },
+    {
+      "package": "sidebar-documentpreview",
+      "module": "TextPreview_module_css_default",
+      "role": "statusLine",
+      "local": "AhTMVW_statusLine",
+      "published": "dhJKeW_statusLine"
+    },
+    {
+      "package": "sidebar-documentpreview",
+      "module": "TextPreview_module_css_default",
+      "role": "header",
+      "local": "AhTMVW_header",
+      "published": "dhJKeW_header"
+    },
+    {
+      "package": "sidebar-documentpreview",
+      "module": "TextPreview_module_css_default",
+      "role": "changed",
+      "local": "AhTMVW_changed",
+      "published": "dhJKeW_changed"
+    },
+    {
+      "package": "sidebar-documentpreview",
+      "module": "TextPreview_module_css_default",
+      "role": "action",
+      "local": "AhTMVW_action",
+      "published": "dhJKeW_action"
+    },
+    {
+      "package": "sidebar-documentpreview",
+      "module": "TextPreview_module_css_default",
+      "role": "status",
+      "local": "AhTMVW_status",
+      "published": "dhJKeW_status"
+    },
+    {
+      "package": "sidebar-documentpreview",
+      "module": "TextPreview_module_css_default",
+      "role": "wrap",
+      "local": "AhTMVW_wrap",
+      "published": "dhJKeW_wrap"
+    },
+    {
+      "package": "sidebar-documentpreview",
+      "module": "TextPreview_module_css_default",
+      "role": "viewerTool",
+      "local": "AhTMVW_viewerTool",
+      "published": "dhJKeW_viewerTool"
+    },
+    {
+      "package": "sidebar-documentpreview",
+      "module": "TextPreview_module_css_default",
+      "role": "more",
+      "local": "AhTMVW_more",
+      "published": "dhJKeW_more"
+    },
+    {
+      "package": "sidebar-documentpreview",
+      "module": "TextPreview_module_css_default",
+      "role": "line",
+      "local": "AhTMVW_line",
+      "published": "dhJKeW_line"
+    },
+    {
+      "package": "sidebar-documentpreview",
+      "module": "TextPreview_module_css_default",
+      "role": "empty",
+      "local": "AhTMVW_empty",
+      "published": "dhJKeW_empty"
+    },
+    {
+      "package": "sidebar-documentpreview",
+      "module": "CodeBody_module_css_default",
+      "role": "code",
+      "local": "UgCwSW_code",
+      "published": "Java6a_code"
+    },
+    {
+      "package": "sidebar-documentpreview",
+      "module": "CodeBody_module_css_default",
+      "role": "renderer",
+      "local": "UgCwSW_renderer",
+      "published": "Java6a_renderer"
+    }
+  ]
+}

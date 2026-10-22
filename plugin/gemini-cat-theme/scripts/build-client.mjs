@@ -22,11 +22,11 @@ let source = await readFile(resolve(packageRoot, 'src/theme-client.js'), 'utf8')
 const styleNames = [...source.matchAll(/const (CSS\w*) = /g)].map(match => match[1])
 const styles = runInNewContext(
   source.slice(0, source.indexOf('function loadSettings()')) +
-    `;({ css: [${styleNames.join(',')}].join('\\n'), pairs: BUILD_CLASS_PAIRS, expand: withBuildAliases })`,
+    `;({ css: [${styleNames.join(',')}].join('\\n'), pairs: BUILD_CLASS_GROUPS, expand: withBuildAliases })`,
   { exports: {} }, { timeout: 1000 },
 )
 const selectors = styles.css.replace(/\/\*[\s\S]*?\*\//g, '')
-for (const [first, second] of styles.pairs) {
+for (const [first, ...others] of styles.pairs) {
   const roles = prefix => {
     const counts = {}
     for (const match of selectors.matchAll(new RegExp(`\\.${prefix}_([\\w-]+)`, 'g'))) {
@@ -35,11 +35,18 @@ for (const [first, second] of styles.pairs) {
     return counts
   }
   assert.ok(Object.keys(roles(first)).length > 0, `Missing styles: ${first}`)
-  assert.deepEqual(roles(first), roles(second), `Unpaired styles: ${first}/${second}`)
+  for (const second of others) assert.deepEqual(roles(first), roles(second), `Unpaired styles: ${first}/${second}`)
   const sample = `.${first}_header`
   assert.equal(styles.expand(styles.expand(sample)), styles.expand(sample), 'Aliases must be idempotent')
 }
-console.log(`Checked ${styles.pairs.length} native component alias families`)
+// Independently recorded names from official published module exports. These
+// fixtures catch omissions even when the alias table itself is incomplete.
+const nativeFixtures = JSON.parse(await readFile(resolve(packageRoot, 'scripts/native-class-fixtures.json'), 'utf8'))
+for (const item of nativeFixtures.fixtures) {
+  assert.ok(selectors.includes(`.${item.local}`), `Missing native role: ${item.module}.${item.role}`)
+  assert.ok(selectors.includes(`.${item.published}`), `Missing published component: ${item.published}`)
+}
+console.log(`Checked ${styles.pairs.length} alias families and ${nativeFixtures.fixtures.length} official native-role fixtures`)
 
 for (const [placeholder, mime, filename, knownBytes] of assets) {
   const quoted = `'${placeholder}'`
