@@ -2437,6 +2437,45 @@ window.__ModuleLoader__.load({
       outline:2px solid var(--gem-header-accent); outline-offset:2px;
     }
 
+
+    /* Light Windows caption controls sit above the violet sidebar, on a pale strip. */
+    ${LIGHT_SETTING}[data-windows-titlebar] ${S.sidebar} :is(._3WPZCG_toggle,._2H3hWW_toggle),
+    ${LIGHT_SETTING}[data-windows-titlebar] ${S.sidebar}:is(._3WPZCG_collapsed,._2H3hWW_collapsed) :is(._3WPZCG_newSession,._2H3hWW_newSession) {
+      color:#40314f !important; -webkit-text-fill-color:currentColor !important;
+      background:transparent !important; text-shadow:none !important;
+    }
+    ${LIGHT_SETTING}[data-windows-titlebar] ${S.sidebar} :is(._3WPZCG_toggle,._2H3hWW_toggle) svg,
+    ${LIGHT_SETTING}[data-windows-titlebar] ${S.sidebar}:is(._3WPZCG_collapsed,._2H3hWW_collapsed) :is(._3WPZCG_newSession,._2H3hWW_newSession) svg,
+    ${LIGHT_SETTING}[data-windows-titlebar] [data-windows-menu] svg {
+      color:#40314f !important;
+    }
+    ${LIGHT_SETTING}[data-windows-titlebar] ${S.sidebar} :is(._3WPZCG_toggle,._2H3hWW_toggle):is(:hover,:focus-visible),
+    ${LIGHT_SETTING}[data-windows-titlebar] ${S.sidebar}:is(._3WPZCG_collapsed,._2H3hWW_collapsed) :is(._3WPZCG_newSession,._2H3hWW_newSession):is(:hover,:focus-visible) {
+      background:#d9cce8 !important;
+    }
+    /* Welcome-page selectors need their own paired surface, outside the chat header.
+       Scope to native buttons so portalled menus and author documents stay independent. */
+    ${LIGHT_SETTING}[data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) :is(.bocITq_workspace,.Hqq-bq_workspace,.m0vb0q_seat) {
+      box-sizing:border-box; border:1px solid #b4a0c477; border-radius:10px;
+      background:linear-gradient(115deg,#e3f1f7,#e6eafa) !important;
+      color:#40314f !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+      box-shadow:0 1px 3px #38245118;
+    }
+    ${LIGHT_SETTING}[data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) .m0vb0q_seat {
+      background:linear-gradient(115deg,#f5e8ec,#e9edf9) !important; color:#294b52 !important;
+    }
+    ${LIGHT_SETTING}[data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) :is(.bocITq_workspace,.Hqq-bq_workspace,.m0vb0q_seat) :where(*) {
+      color:inherit !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    ${LIGHT_SETTING}[data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) :is(.bocITq_workspace,.Hqq-bq_workspace,.m0vb0q_seat):is(:hover,:focus-visible,[aria-expanded="true"]) {
+      background:linear-gradient(115deg,#dcefeb,#e1eaf7) !important;
+    }
+    ${LIGHT_SETTING}[data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) :is(.bocITq_workspace,.Hqq-bq_workspace,.m0vb0q_seat):focus-visible {
+      outline:2px solid #815c25; outline-offset:2px;
+    }
+
     `
 
     function loadSettings() {
