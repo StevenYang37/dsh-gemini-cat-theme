@@ -1,6 +1,8 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { runInNewContext } from 'node:vm'
+import assert from 'node:assert/strict'
 
 const packageRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const original = await readFile(resolve(packageRoot, 'assets/gemini-zipzippipe-original.jpg'))
@@ -15,6 +17,30 @@ const assets = [
   ['__GEMINI_LIGHT_SCENE_DATA_URL__', 'image/png', 'gemini-observatory-light-v1.png'],
 ]
 let source = await readFile(resolve(packageRoot, 'src/theme-client.js'), 'utf8')
+
+// Check evaluated stylesheets too: later refinements must reach both builds.
+const styleNames = [...source.matchAll(/const (CSS\w*) = /g)].map(match => match[1])
+const styles = runInNewContext(
+  source.slice(0, source.indexOf('function loadSettings()')) +
+    `;({ css: [${styleNames.join(',')}].join('\\n'), pairs: BUILD_CLASS_PAIRS, expand: withBuildAliases })`,
+  { exports: {} }, { timeout: 1000 },
+)
+const selectors = styles.css.replace(/\/\*[\s\S]*?\*\//g, '')
+for (const [first, second] of styles.pairs) {
+  const roles = prefix => {
+    const counts = {}
+    for (const match of selectors.matchAll(new RegExp(`\\.${prefix}_([\\w-]+)`, 'g'))) {
+      counts[match[1]] = (counts[match[1]] || 0) + 1
+    }
+    return counts
+  }
+  assert.ok(Object.keys(roles(first)).length > 0, `Missing styles: ${first}`)
+  assert.deepEqual(roles(first), roles(second), `Unpaired styles: ${first}/${second}`)
+  const sample = `.${first}_header`
+  assert.equal(styles.expand(styles.expand(sample)), styles.expand(sample), 'Aliases must be idempotent')
+}
+console.log(`Checked ${styles.pairs.length} native component alias families`)
+
 for (const [placeholder, mime, filename, knownBytes] of assets) {
   const quoted = `'${placeholder}'`
   if (!source.includes(quoted)) throw new Error(`Client asset placeholder missing: ${placeholder}`)

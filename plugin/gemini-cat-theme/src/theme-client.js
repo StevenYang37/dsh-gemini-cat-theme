@@ -17,7 +17,28 @@ const CHIBI_DATA_URL = '__GEMINI_CHIBI_DATA_URL__'
 const SCENE_DATA_URL = '__GEMINI_SCENE_DATA_URL__'
 const LIGHT_SCENE_DATA_URL = '__GEMINI_LIGHT_SCENE_DATA_URL__'
 
-const CSS = `
+// These component pairs are already used by S and the native surface selectors.
+// Apply the same aliases to every stylesheet, including later visual refinements.
+// Never infer arbitrary hashes or match generic author-content class suffixes.
+const BUILD_CLASS_PAIRS = Object.freeze([
+  ['BynINW', '_6Qf49G'], ['ST7X_W', 'Dc7zOa'],
+  ['_3WPZCG', '_2H3hWW'], ['yhfFVG', 'RlGAzG'],
+  ['bocITq', 'Hqq-bq'], ['_7514NG', '_9lTDKa'],
+  ['jJkEga', 'hIlkoa'], ['ZVcBiW', 'fO69Vq'],
+  ['wCInkW', 'Dws9Sa'], ['Z9Jnlq', 'tki__G'],
+])
+function withBuildAliases(css) {
+  for (const [first, second] of BUILD_CLASS_PAIRS) {
+    // Canonicalize existing pairs before expanding, keeping this idempotent.
+    const pair = new RegExp(`:is\\(\\.(?:${first}_([\\w-]+),\\.${second}_\\1|${second}_([\\w-]+),\\.${first}_\\2)\\)`, 'g')
+    css = css.replace(pair, (_, a, b) => `.${first}_${a || b}`)
+    const token = new RegExp(`\\.(?:${first}|${second})_([\\w-]+)`, 'g')
+    css = css.replace(token, (_, name) => `:is(.${first}_${name},.${second}_${name})`)
+  }
+  return css
+}
+
+const CSS = withBuildAliases(`
 html[data-dsh-gemini-theme="active"] {
   --gem-app:#fbf9ff; --gem-side:#f0eaf8; --gem-card:#fff; --gem-text:#30243f;
   --gem-muted:#695777; --gem-accent:#70509f; --gem-on-accent:#fff; --gem-line:#d9cde8;
@@ -107,9 +128,9 @@ ${S.footer} > #${ID.trigger}:focus-visible,
 #${ID.art} .bow { position:absolute; top:199px; left:60px; width:67px; height:22px; background:#c8a7f5; clip-path:polygon(0 0,45% 32%,50% 47%,55% 32%,100% 0,82% 100%,52% 62%,48% 62%,18% 100%); }
 #${ID.art} .star { position:absolute; top:48px; right:0; width:18px; height:18px; background:#d3baff; clip-path:polygon(50% 0,60% 39%,100% 50%,60% 61%,50% 100%,40% 61%,0 50%,40% 39%); }
 @media (max-width:650px) { #${ID.panel} { left:12px; width:min(294px,calc(100vw - 24px)); } }
-`
+`)
 
-const CSS_V2 = `
+const CSS_V2 = withBuildAliases(`
 html[data-dsh-gemini-theme="active"] {
   --gem-app:#e8e3fb; --gem-side:#333a70; --gem-card:#fbf9ff;
   --gem-text:#392766; --gem-muted:#715b99; --gem-accent:#6052b2;
@@ -389,10 +410,10 @@ html[data-dsh-gemini-theme="active"] ${S.sidebar} ${S.sidebarFade} {
 }
 @media (max-width:1099px) { #${ID.art},#${ID.companion} { display:none; } }
 @media (max-height:720px) { #${ID.mascot} { height:112px; } #${ID.mascot} img { width:78px; height:108px; margin:2px auto 0; } }
-`
+`)
 
 // Shared opaque surfaces cover both in-frame views and body-level portals.
-const CSS_V3 = `
+const CSS_V3 = withBuildAliases(`
 /* Independent controls: keep character positioning without requiring the star theme. */
 html[data-dsh-gemini-art="on"] ${S.conversation} {
   position:relative; isolation:isolate;
@@ -1152,12 +1173,12 @@ html[data-dsh-gemini-theme="active"] :is(.fO69Vq_page,.ZVcBiW_page) :where(input
 html[data-dsh-gemini-theme="active"] :is(.fO69Vq_page,.ZVcBiW_page) :is(a,[href],[role="link"]) {
   color:#62dce7 !important; -webkit-text-fill-color:#62dce7 !important;
 }
-`
+`)
 
 // DSH Light selects internal tone="dark". Keep the established tone="light" skin untouched.
 // Dedicated light-skin colors and scene; character assets and independent controls stay intact.
 const LIGHT_SETTING = 'html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="dark"]'
-const CSS_LIGHT_SETTING = `
+const CSS_LIGHT_SETTING = withBuildAliases(`
 ${LIGHT_SETTING} {
   --gem-app:#2b2447; --gem-side:#40365d; --gem-card:#3a3152;
   --gem-text:#f7f2ff; --gem-muted:#c3b9df; --gem-accent:#bba9ff;
@@ -1464,7 +1485,7 @@ ${LIGHT_SETTING} :is(.fO69Vq_page,.ZVcBiW_page) :is(.switch,:is(.switch,[class*=
   background:#f3e9fb !important; border-color:#99712f !important;
 }
 
-`
+`)
 
 
 // Surface-bound palettes for native DSH task UI, independent of chat colors.
@@ -1475,7 +1496,7 @@ const FLOAT_SURFACES = ':is([role="tooltip"],[class*="_bubble_"][data-side],[cla
 const DSH_TOOLTIP_CANDIDATES = ':is([role="tooltip"],[class*="_bubble_"][data-side],[class*="_toast_"],.jJkEga_hoverContent,.hIlkoa_hoverContent)'
 const UPDATE_TOOLTIP = '[data-dsh-gemini-update-tooltip="true"]'
 const READABLE_SURFACES = `:is(${QUESTION},${WORK_SURFACES},[data-changes-review],[data-changed-files],[data-presented-file],.T1tA0G_panel)`
-const CSS_READABILITY = `
+const CSS_READABILITY = withBuildAliases(`
 html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] ${READABLE_SURFACES} {
   --gem-reader-bg:#342c4c; --gem-reader-ink:#f8edce; --gem-reader-muted:#d1c4df;
   --gem-reader-hover:#544a6b; --gem-reader-line:#aa9061;
@@ -1540,12 +1561,12 @@ html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${QUESTION} :is(texta
 html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${QUESTION} button {
   -webkit-text-fill-color:currentColor !important;
 }
-`
+`)
 
 // Theme only DSH-owned sidebar chrome; documents, web pages, terminal output and image pixels keep their own presentation.
 const SIDEBAR_SCOPE = 'html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is([data-dockkit-pane],[data-dockkit-float])'
 const SIDEBAR_CHROME = `${SIDEBAR_SCOPE} :is([data-dockkit-strip],[data-dockkit-float-grip],[data-dockkit-tab],[data-sidebar-right-tab],.AhTMVW_header,.AhTMVW_changed,.AhTMVW_empty,.AhTMVW_statusLine,.AhTMVW_status,.AhTMVW_action,.AhTMVW_more,.AhTMVW_tool,.AhTMVW_viewerTool,.iGvAsW_toolbar,.iGvAsW_start,.iGvAsW_restore,.iGvAsW_failure,.iGvAsW_sandboxWarning,.iGvAsW_limit,[data-document-zoom-controls],[data-code-block-banner])`
-const CSS_SIDEBARS = `
+const CSS_SIDEBARS = withBuildAliases(`
 /* DSH-owned chrome uses its own palette. Tokens are attached to chrome nodes only,
    so author-controlled web pages, documents, images and terminal output inherit nothing. */
 ${SIDEBAR_CHROME.replace('[data-dsh-gemini-tone]', '[data-dsh-gemini-tone="light"]')},
@@ -1606,9 +1627,9 @@ ${SIDEBAR_SCOPE} :is([data-textpreview-failed],[data-textpreview-meta-failed],.i
 ${SIDEBAR_SCOPE} :is(.iGvAsW_sandboxWarning,[data-office-font-warning]) {
   background:var(--gem-reader-warning-bg) !important; color:var(--gem-reader-warning) !important;
 }
-`
+`)
 
-const CSS_FILE_FINISH = `
+const CSS_FILE_FINISH = withBuildAliases(`
 /* Native caption bridge reads a direct-body probe. Its colors must match the painted title strip. */
 html[data-dsh-gemini-theme="active"][data-windows-titlebar] body {
   --dsw-specific-sidebar-fill:#eee9f8 !important;
@@ -1656,11 +1677,11 @@ html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene
 html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is([data-changes-review],[data-changed-files]) :is([data-diff-note],[data-diff-hunk-header],[data-changes-preview-path]) {
   color:var(--gem-reader-muted) !important; -webkit-text-fill-color:currentColor !important;
 }
-`
+`)
 
 // Fill semantic-token gaps instead of painting every descendant: text keeps its status/ANSI/syntax meaning.
 const COMPLETION_SCOPE = `html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is(${S.frame},${READABLE_SURFACES},${FLOAT_SURFACES},[role="dialog"],[role="alertdialog"],[role="menu"],[role="listbox"])`
-const CSS_COMPLETION = `
+const CSS_COMPLETION = withBuildAliases(`
 html[data-dsh-gemini-theme="off"] #${ID.panel} {
   --gem-card:#342c4c; --gem-text:#f8edce; --gem-muted:#d1c4df;
   --gem-accent:#6b5488; --gem-on-accent:#fff4df; --gem-line:#aa9061;
@@ -1837,12 +1858,12 @@ html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${S.composer} :is([cl
   color:#514078 !important;
 }
 
-`
+`)
 
 // Shared control-integrity fixes read each skin's own tokens; no palette is copied across modes.
 const PALE_UI_REGIONS = ':is(.Dws9Sa_panel,[role="dialog"],[role="alertdialog"],[role="menu"],[role="listbox"],._surface_ri079_1,.Z9Jnlq_menu,.tki__G_menu,:where(#dsh-gemini-theme-panel))'
 const UI_SCOPE = 'html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] :is(.Dws9Sa_panel,[role="dialog"],[role="alertdialog"],.fO69Vq_page,.ZVcBiW_page,[role="menu"],[role="listbox"],._surface_ri079_1,.Z9Jnlq_menu,.tki__G_menu,:where(#dsh-gemini-theme-panel))'
-const CSS_CONTROL_INTEGRITY = `
+const CSS_CONTROL_INTEGRITY = withBuildAliases(`
 /* Keep accents local to the surrounding surface, independently for each system mode. */
 html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] ${PALE_UI_REGIONS} {
   --gem-accent:#e5daef; --gem-on-accent:#49355f;
@@ -1935,7 +1956,7 @@ ${UI_SCOPE} :is([role="menuitem"],[role="menuitemradio"],[role="menuitemcheckbox
   color:inherit !important; -webkit-text-fill-color:currentColor !important;
 }
 
-`
+`)
 
 // Native secondary type sits on restrained reading surfaces; metadata remains visible at rest.
 // Tone names follow pluginTone(): host Dark = light, host Light = dark.
@@ -1943,7 +1964,7 @@ ${UI_SCOPE} :is([role="menuitem"],[role="menuitemradio"],[role="menuitemcheckbox
 const BACKPLATE_SCOPE = `html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${S.frame}`
 const BACKPLATE_PARTS = ':is(.HiSsxa_root,[data-variant="think"],.YS3v9W_root,.Bpi2Dq_root,[data-step-process] > div:first-child > button,button[data-turn-process],.icaHSq_runningContent,.icaHSq_hint,.gKv1-q_stopped,.ppByMG_actions,.sZXytW_trigger:not(.ppByMG_actions *),.OpZ85W_pill:not(.ppByMG_actions *),.y0jqnG_trigger,.Hqq-bq_headline,.bocITq_headline,.IzP3Va_retrySummary,.IzP3Va_retryDetails)'
 const BACKPLATE_NATIVE = ':not(:where([data-dockkit-pane] *,[data-dockkit-float] *))'
-const CSS_BACKPLATES = `
+const CSS_BACKPLATES = withBuildAliases(`
 html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] {
   --gem-backplate-bg:#4b476f; --gem-backplate-ink:#fff3d8; --gem-backplate-muted:#ddd4e9;
   --gem-backplate-hover:#58527e; --gem-backplate-line:#8d80a5;
@@ -2501,7 +2522,7 @@ ${BACKPLATE_SCOPE} ${S.conversation} div:is([data-clock="start"],[data-clock="en
   background:var(--gem-backplate-hover) !important;
 }
 
-`
+`)
 
 function loadSettings() {
   try {
