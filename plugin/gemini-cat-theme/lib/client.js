@@ -2130,6 +2130,9 @@ window.__ModuleLoader__.load({
     const BACKPLATE_SCOPE = `html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${S.frame}`
     const BACKPLATE_PARTS = ':is(.HiSsxa_root,[data-variant="think"],.YS3v9W_root,.Bpi2Dq_root,[data-step-process] > div:first-child > button,button[data-turn-process],.icaHSq_runningContent,.icaHSq_hint,.gKv1-q_stopped,.ppByMG_actions,.sZXytW_trigger:not(.ppByMG_actions *),.OpZ85W_pill:not(.ppByMG_actions *),.y0jqnG_trigger,.Hqq-bq_headline,.bocITq_headline,.IzP3Va_retrySummary,.IzP3Va_retryDetails)'
     const BACKPLATE_NATIVE = `:not(:where(${S.conversation} [data-dockkit-pane] *,${S.conversation} [data-dockkit-float] *))`
+    const COMPOSER_STAT_PARTS = ':is([data-composer-stat] > :is(button,span):first-child,button[aria-label^="上下文已用 "],button[aria-label$="of context used"])'
+    const EMPTY_MODEL_CONTROL = 'button[aria-haspopup="menu"]:is([aria-label="请选择模型"],[aria-label="Select model"],[aria-label="正在加载模型…"],[aria-label="Loading models…"])'
+    const COMPOSER_STATS_SCOPE = `html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone][data-dsh-gemini-scene]:root ${S.frame} [data-composer-dock]`
     const CSS_BACKPLATES = withBuildAliases(`
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] {
       --gem-backplate-bg:#4b476f; --gem-backplate-ink:#fff3d8; --gem-backplate-muted:#ddd4e9;
@@ -2737,9 +2740,40 @@ window.__ModuleLoader__.load({
       -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
     }
 
+    /* Native semantic contracts also cover builds whose module hashes differ.
+       Paint each statistic, never the transparent dock or its scene background. */
+    ${COMPOSER_STATS_SCOPE} ${COMPOSER_STAT_PARTS}${BACKPLATE_NATIVE} {
+      background:var(--gem-backplate-bg) !important; color:var(--gem-backplate-ink) !important;
+      border-radius:8px; box-shadow:none !important;
+      --dsw-alias-label-tertiary:var(--gem-backplate-ink);
+      --dsw-alias-label-secondary:var(--gem-backplate-ink);
+    }
+    ${COMPOSER_STATS_SCOPE} ${COMPOSER_STAT_PARTS}${BACKPLATE_NATIVE},
+    ${COMPOSER_STATS_SCOPE} ${COMPOSER_STAT_PARTS}${BACKPLATE_NATIVE} :where(*) {
+      color:var(--gem-backplate-ink) !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    ${COMPOSER_STATS_SCOPE} ${COMPOSER_STAT_PARTS}${BACKPLATE_NATIVE}:is(:hover,:focus-visible,[aria-expanded="true"]):not(:disabled) {
+      background:var(--gem-backplate-hover) !important;
+    }
+    /* The unselected trigger has a distinct native accessible name. Once a model
+       is selected this rule stops matching, leaving its accepted appearance intact. */
+    ${BACKPLATE_SCOPE} ${S.composer} ${EMPTY_MODEL_CONTROL} {
+      background:var(--gem-backplate-bg) !important; color:var(--gem-backplate-ink) !important;
+      border-radius:10px; box-shadow:inset 0 0 0 1px var(--gem-backplate-line) !important;
+    }
+    ${BACKPLATE_SCOPE} ${S.composer} ${EMPTY_MODEL_CONTROL},
+    ${BACKPLATE_SCOPE} ${S.composer} ${EMPTY_MODEL_CONTROL} :where(*) {
+      color:var(--gem-backplate-ink) !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    ${BACKPLATE_SCOPE} ${S.composer} ${EMPTY_MODEL_CONTROL}:is(:hover,:focus-visible,[aria-expanded="true"]):not(:disabled) {
+      background:var(--gem-backplate-hover) !important;
+    }
+
     `)
 
-    const PLUGIN_VERSION = '0.5.10'
+    const PLUGIN_VERSION = '0.5.11'
     function markHeaderPresetLabels(conversation) {
       if (!conversation) return []
       const labels = new Set()
