@@ -2129,7 +2129,7 @@ window.__ModuleLoader__.load({
     // Use real DSH component roots rather than matching every span/status-like class.
     const BACKPLATE_SCOPE = `html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ${S.frame}`
     const BACKPLATE_PARTS = ':is(.HiSsxa_root,[data-variant="think"],.YS3v9W_root,.Bpi2Dq_root,[data-step-process] > div:first-child > button,button[data-turn-process],.icaHSq_runningContent,.icaHSq_hint,.gKv1-q_stopped,.ppByMG_actions,.sZXytW_trigger:not(.ppByMG_actions *),.OpZ85W_pill:not(.ppByMG_actions *),.y0jqnG_trigger,.Hqq-bq_headline,.bocITq_headline,.IzP3Va_retrySummary,.IzP3Va_retryDetails)'
-    const BACKPLATE_NATIVE = ':not(:where([data-dockkit-pane] *,[data-dockkit-float] *))'
+    const BACKPLATE_NATIVE = `:not(:where(${S.conversation} [data-dockkit-pane] *,${S.conversation} [data-dockkit-float] *))`
     const CSS_BACKPLATES = withBuildAliases(`
     html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] {
       --gem-backplate-bg:#4b476f; --gem-backplate-ink:#fff3d8; --gem-backplate-muted:#ddd4e9;
@@ -2703,16 +2703,51 @@ window.__ModuleLoader__.load({
       -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
     }
 
+    /* Native material children own menu fill on Windows; paint that material, not
+       only the outer surface used by macOS backing layers. */
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ._surface_ri079_1 {
+      --dsw-menu-surface-fill:#f4effa; --dsw-menu-backdrop-filter:none;
+      --dsw-alias-label-primary:#40314f; --dsw-alias-label-secondary:#625172;
+      --dsw-alias-label-tertiary:#625172; --dsw-alias-interactive-bg-hover:#e7dcf1;
+      background:#f4effa !important; color:#40314f !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone] ._surface_ri079_1 :where(*) {
+      color:inherit !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    ${BACKPLATE_SCOPE} ${S.conversation} ._0TPaqG_panel${BACKPLATE_NATIVE} {
+      --dsw-specific-menu:var(--gem-backplate-bg); --dsw-menu-backdrop-filter:none;
+      --dsw-alias-label-primary:var(--gem-backplate-ink);
+      --dsw-alias-label-primary-dimmed:var(--gem-backplate-ink);
+      --dsw-alias-label-tertiary:var(--gem-backplate-muted);
+      background:var(--gem-backplate-bg) !important;
+    }
+    ${BACKPLATE_SCOPE} ${S.conversation} ._0TPaqG_panel${BACKPLATE_NATIVE} :where(*) {
+      color:var(--gem-backplate-ink) !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="dark"] { --gem-primary-circle:#d7c8ef; --gem-primary-circle-hover:#c8b4e5; --gem-primary-circle-ink:#40285e; }
+    html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"] { --gem-primary-circle:#bfa9df; --gem-primary-circle-hover:#d0bde9; --gem-primary-circle-ink:#302044; }
+    ${BACKPLATE_SCOPE} ${S.conversation} ${S.composer} .yhfFVG_primary {
+      background:var(--gem-primary-circle) !important; color:var(--gem-primary-circle-ink) !important;
+    }
+    ${BACKPLATE_SCOPE} ${S.conversation} ${S.composer} .yhfFVG_primary:hover:not(:disabled) { background:var(--gem-primary-circle-hover) !important; }
+    ${BACKPLATE_SCOPE} ${S.conversation} ${S.composer} .yhfFVG_primary :where(*) {
+      color:var(--gem-primary-circle-ink) !important; -webkit-text-fill-color:currentColor !important;
+      -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+    }
+
     `)
 
-    const PLUGIN_VERSION = '0.5.9'
+    const PLUGIN_VERSION = '0.5.10'
     function markHeaderPresetLabels(conversation) {
       if (!conversation) return []
       const labels = new Set()
       const modeName = /^(?:标准模式|代码模式|极简模式|最简模式|创作模式|创造模式|Standard mode|Code mode|Minimal mode|Creator mode)$/iu
-      const headers = conversation.querySelectorAll(':scope > header,:scope > [class$="_header"],[data-conversation-header]')
+      const headers = conversation.querySelectorAll('header,[data-conversation-header]')
       for (const header of headers) {
-        if (header.closest('[data-dockkit-pane],[data-dockkit-float]')) continue
+        if (header.closest('[data-chat-flow],article,[data-step-process-content]')) continue
+        if ([...conversation.querySelectorAll('[data-dockkit-pane],[data-dockkit-float]')].some(pane => pane.contains(header))) continue
         for (const element of header.querySelectorAll('span,button,div,[role="button"]')) {
           if (element.closest('[class$="_crumbs"],[class$="_crumbCurrent"],[data-conversation-header-corner]')) continue
           if (element.matches('div:not([role="button"])') && !element.querySelector(':scope > svg')) continue
@@ -2728,7 +2763,7 @@ window.__ModuleLoader__.load({
             if (parent.matches('button,[role="button"]') || (!label.querySelector('svg') && parent.querySelector(':scope > svg'))) label = parent
             else break
           }
-          if (label.closest('[data-dockkit-pane],[data-dockkit-float]')) continue
+          if ([...conversation.querySelectorAll('[data-dockkit-pane],[data-dockkit-float]')].some(pane => pane.contains(label))) continue
           labels.add(label)
         }
       }
