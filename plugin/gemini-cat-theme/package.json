@@ -1,6 +1,6 @@
 {
   "name": "dsh-gemini-cat-theme",
-  "version": "0.5.11",
+  "version": "0.5.12",
   "license": "SEE LICENSE IN LICENSE",
   "description": "Gemini 紫夜主题与角色装饰 for DeepSeek Harness Desktop (Windows and macOS)",
   "keywords": [
@@ -37,7 +37,7 @@
     "access": "public"
   },
   "peerDependencies": {
-    "@deepseek-ai/dsh": ">=0.2.0-rc.2 <0.3.0"
+    "@deepseek-ai/dsh": ">=0.2.0-rc.2 <0.3.0 || >=0.2.1-0 <0.2.2-0"
   },
   "peerDependenciesMeta": {
     "@deepseek-ai/dsh": {

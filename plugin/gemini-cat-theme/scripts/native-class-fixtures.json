@@ -806,5 +806,440 @@
       "local": "UgCwSW_renderer",
       "published": "Java6a_renderer"
     }
-  ]
+  ],
+  "dsh_021_rc3": {
+    "source": "DSH Desktop 0.2.1-rc.3 local app.asar and integrity-verified official npm component archives",
+    "modules": [
+      {
+        "canonical": "BynINW",
+        "package": "layout",
+        "module": "AppFrame_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-layout/AppFrame.module.css",
+        "probe": "frame",
+        "desktop": "PIRFFq",
+        "registry": "pI_x6G",
+        "sharedRoles": 8
+      },
+      {
+        "canonical": "ST7X_W",
+        "package": "conversation",
+        "module": "ConversationRoot_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-conversation/ConversationRoot.module.css",
+        "probe": "root",
+        "desktop": "kiGsTW",
+        "registry": "wSkVaW",
+        "sharedRoles": 35
+      },
+      {
+        "canonical": "_3WPZCG",
+        "package": "sidebar",
+        "module": "SidebarRoot_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-sidebar/SidebarRoot.module.css",
+        "probe": "root",
+        "desktop": "kB3qhq",
+        "registry": "hHd-Xa",
+        "sharedRoles": 39
+      },
+      {
+        "canonical": "yhfFVG",
+        "package": "conversation",
+        "module": "InputBar_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-conversation/InputBar.module.css",
+        "probe": "root",
+        "desktop": "JZLxKW",
+        "registry": "uV2eYG",
+        "sharedRoles": 27
+      },
+      {
+        "canonical": "bocITq",
+        "package": "conversation",
+        "module": "HeroShell_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-conversation/HeroShell.module.css",
+        "probe": "root",
+        "desktop": "_8tPydW",
+        "registry": "pXSMma",
+        "sharedRoles": 17
+      },
+      {
+        "canonical": "_7514NG",
+        "package": "workspace",
+        "module": "WorkspaceBrowser_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-workspace/WorkspaceBrowser.module.css",
+        "probe": "root",
+        "desktop": "Kjh-qa",
+        "registry": "bhn1Oq",
+        "sharedRoles": 45
+      },
+      {
+        "canonical": "jJkEga",
+        "package": "workspace",
+        "module": "Rows_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-workspace/Rows.module.css",
+        "probe": "hoverContent",
+        "desktop": "JoiKIa",
+        "registry": "YDXeBa",
+        "sharedRoles": 35
+      },
+      {
+        "canonical": "ZVcBiW",
+        "package": "plugin-manager",
+        "module": "PluginManagerPage_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-plugin-manager/PluginManagerPage.module.css",
+        "probe": "card",
+        "desktop": "w6M7KW",
+        "registry": "X_2TxG",
+        "sharedRoles": 153
+      },
+      {
+        "canonical": "wCInkW",
+        "package": "settings-general",
+        "module": "SettingsRoot_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-settings-general/SettingsRoot.module.css",
+        "probe": "nav",
+        "desktop": "_77Pn0W",
+        "registry": "VOzbGW",
+        "sharedRoles": 21
+      },
+      {
+        "canonical": "Z9Jnlq",
+        "package": "input-trigger",
+        "module": "MenuView_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-input-trigger/MenuView.module.css",
+        "probe": "menu",
+        "desktop": "z8WDjq",
+        "registry": "_3e4SsG",
+        "sharedRoles": 21
+      },
+      {
+        "canonical": "icaHSq",
+        "package": "chat",
+        "module": "ChatView_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-chat/ChatView.module.css",
+        "probe": "frame",
+        "desktop": "tnXGgG",
+        "registry": "EvIC1a",
+        "sharedRoles": 20
+      },
+      {
+        "canonical": "IzP3Va",
+        "package": "chat",
+        "module": "MessageItem_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-chat/MessageItem.module.css",
+        "probe": "retryDetails",
+        "desktop": "AkCqbG",
+        "registry": "Sixlwa",
+        "sharedRoles": 32
+      },
+      {
+        "canonical": "HiSsxa",
+        "package": "chat",
+        "module": "ReasoningRow_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-chat/ReasoningRow.module.css",
+        "probe": "root",
+        "desktop": "ijfCxa",
+        "registry": "lcKema",
+        "sharedRoles": 8
+      },
+      {
+        "canonical": "_PaunW",
+        "package": "chat",
+        "module": "TurnProcessNodeView_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-chat/TurnProcessNodeView.module.css",
+        "probe": "root",
+        "desktop": "gTO55a",
+        "registry": "l_V-RG",
+        "sharedRoles": 4
+      },
+      {
+        "canonical": "sZXytW",
+        "package": "chat",
+        "module": "TurnUsagePanel_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-chat/TurnUsagePanel.module.css",
+        "probe": "root",
+        "desktop": "KkN8mG",
+        "registry": "Q51KRG",
+        "sharedRoles": 3
+      },
+      {
+        "canonical": "ppByMG",
+        "package": "chat",
+        "module": "MessageIconActions_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-chat/MessageIconActions.module.css",
+        "probe": "action",
+        "desktop": "ZITbJG",
+        "registry": "xzv4MW",
+        "sharedRoles": 6
+      },
+      {
+        "canonical": "YS3v9W",
+        "package": "chat",
+        "module": "GenericCommandCard_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-chat/GenericCommandCard.module.css",
+        "probe": "root",
+        "desktop": "B9WI8q",
+        "registry": "_5OnbHa",
+        "sharedRoles": 6
+      },
+      {
+        "canonical": "gKv1-q",
+        "package": "chat",
+        "module": "AssistantMarkdown_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-chat/AssistantMarkdown.module.css",
+        "probe": "root",
+        "desktop": "XNZzAa",
+        "registry": "hWmORq",
+        "sharedRoles": 4
+      },
+      {
+        "canonical": "OpZ85W",
+        "package": "chat",
+        "module": "StatsPills_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-chat/StatsPills.module.css",
+        "probe": "anchor",
+        "desktop": "TQ0rwa",
+        "registry": "bOPqQW",
+        "sharedRoles": 4
+      },
+      {
+        "canonical": "JXrxFq",
+        "package": "chat",
+        "module": "TurnNavigator_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-chat/TurnNavigator.module.css",
+        "probe": "frame",
+        "desktop": "_4if9eW",
+        "registry": "eGxaPq",
+        "sharedRoles": 16
+      },
+      {
+        "canonical": "Bpi2Dq",
+        "package": "chat",
+        "module": "ContextInjectionRow_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-chat/ContextInjectionRow.module.css",
+        "probe": "root",
+        "desktop": "ft5itq",
+        "registry": "XrJvXW",
+        "sharedRoles": 7
+      },
+      {
+        "canonical": "TXqvFW",
+        "package": "chat",
+        "module": "ChatGroupSeat_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-chat/ChatGroupSeat.module.css",
+        "probe": "root",
+        "desktop": "r52wTW",
+        "registry": "O_Ebla",
+        "sharedRoles": 11
+      },
+      {
+        "canonical": "y0jqnG",
+        "package": "conversation",
+        "module": "ContextMeter_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-conversation/ContextMeter.module.css",
+        "probe": "root",
+        "desktop": "X0HXfW",
+        "registry": "JObwrW",
+        "sharedRoles": 17
+      },
+      {
+        "canonical": "Q2dzhW",
+        "package": "tool",
+        "module": "ToolRow_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-tool/ToolRow.module.css",
+        "probe": "root",
+        "desktop": "UHhYua",
+        "registry": "o3BgMG",
+        "sharedRoles": 33
+      },
+      {
+        "canonical": "-gRAhq",
+        "package": "tool",
+        "module": "bash_sample_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-tool/bash-sample.module.css",
+        "probe": "root",
+        "desktop": "BFlR-G",
+        "registry": "CY-8Ka",
+        "sharedRoles": 21
+      },
+      {
+        "canonical": "yj_sLW",
+        "package": "tool",
+        "module": "ToolDetails_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-tool/ToolDetails.module.css",
+        "probe": "root",
+        "desktop": "_3mBzwG",
+        "registry": "DXqwVW",
+        "sharedRoles": 22
+      },
+      {
+        "canonical": "_33HxeW",
+        "package": "trajectory",
+        "module": "TrajectoryTimeline_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-trajectory/TrajectoryTimeline.module.css",
+        "probe": "root",
+        "desktop": "C0O0ea",
+        "registry": "_1p9O6q",
+        "sharedRoles": 13
+      },
+      {
+        "canonical": "rkta1W",
+        "package": "trajectory",
+        "module": "TrajectoryTable_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-trajectory/TrajectoryTable.module.css",
+        "probe": "split",
+        "desktop": "rh_gBW",
+        "registry": "Y0dWHa",
+        "sharedRoles": 161
+      },
+      {
+        "canonical": "_0rqS-a",
+        "package": "trajectory",
+        "module": "views_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-trajectory/views.module.css",
+        "probe": "root",
+        "desktop": "YRYrTq",
+        "registry": "qBU-ya",
+        "sharedRoles": 2
+      },
+      {
+        "canonical": "leLPTq",
+        "package": "trajectory",
+        "module": "TrajectoryToolbar_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-trajectory/TrajectoryToolbar.module.css",
+        "probe": "root",
+        "desktop": "PMrbXa",
+        "registry": "fV0t5q",
+        "sharedRoles": 13
+      },
+      {
+        "canonical": "_3li69W",
+        "package": "agent-preset",
+        "module": "AgentPresetLabel_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-agent-preset/AgentPresetLabel.module.css",
+        "probe": "icon",
+        "desktop": "nIjNjW",
+        "registry": "SVAs4q",
+        "sharedRoles": 2
+      },
+      {
+        "canonical": "FfBBxq",
+        "package": "agent-preset",
+        "module": "AgentPresetSection_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-agent-preset/AgentPresetSection.module.css",
+        "probe": "card",
+        "desktop": "gdzZCG",
+        "registry": "rtSEdW",
+        "sharedRoles": 26
+      },
+      {
+        "canonical": "m0vb0q",
+        "package": "agent-preset",
+        "module": "AgentPresetSeat_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-agent-preset/AgentPresetSeat.module.css",
+        "probe": "seat",
+        "desktop": "ufIuna",
+        "registry": "cubgiG",
+        "sharedRoles": 13
+      },
+      {
+        "canonical": "Fw9vfq",
+        "package": "jobs",
+        "module": "JobListAction_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-jobs/JobListAction.module.css",
+        "probe": "menu",
+        "desktop": "_4iHfma",
+        "registry": "QsffPG",
+        "sharedRoles": 35
+      },
+      {
+        "canonical": "iGvAsW",
+        "package": "sidebar-browser",
+        "module": "Browser_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-sidebar-browser/Browser.module.css",
+        "probe": "frame",
+        "desktop": "k_IHJa",
+        "registry": "SB_kFW",
+        "sharedRoles": 23
+      },
+      {
+        "canonical": "AhTMVW",
+        "package": "sidebar-documentpreview",
+        "module": "TextPreview_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-sidebar-documentpreview/TextPreview.module.css",
+        "probe": "action",
+        "desktop": "gLzERG",
+        "registry": "dhJKeW",
+        "sharedRoles": 21
+      },
+      {
+        "canonical": "UgCwSW",
+        "package": "sidebar-documentpreview",
+        "module": "CodeBody_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-sidebar-documentpreview/CodeBody.module.css",
+        "probe": "code",
+        "desktop": "ie5riG",
+        "registry": "Java6a",
+        "sharedRoles": 2
+      },
+      {
+        "canonical": "_0TPaqG",
+        "package": "conversation",
+        "module": "QueueDock_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-conversation/QueueDock.module.css",
+        "probe": "panel",
+        "desktop": "_6DJyyG",
+        "registry": "_7yHdaG",
+        "sharedRoles": 19
+      },
+      {
+        "canonical": "HZhGha",
+        "package": "tool",
+        "module": "AskQuestionCard_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-tool/AskQuestionCard.module.css",
+        "probe": "card",
+        "desktop": "rK_xAW",
+        "registry": "fsXYAq",
+        "sharedRoles": 9
+      },
+      {
+        "canonical": "kbRY4W",
+        "package": "message-feedback",
+        "module": "FeedbackDialog_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-message-feedback/FeedbackDialog.module.css",
+        "probe": "dialog",
+        "desktop": "GSsNcq",
+        "registry": "_6_jNJa",
+        "sharedRoles": 6
+      },
+      {
+        "canonical": "ztjrea",
+        "package": "deliverables",
+        "module": "ChangedFiles_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-deliverables/ChangedFiles.module.css",
+        "probe": "card",
+        "desktop": "vdszpW",
+        "registry": "hz8-rW",
+        "sharedRoles": 17
+      },
+      {
+        "canonical": "PSXfDq",
+        "package": "deliverables",
+        "module": "ReviewTab_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-deliverables/ReviewTab.module.css",
+        "probe": "root",
+        "desktop": "i67LPW",
+        "registry": "ZDDmpq",
+        "sharedRoles": 14
+      },
+      {
+        "canonical": "T1tA0G",
+        "package": "sidebar-documentpreview",
+        "module": "FontNotice_module_css_default",
+        "tag": "@deepseek-ai/dsh-client-ui-sidebar-documentpreview/FontNotice.module.css",
+        "probe": "panel",
+        "desktop": "G1c4tW",
+        "registry": "JqwYuG",
+        "sharedRoles": 7
+      }
+    ]
+  }
 }

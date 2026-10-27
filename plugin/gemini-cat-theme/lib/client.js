@@ -29,158 +29,230 @@ window.__ModuleLoader__.load({
     const BUILD_CLASS_GROUPS = Object.freeze([
       [
         "BynINW",
-        "_6Qf49G"
+        "_6Qf49G",
+        "PIRFFq",
+        "pI_x6G"
       ],
       [
         "ST7X_W",
         "Dc7zOa",
-        "wSkVaW"
+        "wSkVaW",
+        "kiGsTW"
       ],
       [
         "_3WPZCG",
         "_2H3hWW",
-        "hHd-Xa"
+        "hHd-Xa",
+        "kB3qhq"
       ],
       [
         "yhfFVG",
         "RlGAzG",
-        "uV2eYG"
+        "uV2eYG",
+        "JZLxKW"
       ],
       [
         "bocITq",
         "Hqq-bq",
-        "pXSMma"
+        "pXSMma",
+        "_8tPydW"
       ],
       [
         "_7514NG",
         "_9lTDKa",
-        "qDHVXG"
+        "qDHVXG",
+        "Kjh-qa",
+        "bhn1Oq"
       ],
       [
         "jJkEga",
         "hIlkoa",
-        "YDXeBa"
+        "YDXeBa",
+        "JoiKIa"
       ],
       [
         "ZVcBiW",
         "fO69Vq",
-        "X_2TxG"
+        "X_2TxG",
+        "w6M7KW"
       ],
       [
         "wCInkW",
-        "Dws9Sa"
+        "Dws9Sa",
+        "_77Pn0W",
+        "VOzbGW"
       ],
       [
         "Z9Jnlq",
-        "tki__G"
+        "tki__G",
+        "z8WDjq",
+        "_3e4SsG"
       ],
       [
         "icaHSq",
-        "EvIC1a"
+        "EvIC1a",
+        "tnXGgG"
       ],
       [
         "IzP3Va",
-        "Sixlwa"
+        "Sixlwa",
+        "AkCqbG"
       ],
       [
         "HiSsxa",
-        "lcKema"
+        "lcKema",
+        "ijfCxa"
       ],
       [
         "_PaunW",
-        "l_V-RG"
+        "l_V-RG",
+        "gTO55a"
       ],
       [
         "sZXytW",
-        "Q51KRG"
+        "Q51KRG",
+        "KkN8mG"
       ],
       [
         "ppByMG",
-        "xzv4MW"
+        "xzv4MW",
+        "ZITbJG"
       ],
       [
         "YS3v9W",
-        "_5OnbHa"
+        "_5OnbHa",
+        "B9WI8q"
       ],
       [
         "gKv1-q",
-        "hWmORq"
+        "hWmORq",
+        "XNZzAa"
       ],
       [
         "OpZ85W",
-        "bOPqQW"
+        "bOPqQW",
+        "TQ0rwa"
       ],
       [
         "JXrxFq",
-        "eGxaPq"
+        "eGxaPq",
+        "_4if9eW"
       ],
       [
         "Bpi2Dq",
-        "XrJvXW"
+        "XrJvXW",
+        "ft5itq"
       ],
       [
         "TXqvFW",
-        "O_Ebla"
+        "O_Ebla",
+        "r52wTW"
       ],
       [
         "y0jqnG",
-        "JObwrW"
+        "JObwrW",
+        "X0HXfW"
       ],
       [
         "Q2dzhW",
-        "o3BgMG"
+        "o3BgMG",
+        "UHhYua"
       ],
       [
         "-gRAhq",
-        "CY-8Ka"
+        "CY-8Ka",
+        "BFlR-G"
       ],
       [
         "yj_sLW",
-        "xDAfVq"
+        "xDAfVq",
+        "_3mBzwG",
+        "DXqwVW"
       ],
       [
         "_33HxeW",
-        "_1p9O6q"
+        "_1p9O6q",
+        "C0O0ea"
       ],
       [
         "rkta1W",
-        "Y0dWHa"
+        "Y0dWHa",
+        "rh_gBW"
       ],
       [
         "_0rqS-a",
-        "qBU-ya"
+        "qBU-ya",
+        "YRYrTq"
       ],
       [
         "leLPTq",
-        "fV0t5q"
+        "fV0t5q",
+        "PMrbXa"
       ],
       [
         "_3li69W",
-        "SVAs4q"
+        "SVAs4q",
+        "nIjNjW"
       ],
       [
         "FfBBxq",
-        "rtSEdW"
+        "rtSEdW",
+        "gdzZCG"
       ],
       [
         "m0vb0q",
-        "cubgiG"
+        "cubgiG",
+        "ufIuna"
       ],
       [
         "Fw9vfq",
-        "QsffPG"
+        "QsffPG",
+        "_4iHfma"
       ],
       [
         "iGvAsW",
-        "SB_kFW"
+        "SB_kFW",
+        "k_IHJa"
       ],
       [
         "AhTMVW",
-        "dhJKeW"
+        "dhJKeW",
+        "gLzERG"
       ],
       [
         "UgCwSW",
-        "Java6a"
+        "Java6a",
+        "ie5riG"
+      ],
+      [
+        "_0TPaqG",
+        "_6DJyyG",
+        "_7yHdaG"
+      ],
+      [
+        "HZhGha",
+        "rK_xAW",
+        "fsXYAq"
+      ],
+      [
+        "kbRY4W",
+        "GSsNcq",
+        "_6_jNJa"
+      ],
+      [
+        "ztjrea",
+        "vdszpW",
+        "hz8-rW"
+      ],
+      [
+        "PSXfDq",
+        "i67LPW",
+        "ZDDmpq"
+      ],
+      [
+        "T1tA0G",
+        "G1c4tW",
+        "JqwYuG"
       ]
     ])
 
@@ -2773,7 +2845,248 @@ window.__ModuleLoader__.load({
 
     `)
 
-    const PLUGIN_VERSION = '0.5.11'
+    // Identify DSH's own CSS module by its published style tag. Class hashes can
+    // change between operating systems and every host release.
+    const RUNTIME_MODULES = Object.freeze([
+      [
+        "BynINW",
+        "@deepseek-ai/dsh-client-ui-layout/AppFrame.module.css",
+        "frame"
+      ],
+      [
+        "ST7X_W",
+        "@deepseek-ai/dsh-client-ui-conversation/ConversationRoot.module.css",
+        "root"
+      ],
+      [
+        "_3WPZCG",
+        "@deepseek-ai/dsh-client-ui-sidebar/SidebarRoot.module.css",
+        "root"
+      ],
+      [
+        "yhfFVG",
+        "@deepseek-ai/dsh-client-ui-conversation/InputBar.module.css",
+        "root"
+      ],
+      [
+        "bocITq",
+        "@deepseek-ai/dsh-client-ui-conversation/HeroShell.module.css",
+        "root"
+      ],
+      [
+        "_7514NG",
+        "@deepseek-ai/dsh-client-ui-workspace/WorkspaceBrowser.module.css",
+        "root"
+      ],
+      [
+        "jJkEga",
+        "@deepseek-ai/dsh-client-ui-workspace/Rows.module.css",
+        "hoverContent"
+      ],
+      [
+        "ZVcBiW",
+        "@deepseek-ai/dsh-client-ui-plugin-manager/PluginManagerPage.module.css",
+        "card"
+      ],
+      [
+        "wCInkW",
+        "@deepseek-ai/dsh-client-ui-settings-general/SettingsRoot.module.css",
+        "nav"
+      ],
+      [
+        "Z9Jnlq",
+        "@deepseek-ai/dsh-client-ui-input-trigger/MenuView.module.css",
+        "menu"
+      ],
+      [
+        "icaHSq",
+        "@deepseek-ai/dsh-client-ui-chat/ChatView.module.css",
+        "frame"
+      ],
+      [
+        "IzP3Va",
+        "@deepseek-ai/dsh-client-ui-chat/MessageItem.module.css",
+        "retryDetails"
+      ],
+      [
+        "HiSsxa",
+        "@deepseek-ai/dsh-client-ui-chat/ReasoningRow.module.css",
+        "root"
+      ],
+      [
+        "_PaunW",
+        "@deepseek-ai/dsh-client-ui-chat/TurnProcessNodeView.module.css",
+        "root"
+      ],
+      [
+        "sZXytW",
+        "@deepseek-ai/dsh-client-ui-chat/TurnUsagePanel.module.css",
+        "root"
+      ],
+      [
+        "ppByMG",
+        "@deepseek-ai/dsh-client-ui-chat/MessageIconActions.module.css",
+        "action"
+      ],
+      [
+        "YS3v9W",
+        "@deepseek-ai/dsh-client-ui-chat/GenericCommandCard.module.css",
+        "root"
+      ],
+      [
+        "gKv1-q",
+        "@deepseek-ai/dsh-client-ui-chat/AssistantMarkdown.module.css",
+        "root"
+      ],
+      [
+        "OpZ85W",
+        "@deepseek-ai/dsh-client-ui-chat/StatsPills.module.css",
+        "anchor"
+      ],
+      [
+        "JXrxFq",
+        "@deepseek-ai/dsh-client-ui-chat/TurnNavigator.module.css",
+        "frame"
+      ],
+      [
+        "Bpi2Dq",
+        "@deepseek-ai/dsh-client-ui-chat/ContextInjectionRow.module.css",
+        "root"
+      ],
+      [
+        "TXqvFW",
+        "@deepseek-ai/dsh-client-ui-chat/ChatGroupSeat.module.css",
+        "root"
+      ],
+      [
+        "y0jqnG",
+        "@deepseek-ai/dsh-client-ui-conversation/ContextMeter.module.css",
+        "root"
+      ],
+      [
+        "Q2dzhW",
+        "@deepseek-ai/dsh-client-ui-tool/ToolRow.module.css",
+        "root"
+      ],
+      [
+        "-gRAhq",
+        "@deepseek-ai/dsh-client-ui-tool/bash-sample.module.css",
+        "root"
+      ],
+      [
+        "yj_sLW",
+        "@deepseek-ai/dsh-client-ui-tool/ToolDetails.module.css",
+        "root"
+      ],
+      [
+        "_33HxeW",
+        "@deepseek-ai/dsh-client-ui-trajectory/TrajectoryTimeline.module.css",
+        "root"
+      ],
+      [
+        "rkta1W",
+        "@deepseek-ai/dsh-client-ui-trajectory/TrajectoryTable.module.css",
+        "split"
+      ],
+      [
+        "_0rqS-a",
+        "@deepseek-ai/dsh-client-ui-trajectory/views.module.css",
+        "root"
+      ],
+      [
+        "leLPTq",
+        "@deepseek-ai/dsh-client-ui-trajectory/TrajectoryToolbar.module.css",
+        "root"
+      ],
+      [
+        "_3li69W",
+        "@deepseek-ai/dsh-client-ui-agent-preset/AgentPresetLabel.module.css",
+        "icon"
+      ],
+      [
+        "FfBBxq",
+        "@deepseek-ai/dsh-client-ui-agent-preset/AgentPresetSection.module.css",
+        "card"
+      ],
+      [
+        "m0vb0q",
+        "@deepseek-ai/dsh-client-ui-agent-preset/AgentPresetSeat.module.css",
+        "seat"
+      ],
+      [
+        "Fw9vfq",
+        "@deepseek-ai/dsh-client-ui-jobs/JobListAction.module.css",
+        "menu"
+      ],
+      [
+        "iGvAsW",
+        "@deepseek-ai/dsh-client-ui-sidebar-browser/Browser.module.css",
+        "frame"
+      ],
+      [
+        "AhTMVW",
+        "@deepseek-ai/dsh-client-ui-sidebar-documentpreview/TextPreview.module.css",
+        "action"
+      ],
+      [
+        "UgCwSW",
+        "@deepseek-ai/dsh-client-ui-sidebar-documentpreview/CodeBody.module.css",
+        "code"
+      ],
+      [
+        "_0TPaqG",
+        "@deepseek-ai/dsh-client-ui-conversation/QueueDock.module.css",
+        "panel"
+      ],
+      [
+        "HZhGha",
+        "@deepseek-ai/dsh-client-ui-tool/AskQuestionCard.module.css",
+        "card"
+      ],
+      [
+        "kbRY4W",
+        "@deepseek-ai/dsh-client-ui-message-feedback/FeedbackDialog.module.css",
+        "dialog"
+      ],
+      [
+        "ztjrea",
+        "@deepseek-ai/dsh-client-ui-deliverables/ChangedFiles.module.css",
+        "card"
+      ],
+      [
+        "PSXfDq",
+        "@deepseek-ai/dsh-client-ui-deliverables/ReviewTab.module.css",
+        "root"
+      ],
+      [
+        "T1tA0G",
+        "@deepseek-ai/dsh-client-ui-sidebar-documentpreview/FontNotice.module.css",
+        "panel"
+      ]
+    ])
+    function discoverRuntimeAliases() {
+      const sheets = new Map([...document.querySelectorAll('style[data-plugin-css]')].map(style => [style.getAttribute('data-plugin-css'), style.textContent || '']))
+      const aliases = new Map()
+      for (const [canonical, tag, role] of RUNTIME_MODULES) {
+        const source = sheets.get(tag)
+        if (!source) continue
+        const pattern = new RegExp(`\\.([\\w-]+)_${role}(?![\\w-])`, 'g')
+        const candidates = new Set([...source.matchAll(pattern)].map(match => match[1]))
+        if (candidates.size !== 1) continue
+        const [prefix] = candidates
+        const known = BUILD_CLASS_GROUPS.find(group => group[0] === canonical)
+        if (known && !known.includes(prefix)) aliases.set(canonical, prefix)
+      }
+      return aliases
+    }
+    function withRuntimeAliases(css, aliases) {
+      if (!aliases.size) return css
+      const names = [...aliases.keys()].map(name => name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+      const pattern = new RegExp(`\\.(${names.join('|')})_([\\w-]+)`, 'g')
+      return css.replace(pattern, (token, canonical, role) => `:is(${token},.${aliases.get(canonical)}_${role})`)
+    }
+
+    const PLUGIN_VERSION = '0.5.12'
     function markHeaderPresetLabels(conversation) {
       if (!conversation) return []
       const labels = new Set()
@@ -2842,17 +3155,27 @@ window.__ModuleLoader__.load({
     exports.apply = function apply(ctx) {
       ctx.effect(() => {
         let disposeMounted
+        let runtimeAliases = new Map()
+        let runtimeSelectors = S
+        const refreshRuntimeAliases = () => {
+          const next = discoverRuntimeAliases()
+          if (JSON.stringify([...runtimeAliases]) === JSON.stringify([...next])) return false
+          runtimeAliases = next
+          runtimeSelectors = Object.fromEntries(Object.entries(S).map(([name, selector]) => [name, withRuntimeAliases(selector, next)]))
+          return true
+        }
         const pending = new MutationObserver(() => {
           if (disposeMounted) return
+          refreshRuntimeAliases()
           disposeMounted = mount()
           if (disposeMounted) pending.disconnect()
         })
         const mount = () => {
-        const frame = document.querySelector(S.frame)
-        const sidebar = document.querySelector(S.sidebar)
-        const footer = document.querySelector(S.footer)
-        const main = document.querySelector(S.main)
-        const conversation = document.querySelector(S.conversation)
+        const frame = document.querySelector(runtimeSelectors.frame)
+        const sidebar = document.querySelector(runtimeSelectors.sidebar)
+        const footer = document.querySelector(runtimeSelectors.footer)
+        const main = document.querySelector(runtimeSelectors.main)
+        const conversation = document.querySelector(runtimeSelectors.conversation)
         if (!frame || !sidebar) return null
         const root = document.documentElement
         const priorTheme = root.getAttribute('data-dsh-gemini-theme')
@@ -2864,7 +3187,8 @@ window.__ModuleLoader__.load({
         for (const id of Object.values(ID)) document.getElementById(id)?.remove()
         const style = document.createElement('style')
         style.id = ID.style
-        style.textContent = CSS + CSS_V2 + CSS_V3 + CSS_LIGHT_SETTING + CSS_CONTROL_INTEGRITY + CSS_READABILITY + CSS_FILE_FINISH + CSS_SIDEBARS + CSS_COMPLETION + CSS_BACKPLATES
+        const baseStyles = CSS + CSS_V2 + CSS_V3 + CSS_LIGHT_SETTING + CSS_CONTROL_INTEGRITY + CSS_READABILITY + CSS_FILE_FINISH + CSS_SIDEBARS + CSS_COMPLETION + CSS_BACKPLATES
+        style.textContent = withRuntimeAliases(baseStyles, runtimeAliases)
         document.head.append(style)
 
         let updateTooltipScan = null
@@ -2970,9 +3294,9 @@ window.__ModuleLoader__.load({
           for (const button of themePreferenceButtons) button.setAttribute('aria-pressed', String(button.dataset.themePreference === preference))
           intensity.value = String(settings.intensity)
           output.value = `${settings.intensity}%`
-          const mainRect = (document.querySelector(S.main) || main || frame).getBoundingClientRect()
+          const mainRect = (document.querySelector(runtimeSelectors.main) || main || frame).getBoundingClientRect()
           const wide = mainRect.width >= 1260
-          const currentConversation = document.querySelector(S.conversation)
+          const currentConversation = document.querySelector(runtimeSelectors.conversation)
           const presetLabels = markHeaderPresetLabels(currentConversation)
           const diagnostic = panel.querySelector('[data-theme-diagnostic]')
           if (diagnostic) {
@@ -2982,7 +3306,7 @@ window.__ModuleLoader__.load({
           }
           const phaseOwner = currentConversation?.closest('[data-phase],[data-content-phase]')
           const phase = phaseOwner?.getAttribute('data-phase') || phaseOwner?.getAttribute('data-content-phase')
-          const hero = phase ? phase === 'hero' : !!currentConversation?.querySelector(S.heroComposer)
+          const hero = phase ? phase === 'hero' : !!currentConversation?.querySelector(runtimeSelectors.heroComposer)
           const artOpacity = Math.min(1, Math.max(0, settings.intensity / 100 * (hero ? 1 : .4)))
           setRoot('data-dsh-gemini-page', currentConversation ? 'conversation' : 'other')
           setRoot('data-dsh-gemini-scene', currentConversation ? (hero ? 'hero' : 'chat') : 'other')
@@ -3058,14 +3382,29 @@ window.__ModuleLoader__.load({
         }, 1000)
         const routeObserver = new MutationObserver(records => {
           if (records.every(record => record.target.closest?.('[data-chat-flow],[contenteditable="true"]'))) return
-          const currentFooter = document.querySelector(S.footer)
-          const currentConversation = document.querySelector(S.conversation)
+          const currentFooter = document.querySelector(runtimeSelectors.footer)
+          const currentConversation = document.querySelector(runtimeSelectors.conversation)
           // A previous route can remain connected while its replacement mounts.
           if (currentFooter && (trigger.parentElement !== currentFooter || mascot.parentElement !== currentFooter)) currentFooter.prepend(mascot, trigger)
           if (currentConversation && (art.parentElement !== currentConversation || companion.parentElement !== currentConversation || themeFrame.parentElement !== currentConversation)) currentConversation.append(art, companion, themeFrame)
           scheduleSync()
         })
         routeObserver.observe(frame, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['data-phase', 'data-content-phase'] })
+        // Some host components load after the first frame. Refresh only when DSH
+        // adds or removes its own component style tags, never on chat mutations.
+        let aliasUpdateFrame = null
+        const headObserver = new MutationObserver(records => {
+          const changed = records.some(record => [...record.addedNodes, ...record.removedNodes].some(node => node.nodeType === 1 && node.matches?.('style[data-plugin-css]')))
+          if (!changed || aliasUpdateFrame !== null) return
+          aliasUpdateFrame = requestAnimationFrame(() => {
+            aliasUpdateFrame = null
+            if (!refreshRuntimeAliases()) return
+            style.textContent = withRuntimeAliases(baseStyles, runtimeAliases)
+            style.append(captionSignal)
+            scheduleSync()
+          })
+        })
+        headObserver.observe(document.head, { childList: true })
         sync()
         return () => {
           clearTimeout(transitionTimer); clearInterval(toneTimer)
@@ -3073,7 +3412,8 @@ window.__ModuleLoader__.load({
           if (updateTooltipScan !== null) cancelAnimationFrame(updateTooltipScan)
           updateTooltipObserver.disconnect()
           document.querySelectorAll('[data-dsh-gemini-update-tooltip="true"]').forEach(tooltip => tooltip.removeAttribute('data-dsh-gemini-update-tooltip'))
-          observer.disconnect(); routeObserver.disconnect()
+          observer.disconnect(); routeObserver.disconnect(); headObserver.disconnect()
+          if (aliasUpdateFrame !== null) cancelAnimationFrame(aliasUpdateFrame)
           frame.querySelectorAll('[data-dsh-gemini-preset-label]').forEach(label => label.removeAttribute('data-dsh-gemini-preset-label'))
           trigger.removeEventListener('click', toggle)
           panel.removeEventListener('change', change)
@@ -3100,6 +3440,7 @@ window.__ModuleLoader__.load({
           root.removeAttribute('data-dsh-gemini-transition')
         }
         }
+        refreshRuntimeAliases()
         disposeMounted = mount()
         if (!disposeMounted) pending.observe(document.documentElement, { childList: true, subtree: true })
         return () => { pending.disconnect(); disposeMounted?.() }

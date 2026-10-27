@@ -51,7 +51,12 @@ for (const item of nativeFixtures.fixtures) {
   assert.ok(selectors.includes(`.${item.local}`), `Missing native role: ${item.module}.${item.role}`)
   assert.ok(selectors.includes(`.${item.published}`), `Missing published component: ${item.published}`)
 }
-console.log(`Checked ${styles.pairs.length} alias families and ${nativeFixtures.fixtures.length} official native-role fixtures`)
+for (const item of nativeFixtures.dsh_021_rc3.modules) {
+  for (const platform of ['desktop', 'registry']) {
+    assert.ok(styles.expand(`.${item.canonical}_${item.probe}`).includes(`.${item[platform]}_${item.probe}`), `Missing DSH 0.2.1-rc.3 ${platform} module ${item.module}.${item.probe}`)
+  }
+}
+console.log(`Checked ${styles.pairs.length} alias families, ${nativeFixtures.fixtures.length} existing fixtures, and ${nativeFixtures.dsh_021_rc3.modules.length} DSH 0.2.1-rc.3 component modules`)
 
 for (const [placeholder, mime, filename, knownBytes] of assets) {
   const quoted = `'${placeholder}'`
