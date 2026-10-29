@@ -2729,7 +2729,7 @@ ${LIGHT_SETTING}[data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(
 
 /* Give the welcome selectors room above the composer ornament. */
 html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) {
-  margin-bottom:20px;
+  margin-bottom:20px; justify-content:space-between; gap:12px;
 }
 
 /* Restore the welcome controls in the host dark appearance. */
@@ -3104,7 +3104,7 @@ function withRuntimeAliases(css, aliases) {
   return css.replace(pattern, (token, canonical, role) => `:is(${token},.${aliases.get(canonical)}_${role})`)
 }
 
-const PLUGIN_VERSION = '0.5.14'
+const PLUGIN_VERSION = '0.5.15'
 function markHeaderPresetLabels(conversation) {
   if (!conversation) return []
   const labels = new Set()
