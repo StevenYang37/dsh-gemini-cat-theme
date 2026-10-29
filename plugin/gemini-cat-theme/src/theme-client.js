@@ -2727,6 +2727,25 @@ ${LIGHT_SETTING}[data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(
 }
 
 
+/* Restore the welcome controls in the host dark appearance. */
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"][data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) :is(.bocITq_workspace,.Hqq-bq_workspace,.m0vb0q_seat) {
+  box-sizing:border-box; border:0; border-radius:10px;
+  background:linear-gradient(115deg,#eee8f8,#e4ddf2) !important;
+  color:#40315d !important; -webkit-text-fill-color:currentColor !important;
+  -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+  box-shadow:inset 0 0 0 1px #ad99c8,0 1px 3px #38245126;
+}
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"][data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) :is(.bocITq_workspace,.Hqq-bq_workspace,.m0vb0q_seat) :where(*) {
+  color:inherit !important; -webkit-text-fill-color:currentColor !important;
+  -webkit-text-stroke:0 transparent !important; text-shadow:none !important;
+}
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"][data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) :is(.bocITq_workspace,.Hqq-bq_workspace,.m0vb0q_seat):is(:hover,:focus-visible,[aria-expanded="true"]) {
+  background:linear-gradient(115deg,#ddd3ed,#d5c9e9) !important;
+}
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"][data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) :is(.bocITq_workspace,.Hqq-bq_workspace,.m0vb0q_seat):focus-visible {
+  outline:2px solid #765a9a; outline-offset:2px;
+}
+
 /* MessageIconActions exposes data-clock on both platforms. Use that native
    contract as a fallback when a DSH build has different CSS-module hashes. */
 ${BACKPLATE_SCOPE} ${S.conversation} div:is([data-clock="start"],[data-clock="end"])${BACKPLATE_NATIVE} {
@@ -3080,7 +3099,7 @@ function withRuntimeAliases(css, aliases) {
   return css.replace(pattern, (token, canonical, role) => `:is(${token},.${aliases.get(canonical)}_${role})`)
 }
 
-const PLUGIN_VERSION = '0.5.12'
+const PLUGIN_VERSION = '0.5.13'
 function markHeaderPresetLabels(conversation) {
   if (!conversation) return []
   const labels = new Set()
