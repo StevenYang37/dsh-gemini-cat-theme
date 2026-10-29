@@ -2727,10 +2727,19 @@ ${LIGHT_SETTING}[data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(
 }
 
 
+/* Leave room at both ends of the welcome ornament for the selectors. */
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="hero"] ${S.frame} ${S.composer}::before {
+  content:"✦ ──────── ✧ ──────── ✦";
+}
 /* Give the welcome selectors room above the composer ornament. */
 html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) {
-  margin-bottom:20px; justify-content:space-between; gap:12px;
+  margin-bottom:0; width:100%; box-sizing:border-box; justify-content:space-between; gap:12px;
 }
+
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) .m0vb0q_menuAnchor {
+  margin-left:auto;
+}
+html[data-dsh-gemini-theme="active"][data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) :is(.ST7X_W_heroOptions,.Dc7zOa_heroOptions) { margin-left:0; }
 
 /* Restore the welcome controls in the host dark appearance. */
 html[data-dsh-gemini-theme="active"][data-dsh-gemini-tone="light"][data-dsh-gemini-scene="hero"] ${S.frame} ${S.conversation} :is(.ST7X_W_heroWorkspaceRow,.Dc7zOa_heroWorkspaceRow) :is(.bocITq_workspace,.Hqq-bq_workspace,.m0vb0q_seat) {
@@ -3104,7 +3113,7 @@ function withRuntimeAliases(css, aliases) {
   return css.replace(pattern, (token, canonical, role) => `:is(${token},.${aliases.get(canonical)}_${role})`)
 }
 
-const PLUGIN_VERSION = '0.5.15'
+const PLUGIN_VERSION = '0.5.16'
 function markHeaderPresetLabels(conversation) {
   if (!conversation) return []
   const labels = new Set()
